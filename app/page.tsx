@@ -524,7 +524,7 @@ export default function Home() {
                       <Mail className="h-8 w-8" />
                       <div>
                         <p className="font-light text-lg">Email Us</p>
-                        <p className="text-xl">contact@mirskygroup.com</p>
+                        <p className="text-xl">contact@lindaolsson.com</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-5">
