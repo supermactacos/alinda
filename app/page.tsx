@@ -82,6 +82,49 @@ export default function Home() {
 
       {/* Main Content with hero section having video background */}
       <div className="relative min-h-screen w-full overflow-x-hidden">
+        {/* Navigation - Moved outside hero section */}
+        <nav className={`fixed top-0 left-0 right-0 z-[100] w-full py-8 px-4 transition-all duration-300 ${
+          isScrolled ? 'bg-[#1b4e1f]' : 'bg-transparent'
+        } ${loadingVisible ? 'opacity-0' : 'opacity-100'}`}>
+          <div className="container mx-auto flex items-center justify-between">
+            <div className="flex items-center gap-8">
+              <button className="flex items-center gap-2 text-white text-lg">
+                <Menu className="h-8 w-8" />
+                <span>Menu</span>
+              </button>
+              <div className="hidden md:flex items-center gap-6">
+                <div className="relative group">
+                  <button className="text-white text-lg flex items-center gap-1">
+                    Properties
+                    <span className="ml-1"></span>
+                  </button>
+                </div>
+                <Link href="#" className="text-white text-lg">
+                  Home Search
+                </Link>
+              </div>
+            </div>
+
+            {/* Center Logo */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <img src="/flogo.svg" alt="Logo" className="h-20 mr-10" />
+            </div>
+
+            {/* Right Navigation */}
+            <div className="flex items-center gap-6">
+              <Link href="#" className="text-white text-lg">
+                Market Reports
+              </Link>
+              <Link href="#" className="text-white hidden md:block text-lg">
+                Contact Us
+              </Link>
+              <Link href="tel:(561) 313-6504" className="text-white text-lg">
+                (561) 313-6504
+              </Link>
+            </div>
+          </div>
+        </nav>
+
         {/* Hero Section with contained video background */}
         <div className={`relative h-screen transition-transform duration-500 ease-in-out ${
           loadingVisible ? 'translate-y-0' : 'translate-y-0'
@@ -104,49 +147,6 @@ export default function Home() {
             </video>
             <div className="absolute inset-0 bg-black/30" />
           </div>
-          
-          {/* Navigation */}
-          <nav className={`sticky top-0 left-0 right-0 z-[100] w-full py-8 px-4 transition-all duration-300 ${
-            isScrolled ? 'bg-[#1b4e1f]' : 'bg-transparent'
-          } ${loadingVisible ? 'opacity-0' : 'opacity-100'}`}>
-            <div className="container mx-auto flex items-center justify-between">
-              <div className="flex items-center gap-8">
-                <button className="flex items-center gap-2 text-white text-lg">
-                  <Menu className="h-8 w-8" />
-                  <span>Menu</span>
-                </button>
-                <div className="hidden md:flex items-center gap-6">
-                  <div className="relative group">
-                    <button className="text-white text-lg flex items-center gap-1">
-                      Properties
-                      <span className="ml-1"></span>
-                    </button>
-                  </div>
-                  <Link href="#" className="text-white text-lg">
-                    Home Search
-                  </Link>
-                </div>
-              </div>
-
-              {/* Center Logo */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <img src="/flogo.svg" alt="Logo" className="h-20 mr-10" />
-              </div>
-
-              {/* Right Navigation */}
-              <div className="flex items-center gap-6">
-                <Link href="#" className="text-white text-lg">
-                  Market Reports
-                </Link>
-                <Link href="#" className="text-white hidden md:block text-lg">
-                  Contact Us
-                </Link>
-                <Link href="tel:(561) 313-6504" className="text-white text-lg">
-                  (561) 313-6504
-                </Link>
-              </div>
-            </div>
-          </nav>
           
           {/* Hero Content */}
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center">
