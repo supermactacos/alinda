@@ -12,9 +12,11 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel"
 import { TypingAnimation } from "@/components/magicui/typing-animation"
 import { TextAnimate } from "@/components/magicui/text-animate"
+import { testimonials } from "./data/testimonials"
 
 const instrumentSerif = Instrument_Serif({ 
   weight: ['400'],
@@ -158,8 +160,10 @@ export default function Home() {
               </h1>
               <p className={`text-2xl md:text-3xl lg:text-4xl mb-10 text-white ${instrumentSerif.className}`}>Representing buyers and sellers of Palm Beach's Finest Residences since 1989</p>
               <div className="flex justify-center gap-8">
-                <button className={`px-12 py-5 text-2xl md:text-3xl bg-[#1b4e1f] hover:bg-white/90 transition-colors text-white rounded-lg ${instrumentSerif.className}`}>Contact Us</button>
-                <button className={`px-12 py-5 text-2xl md:text-3xl bg-[#fe9d96] hover:bg-white/90 transition-colors text-white rounded-lg ${instrumentSerif.className}`}>Search Homes</button>
+                <button className={`px-5 py-5 text-2xl md:text-4xl bg-[#1b4e1f] hover:bg-green-900/90 transition-colors text-white rounded-lg ${instrumentSerif.className} flex items-center`}>
+                  Find Your Dream Home Today
+                  <ArrowRight className="h-10 w-10 ml-1" />
+                </button>
               </div>
             </div>
           </div>
@@ -270,7 +274,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Location Selection Section - Replacing previous services section */}
+          {/* Location Selection Section - Search by Neighborhood */}
           <section className="relative bg-[#fcfcfc] py-24">
             <div className="container mx-auto px-4">
               <div className="text-center mb-16">
@@ -298,7 +302,7 @@ export default function Home() {
                     image: "/estatesection.svg?height=600&width=600",
                     description: "Prestigious Oceanfront Estates",
                     location: "Worth Avenue South to Sloan's Curve",
-                    details: "Palm Beach Oceanfront Estates, Intracoastal Estates, and Single Family Homes. Many estate section properties feature formal gardens, gated entries, and lavish...",
+                    details: "Palm Beach Oceanfront Estates, Intracoastal Estates, and Single Family Homes. Featuring formal gardens, gated entries, and lavish...",
                   },
                   {
                     name: "In Town Condominiums",
@@ -308,7 +312,7 @@ export default function Home() {
                     details: "The exclusive Sloan's Curve condominium complex. The approximate three mile strip of gorgeous oceanfront properties and coastline.",
                   },
                 ].map((location) => (
-                  <div key={location.name} className="group">
+                  <div key={location.name} className="group flex flex-col h-full">
                     <div className="relative aspect-[1/1] mb-6">
                       <div className="absolute inset-[12px] border border-white/50 z-10" />
                       <img
@@ -317,15 +321,17 @@ export default function Home() {
                         className="absolute inset-0 w-full h-full object-cover"
                       />
                     </div>
-                    <h3 className={`text-3xl font-semibold uppercase tracking-wider mb-3 ${instrumentSerif.className}`}>{location.name}</h3>
-                    <div className="flex items-center gap-2 mb-3">
-                      <MapPin className="h-5 w-5 text-gray-600" />
-                      <p className="text-gray-900 font-medium text-lg">{location.location}</p>
-                    </div>
-                    <p className="text-gray-600 mb-4 text-lg">{location.details}</p>
-                    <div className="flex items-center gap-2 text-gray-600 group-hover:text-black transition-colors">
-                      <span className="uppercase text-base tracking-wider">Discover</span>
-                      <ArrowRight className="h-5 w-5" />
+                    <div className="flex flex-col flex-grow">
+                      <h3 className={`text-3xl font-semibold uppercase tracking-wider mb-3 ${instrumentSerif.className}`}>{location.name}</h3>
+                      <div className="flex items-center gap-2 mb-3">
+                        <MapPin className="h-5 w-5 text-gray-600" />
+                        <p className="text-gray-900 font-medium text-lg">{location.location}</p>
+                      </div>
+                      <p className="text-gray-600 mb-4 text-2xl flex-grow">{location.details}</p>
+                      <div className="flex items-center gap-2 text-gray-600 group-hover:text-black transition-colors mt-auto">
+                        <span className="uppercase text-base tracking-wider">Search</span>
+                        <ArrowRight className="h-5 w-5" />
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -333,12 +339,90 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Featured Properties */}
+          {/* Search for Homes */}
           <section className="py-32 bg-white">
             <div className="container mx-auto px-4">
               <div className="text-center mb-20">
+                <h2 className={`text-6xl font-light mb-6 text-green-800 ${instrumentSerif.className}`}>Search by Price</h2>
+                <p className="text-gray-600 text-2xl">Find your dream home today.</p>
+              </div>
+              
+              <div className="space-y-8">
+                {/* Homes Section */}
+                <div>
+                  <h3 className={`text-3xl mb-6 text-center ${instrumentSerif.className}`}>Palm Beach Homes</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
+                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      1 to 4 million
+                    </button>
+                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      4 to 8 million
+                    </button>
+                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      8 to 12 million
+                    </button>
+                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      12 to 22 million
+                    </button>
+                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      22 to 100 million
+                    </button>
+                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      100 to 200 million
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      Waterfront
+                    </button>
+                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      Homes for Rent
+                    </button>
+                  </div>
+                </div>
+
+                {/* Condos Section */}
+                <div>
+                  <h3 className={`text-3xl mb-6 text-center pt-8 ${instrumentSerif.className}`}>Palm Beach Condominiums</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      1 to 2 million
+                    </button>
+                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      2 to 4 million
+                    </button>
+                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      4 to 12 million
+                    </button>
+                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      12 to 50 million
+                    </button>
+                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      50 to 75 million
+                    </button>
+                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      Waterfront Condos
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    In-Town Condos
+                    </button>
+                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                      Condos for Rent
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Featured Properties */}
+          <section className="py-32 bg-[#fcfcfc]">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-20">
                 <h2 className={`text-6xl font-light mb-6 text-green-800 ${instrumentSerif.className}`}>Featured Properties</h2>
-                <p className="text-gray-600 text-xl">Discover Our Exclusive Listings</p>
+                <p className="text-gray-600 text-2xl">Discover Our Exclusive Listings</p>
               </div>
               <Carousel className="w-full">
                 <CarouselContent className="-ml-2 md:-ml-4">
@@ -434,71 +518,68 @@ export default function Home() {
           </section>
 
           {/* Testimonials */}
-          <section className="py-32 bg-[#fcfcfc]">
+          <section className="py-32 bg-white">
             <div className="container mx-auto px-4">
               <div className="text-center mb-20">
-                <h2 className={`text-6xl font-light mb-6 text-green-800 ${instrumentSerif.className}`}>Client Testimonials</h2>
-                <p className="text-gray-600 text-xl">What Our Clients Say About Us</p>
+                <h2 className={`text-6xl font-light mb-6 text-green-800 ${instrumentSerif.className}`}>Testimonials</h2>
+                <p className="text-gray-600 text-2xl">What Our Clients Say About Us</p>
               </div>
-              <Carousel className="w-full">
-                <CarouselContent>
-                  {[
-                    {
-                      quote: "Linda's expertise in Palm Beach luxury real estate is unmatched. Her dedication and attention to detail made our home buying experience truly exceptional. She understood exactly what we were looking for and helped us find our dream waterfront property.",
-                      author: "James & Elizabeth Thompson",
-                      location: "Palm Beach Oceanfront",
-                      image: "/testimonial1.jpg",
-                      type: "Luxury Home Buyer"
-                    },
-                    {
-                      quote: "Working with Linda to sell our estate was a seamless experience. Her deep understanding of the market and extensive network resulted in a swift sale at our desired price point. Her professionalism and discretion are truly commendable.",
-                      author: "Robert C. Sterling",
-                      location: "Estate Section",
-                      image: "/testimonial2.jpg",
-                      type: "Estate Seller"
-                    },
-                    {
-                      quote: "Linda's intimate knowledge of Palm Beach's most prestigious neighborhoods and her ability to navigate complex transactions made all the difference. She's more than a realtor; she's a trusted advisor in luxury real estate.",
-                      author: "Victoria Blackwell",
-                      location: "North End",
-                      image: "/testimonial3.jpg",
-                      type: "Property Investor"
-                    }
-                  ].map((testimonial, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                      <div className="p-10 mx-5 bg-gray-50 rounded-lg h-full flex flex-col">
-                        {/* Profile Section - Always at the top */}
-                        <div className="flex items-center gap-5 mb-8">
-                          <div className="flex-shrink-0">
-                            <div className="w-20 h-20 bg-gray-100 rounded-full overflow-hidden border border-gray-200">
-                              <img
-                                src={testimonial.image}
-                                alt={testimonial.author}
-                                className="w-full h-full object-cover"
-                              />
+              {(() => {
+                const [api, setApi] = React.useState<CarouselApi>()
+                
+                React.useEffect(() => {
+                  if (!api) return
+                
+                  const interval = setInterval(() => {
+                    api.scrollNext()
+                  }, 2000)
+                
+                  return () => clearInterval(interval)
+                }, [api])
+
+                return (
+                  <Carousel
+                    className="w-full"
+                    opts={{
+                      align: "start",
+                      loop: true,
+                    }}
+                    setApi={setApi}
+                  >
+                    <CarouselContent>
+                      {testimonials.map((testimonial, index) => (
+                        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                          <div className="p-10 mx-5 bg-gray-50 rounded-lg h-full flex flex-col">
+                            {/* Profile Section - Always at the top */}
+                            <div className="flex items-center gap-5 mb-8">
+                              <div className="flex-shrink-0">
+                                
+                              </div>
+                              <div>
+                                <p className={`font-medium text-2xl ${instrumentSerif.className}`}>{testimonial.author}</p>
+                                <p className="text-green-800 text-lg">{testimonial.location}</p>
+                                <p className="text-green-800 text-base">{testimonial.type}</p>
+                              </div>
+                            </div>
+                            
+                            {/* Quote Section */}
+                            <div className="relative flex-grow">
+                              <div className="absolute -left-3 -top-3 text-7xl text-gray-200 font-serif">"</div>
+                              <blockquote className="relative z-10 pl-5 text-gray-700 leading-relaxed italic text-xl">
+                                {testimonial.quote.length > 350 
+                                  ? `${testimonial.quote.substring(0, 350).split(' ').slice(0, -1).join(' ')}...` 
+                                  : testimonial.quote}
+                              </blockquote>
                             </div>
                           </div>
-                          <div>
-                            <p className={`font-medium text-2xl ${instrumentSerif.className}`}>{testimonial.author}</p>
-                            <p className="text-green-800 text-lg">{testimonial.location}</p>
-                            <p className="text-gray-500 text-base">{testimonial.type}</p>
-                          </div>
-                        </div>
-                        
-                        {/* Quote Section */}
-                        <div className="relative flex-grow">
-                          <div className="absolute -left-3 -top-3 text-7xl text-gray-200 font-serif">"</div>
-                          <blockquote className="relative z-10 pl-5 text-gray-700 leading-relaxed italic text-lg">
-                            {testimonial.quote}
-                          </blockquote>
-                        </div>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden md:flex" />
-                <CarouselNext className="hidden md:flex" />
-              </Carousel>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="hidden md:flex" />
+                    <CarouselNext className="hidden md:flex" />
+                  </Carousel>
+                )
+              })()}
             </div>
           </section>
 
@@ -565,7 +646,7 @@ export default function Home() {
                       rows={4}
                       className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400"
                     />
-                    <Button className="w-full bg-black text-white hover:bg-black/90 text-lg py-6">Send Message</Button>
+                    <Button className="w-full bg-black text-white hover:bg-black/90 text-xl py-6">Send Message</Button>
                   </form>
                 </div>
               </div>
