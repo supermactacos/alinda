@@ -234,7 +234,7 @@ export default function Home() {
                       <img src="/wpbf.png" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     <div className="ticker-item">
-                      <img src="/zillow.png" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
+                      <img src="/Zillow.png" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     <div className="ticker-item">
                       <img src="/mercer-island.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
