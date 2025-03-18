@@ -75,7 +75,7 @@ export default function Home() {
               delay={0.2}
               once
             >
-              Linda R. Olson
+              Linda R. Olsson
             </TextAnimate>
           </div>
           <p className={`text-xl text-pink-200 ${instrumentSerif.className}`}>Loading...</p>
