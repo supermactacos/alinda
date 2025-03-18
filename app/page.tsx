@@ -155,7 +155,7 @@ export default function Home() {
             <div className="text-white p-12  ">
               <p className={`text-3xl md:text-4xl lg:text-5xl mb-6  ${instrumentSerif.className}`}>Palm Beach Real Estate</p>
               <h1 className={`text-7xl md:text-8xl lg:text-9xl font-light mb-3 mt-3 text-white relative inline-block ${instrumentSerif.className}`}>
-                <span className="relative z-10">Linda <span className="text-white">R.</span> Olson</span>
+                <span className="relative z-10">Linda <span className="text-white">R.</span> Olsson</span>
                 <div className="absolute inset-0 -m-8 -z-[1]"></div>
               </h1>
               <p className={`text-2xl md:text-3xl lg:text-4xl mb-10 text-white ${instrumentSerif.className}`}>Representing buyers and sellers of Palm Beach's Finest Residences since 1989</p>
