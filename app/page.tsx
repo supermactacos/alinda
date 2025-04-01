@@ -17,6 +17,8 @@ import {
 import { TypingAnimation } from "@/components/magicui/typing-animation"
 import { TextAnimate } from "@/components/magicui/text-animate"
 import { testimonials } from "./data/testimonials"
+import { Navbar } from "@/components/Navbar"
+import { Footer } from "./components/Footer"
 
 const instrumentSerif = Instrument_Serif({ 
   weight: ['400'],
@@ -59,21 +61,22 @@ export default function Home() {
     <>
       {/* Loading overlay with slide-up transition */}
       <div 
-        className={`fixed inset-0 bg-green-800 z-50 flex items-center justify-center transition-all duration-500 ease-in-out ${
+        className={`fixed inset-0 bg-green-800 z-[200] flex items-center justify-center transition-all duration-500 ease-in-out ${
           loadingVisible 
-            ? 'translate-y-0' 
-            : '-translate-y-full'
+            ? 'translate-y-0 opacity-100' 
+            : '-translate-y-full opacity-0 pointer-events-none'
         }`}
       >
         <div className="text-white text-center p-12">
-          <div className={`text-7xl md:text-8xl lg:text-9xl font-light mb-3 mt-3 text-white relative overflow-hidden ${instrumentSerif.className}`}>
+          <div className={`text-7xl md:text-8xl lg:text-9xl font-light mb-3 mt-3 text-white ${instrumentSerif.className}`}>
             <TextAnimate 
               animation="slideUp" 
               by="word"
               className={`${instrumentSerif.className} block`}
-              duration={0.8}
-              delay={0.2}
+              duration={0.5}
+              delay={0}
               once
+              startOnView={false}
             >
               Linda R. Olsson
             </TextAnimate>
@@ -85,47 +88,11 @@ export default function Home() {
       {/* Main Content with hero section having video background */}
       <div className="relative min-h-screen w-full overflow-x-hidden">
         {/* Navigation - Moved outside hero section */}
-        <nav className={`fixed top-0 left-0 right-0 z-[100] w-full py-8 px-4 transition-all duration-300 ${
+        <div className={`fixed top-0 left-0 right-0 z-[40] w-full transition-all duration-300 ${
           isScrolled ? 'bg-[#1b4e1f]' : 'bg-transparent'
-        } ${loadingVisible ? 'opacity-0' : 'opacity-100'}`}>
-          <div className="container mx-auto flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <button className="flex items-center gap-2 text-white text-lg">
-                <Menu className="h-8 w-8" />
-                <span>Menu</span>
-              </button>
-              <div className="hidden md:flex items-center gap-6">
-                <div className="relative group">
-                  <button className="text-white text-lg flex items-center gap-1">
-                    Properties
-                    <span className="ml-1"></span>
-                  </button>
-                </div>
-                <Link href="#" className="text-white text-lg">
-                  Home Search
-                </Link>
-              </div>
-            </div>
-
-            {/* Center Logo */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <img src="/flogo.svg" alt="Logo" className="h-20 mr-10" />
-            </div>
-
-            {/* Right Navigation */}
-            <div className="flex items-center gap-6">
-              <Link href="#" className="text-white text-lg">
-                Market Reports
-              </Link>
-              <Link href="#" className="text-white hidden md:block text-lg">
-                Contact Us
-              </Link>
-              <Link href="tel:(561) 313-6504" className="text-white text-lg">
-                (561) 313-6504
-              </Link>
-            </div>
-          </div>
-        </nav>
+        } ${loadingVisible ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+          <Navbar isScrolled={isScrolled} />
+        </div>
 
         {/* Hero Section with contained video background */}
         <div className={`relative h-screen transition-transform duration-500 ease-in-out ${
@@ -654,62 +621,7 @@ export default function Home() {
           </section>
 
           {/* Footer */}
-          <footer className="bg-black text-white py-16 bg-[#012a12] border-white/10">
-            <div className="container mx-auto px-4">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-                <div>
-                  <h3 className="text-2xl font-light mb-5">Linda R. Olson</h3>
-                  <p className="text-gray-400 text-lg">Luxury Real Estate in Palm Beach and Beyond</p>
-                </div>
-                <div>
-                  <h4 className="text-xl font-light mb-5">Quick Links</h4>
-                  <ul className="space-y-3 text-gray-400 text-lg">
-                    <li>
-                      <Link href="#">Properties</Link>
-                    </li>
-                    <li>
-                      <Link href="#">About Us</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Services</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Contact</Link>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-xl font-light mb-5">Areas We Serve</h4>
-                  <ul className="space-y-3 text-gray-400 text-lg">
-                    <li>
-                      <Link href="#">Palm Beach</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Jupiter</Link>
-                    </li>
-                    <li>
-                      <Link href="#">West Palm Beach</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Palm Beach Gardens</Link>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-xl font-light mb-5">Contact Us</h4>
-                  <ul className="space-y-3 text-gray-400 text-lg">
-                    <li>(561) 820-9195</li>
-                    <li>linda@lindaolsson.com</li>
-                    <li>101 Bradley Place</li>
-                    <li>Palm Beach, FL 33480</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="border-t border-white/10 mt-16 pt-10 text-center text-gray-400 text-lg">
-                <p>© 2024 Linda R. Olson. All rights reserved.</p>
-              </div>
-            </div>
-          </footer>
+          <Footer />
         </div>
       </div>
 
@@ -743,4 +655,3 @@ export default function Home() {
     </>
   )
 }
-
