@@ -18,6 +18,7 @@ interface BlogData {
   posts: BlogPost[];
 }
 
+// Get all blog posts
 export async function GET() {
   try {
     // Path to the blog data file
@@ -89,6 +90,7 @@ const extractFirstImageUrl = (html: string): string | null => {
   return null;
 };
 
+// Create a new blog post
 export async function POST(request: Request) {
   try {
     const { title, author, content, excerpt, image, date } = await request.json();

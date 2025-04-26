@@ -59,13 +59,13 @@ const extractFirstImageUrl = (html: string): string | null => {
   return null;
 };
 
+// Get a single blog post by slug
 export async function GET(
   request: Request,
-  context: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    // Access slug directly from params object
-    const slug: string = context.params.slug;
+    const { slug } = await params;
     
     // Path to the blog data file
     const dataFilePath = path.join(process.cwd(), 'data', 'blogs.json');
@@ -102,13 +102,13 @@ export async function GET(
   }
 }
 
+// Update a blog post
 export async function PUT(
   request: Request,
-  context: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    // Access slug directly from params object
-    const slug: string = context.params.slug;
+    const { slug } = await params;
     const { title, author, content, excerpt, image, date } = await request.json();
     
     // Validate required fields
@@ -192,13 +192,13 @@ export async function PUT(
   }
 }
 
+// Delete a blog post
 export async function DELETE(
   request: Request,
-  context: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    // Access slug directly from params object
-    const slug: string = context.params.slug;
+    const { slug } = await params;
     
     // Path to the blog data file
     const dataFilePath = path.join(process.cwd(), 'data', 'blogs.json');
