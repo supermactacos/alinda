@@ -2,6 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
+/* TipTap Editor Styles */
+.ProseMirror {
+  min-height: 230px;
+  padding: 8px;
+  border-radius: 0.375rem;
+  cursor: text;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.ProseMirror:focus {
+  outline: none;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: "Start writing your content here...";
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror h1 {
+  font-size: 2.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  font-family: var(--font-instrument-serif);
+  color: rgb(22 101 52);
+  line-height: 1.2;
+}
+
+.ProseMirror h2 {
+  font-size: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  font-family: var(--font-instrument-serif);
+  color: rgb(22 101 52);
+  line-height: 1.2;
+}
+
+.ProseMirror h3 {
+  font-size: 1.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  font-family: var(--font-instrument-serif);
+  color: rgb(22 101 52);
+  line-height: 1.2;
+}
+
+.ProseMirror strong {
+  font-weight: bold;
+}
+
+.ProseMirror em {
+  font-style: italic;
+}
+
+.ProseMirror u {
+  text-decoration: underline;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  display: block;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.ProseMirror a {
+  color: rgb(22 163 74);
+  text-decoration: none;
+}
+
+.ProseMirror a:hover {
+  text-decoration: underline;
+}
+
+.ProseMirror ul, .ProseMirror ol {
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+}
+
+.ProseMirror p {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
 @keyframes fastPulse {
   0%, 100% {
     opacity: 1;

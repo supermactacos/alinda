@@ -6,40 +6,40 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div>
-            <h3 className="text-2xl font-light mb-5">Linda R. Olson</h3>
+            <h3 className="text-2xl font-light mb-5">Linda R. Olsson</h3>
             <p className="text-gray-400 text-lg">Luxury Real Estate in Palm Beach and Beyond</p>
           </div>
           <div>
             <h4 className="text-xl font-light mb-5">Quick Links</h4>
             <ul className="space-y-3 text-gray-400 text-lg">
               <li>
-                <Link href="#">Properties</Link>
+                <Link href="/about">About</Link>
               </li>
               <li>
-                <Link href="#">About Us</Link>
+                <Link href="https://mlspalmbeach.lindaolsson.com/i/featured-properties">Featured Properties</Link>
               </li>
               <li>
-                <Link href="#">Services</Link>
+                <Link href="/blog">Blog</Link>
               </li>
               <li>
-                <Link href="#">Contact</Link>
+                <Link href="/contact">Contact</Link>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="text-xl font-light mb-5">Areas We Serve</h4>
+            <h4 className="text-xl font-light mb-5">Search by Neighborhood</h4>
             <ul className="space-y-3 text-gray-400 text-lg">
               <li>
-                <Link href="#">Palm Beach</Link>
+                <Link href="/north-end-palm-beach-real-estate">North End Homes</Link>
               </li>
               <li>
-                <Link href="#">Jupiter</Link>
+                <Link href="/in-town-palm-beach-real-estate">In Town Homes</Link>
               </li>
               <li>
-                <Link href="#">West Palm Beach</Link>
+                <Link href="/estate-section">Estate Section Homes</Link>
               </li>
               <li>
-                <Link href="#">Palm Beach Gardens</Link>
+                <Link href="/in-town-condos">In Town Condominiums</Link>
               </li>
             </ul>
           </div>
@@ -54,7 +54,7 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t border-white/10 mt-16 pt-10 text-center text-gray-400 text-lg">
-          <p>© 2024 Linda R. Olson. All rights reserved.</p>
+          <p>© 2024 Linda R. Olsson. All rights reserved.</p>
         </div>
       </div>
     </footer>

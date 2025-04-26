@@ -19,6 +19,7 @@ import { TextAnimate } from "@/components/magicui/text-animate"
 import { testimonials } from "./data/testimonials"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "./components/Footer"
+import { IdxFeaturedProperties } from "./components/IdxFeaturedProperties"
 
 const instrumentSerif = Instrument_Serif({ 
   weight: ['400'],
@@ -29,6 +30,7 @@ export default function Home() {
   const [loadingVisible, setLoadingVisible] = React.useState(true);
   const [contentVisible, setContentVisible] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [formStatus, setFormStatus] = React.useState("");
   
   // Use useEffect to set a timer for showing content
   React.useEffect(() => {
@@ -127,10 +129,10 @@ export default function Home() {
               </h1>
               <p className={`text-2xl md:text-3xl lg:text-4xl mb-10 text-white ${instrumentSerif.className}`}>Representing buyers and sellers of Palm Beach's Finest Residences since 1989</p>
               <div className="flex justify-center gap-8">
-                <button className={`px-5 py-5 text-2xl md:text-4xl bg-[#1b4e1f] hover:bg-green-900/90 transition-colors text-white rounded-lg ${instrumentSerif.className} flex items-center`}>
+                <Link href="https://mlspalmbeach.lindaolsson.com/i/featured-properties" className={`px-5 py-5 text-2xl md:text-4xl bg-[#1b4e1f] hover:bg-green-900/90 transition-colors text-white rounded-lg ${instrumentSerif.className} flex items-center`}>
                   Find Your Dream Home Today
                   <ArrowRight className="h-10 w-10 ml-1" />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -280,25 +282,45 @@ export default function Home() {
                   },
                 ].map((location) => (
                   <div key={location.name} className="group flex flex-col h-full">
-                    <div className="relative aspect-[1/1] mb-6">
-                      <div className="absolute inset-[12px] border border-white/50 z-10" />
-                      <img
-                        src={location.image}
-                        alt={location.name}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex flex-col flex-grow">
-                      <h3 className={`text-3xl font-semibold uppercase tracking-wider mb-3 ${instrumentSerif.className}`}>{location.name}</h3>
-                      <div className="flex items-center gap-2 mb-3">
-                        <MapPin className="h-5 w-5 text-gray-600" />
-                        <p className="text-gray-900 font-medium text-lg">{location.location}</p>
+                    <a 
+                      href={
+                        location.name === "North End Homes" ? "/north-end-palm-beach-real-estate" :
+                        location.name === "In Town Homes" ? "/in-town-palm-beach-real-estate" :
+                        location.name === "Estate Section Homes" ? "/estate-section" :
+                        "/in-town-condos"
+                      }
+                      className="block"
+                    >
+                      <div className="relative aspect-[1/1] mb-6">
+                        <div className="absolute inset-[12px] border border-white/50 z-10" />
+                        <img
+                          src={location.image}
+                          alt={location.name}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
                       </div>
+                      <div className="flex flex-col">
+                        <h3 className={`text-3xl font-semibold uppercase tracking-wider mb-3 ${instrumentSerif.className}`}>{location.name}</h3>
+                        <div className="flex items-center gap-2 mb-3">
+                          <MapPin className="h-5 w-5 text-gray-600" />
+                          <p className="text-gray-900 font-medium text-lg">{location.location}</p>
+                        </div>
+                      </div>
+                    </a>
+                    <div className="flex flex-col flex-grow">
                       <p className="text-gray-600 mb-4 text-2xl flex-grow">{location.details}</p>
-                      <div className="flex items-center gap-2 text-gray-600 group-hover:text-black transition-colors mt-auto">
+                      <a 
+                        href={
+                          location.name === "North End Homes" ? "/north-end-palm-beach-real-estate" :
+                          location.name === "In Town Homes" ? "/in-town-palm-beach-real-estate" :
+                          location.name === "Estate Section Homes" ? "/estate-section" :
+                          "/in-town-condos"
+                        }
+                        className="flex items-center gap-2 text-gray-600 group-hover:text-black transition-colors mt-auto"
+                      >
                         <span className="uppercase text-base tracking-wider">Search</span>
                         <ArrowRight className="h-5 w-5" />
-                      </div>
+                      </a>
                     </div>
                   </div>
                 ))}
@@ -319,32 +341,32 @@ export default function Home() {
                 <div>
                   <h3 className={`text-3xl mb-6 text-center ${instrumentSerif.className}`}>Palm Beach Homes</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
-                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/1_to_4_million" className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       1 to 4 million
-                    </button>
-                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    </a>
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/4_to_8_million" className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       4 to 8 million
-                    </button>
-                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    </a>
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/8_to_12_million" className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       8 to 12 million
-                    </button>
-                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    </a>
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/12_to_22_million" className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       12 to 22 million
-                    </button>
-                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    </a>
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/22millionto100million" className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       22 to 100 million
-                    </button>
-                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    </a>
+                    <a href="https://mlspalmbeach.lindaolsson.com/i/100-million-to-200-million" className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       100 to 200 million
-                    </button>
+                    </a>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/WaterfrontHomesPalmBeach" className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       Waterfront
-                    </button>
-                    <button className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    </a>
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/homes-for-rent-in-palm-beach" className="bg-gray-200 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       Homes for Rent
-                    </button>
+                    </a>
                   </div>
                 </div>
 
@@ -352,32 +374,35 @@ export default function Home() {
                 <div>
                   <h3 className={`text-3xl mb-6 text-center pt-8 ${instrumentSerif.className}`}>Palm Beach Condominiums</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/CONDOS_FROM_500K_TO_1M" className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
+                      500,000 to 1 million
+                    </a>
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/CONDOS_FROM_1M_to_2M" className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       1 to 2 million
-                    </button>
-                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    </a>
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/CONDOS_2_TO_4_MILLION" className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       2 to 4 million
-                    </button>
-                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    </a>
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/CONDOS_FROM_4M_up_to_12M" className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       4 to 12 million
-                    </button>
-                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    </a>
+                    <a href="https://mlspalmbeach.lindaolsson.com/i/12-to-50-million-condos" className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       12 to 50 million
-                    </button>
-                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                    </a>
+                    <a href="https://mlspalmbeach.lindaolsson.com/i/50-to-75-million-condos" className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       50 to 75 million
-                    </button>
-                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
-                      Waterfront Condos
-                    </button>
+                    </a>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
-                    In-Town Condos
-                    </button>
-                    <button className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                    <a href="https://mlspalmbeach.lindaolsson.com/i/75-to-150-million-condos" className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
+                      75 to 150 million
+                    </a>
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/PalmBeachWaterfrontCondos-Condos" className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
+                      Waterfront Condos
+                    </a>
+                    <a href="http://mlspalmbeach.lindaolsson.com/i/condos-for-rent-in-palm-beach" className="bg-gray-100 hover:bg-pink-200 text-gray-800 rounded-lg p-4 text-2xl transition-colors text-center flex items-center justify-center">
                       Condos for Rent
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -391,96 +416,7 @@ export default function Home() {
                 <h2 className={`text-6xl font-light mb-6 text-green-800 ${instrumentSerif.className}`}>Featured Properties</h2>
                 <p className="text-gray-600 text-2xl">Discover Our Exclusive Listings</p>
               </div>
-              <Carousel className="w-full">
-                <CarouselContent className="-ml-2 md:-ml-4">
-                  {[
-                    {
-                      price: "$95,000,000",
-                      image: "https://cdn.photos.sparkplatform.com/pbb/20241106170305259145000000-o.jpg",
-                      address: "1460 N Lake Way",
-                      city: "Palm Beach",
-                      state: "Florida",
-                      beds: "6",
-                      baths: "9",
-                      sqft: "15,994",
-                      link: "http://mlspalmbeach.lindaolsson.com/idx/details/listing/b294/24-1411/1460-N-Lake-Way-Palm-Beach-33480"
-                    },
-                    {
-                      price: "$95,000,000",
-                      image: "https://cdn.photos.sparkplatform.com/pbb/20240813144505682680000000-o.jpg",
-                      address: "1140 S Ocean Boulevard",
-                      city: "Manalapan",
-                      state: "Florida",
-                      beds: "13",
-                      baths: "16",
-                      sqft: "23,399",
-                      acres: "1.6",
-                      link: "http://mlspalmbeach.lindaolsson.com/idx/details/listing/b294/24-1168/1140-S-Ocean-Boulevard-Manalapan-33462"
-                    },
-                    {
-                      price: "$88,000,000",
-                      image: "https://cdn.photos.sparkplatform.com/pbb/20241014164939969869000000-o.jpg",
-                      address: "1540 S Ocean Boulevard",
-                      city: "Palm Beach",
-                      state: "Florida",
-                      beds: "8",
-                      baths: "15",
-                      sqft: "16,571",
-                      acres: "0.98",
-                      link: "http://mlspalmbeach.lindaolsson.com/idx/details/listing/b294/24-1488/1540-S-Ocean-Boulevard-Palm-Beach-33480"
-                    },
-                    {
-                      price: "$87,000,000",
-                      image: "https://cdn.photos.sparkplatform.com/pbb/20250213174733506224000000-o.jpg",
-                      address: "1160 S Ocean Boulevard",
-                      city: "Manalapan",
-                      state: "Florida",
-                      beds: "8",
-                      baths: "15",
-                      sqft: "27,745",
-                      acres: "1.71",
-                      link: "http://mlspalmbeach.lindaolsson.com/idx/details/listing/b294/25-291/1160-S-Ocean-Boulevard-Manalapan-33462"
-                    },
-                    // ... add more properties here
-                  ].map((property, index) => (
-                    <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                      <Card className="border-0 shadow-none">
-                        <CardContent className="p-0">
-                          <Link href={property.link} className="group cursor-pointer">
-                            <div className="relative aspect-[4/3] overflow-hidden mb-5">
-                              <img
-                                src={property.image}
-                                alt={`${property.address}, ${property.city}`}
-                                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
-                              />
-                              <div className="absolute top-5 left-5 bg-white px-5 py-2 text-base">For Sale</div>
-                            </div>
-                            <div className="p-5">
-                              <h3 className="text-3xl font-light mb-3">{property.price}</h3>
-                              <div className="flex items-center gap-2 text-gray-600 mb-3">
-                                <MapPin className="h-5 w-5" />
-                                <span className="text-lg">{`${property.city}, ${property.state}`}</span>
-                              </div>
-                              <p className="text-gray-600 text-lg">
-                                {`${property.beds} Beds | ${property.baths} Baths | ${property.sqft} Sq Ft`}
-                                {property.acres && ` | ${property.acres} Acres`}
-                              </p>
-                            </div>
-                          </Link>
-                        </CardContent>
-                      </Card>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden md:flex" />
-                <CarouselNext className="hidden md:flex" />
-              </Carousel>
-              <div className="text-center mt-16">
-                <Button variant="outline" className="gap-2 text-lg px-8 py-6 bg-green-900 text-white">
-                  View All Properties
-                  <ArrowRight className="h-5 w-5" />
-                </Button>
-              </div>
+              <IdxFeaturedProperties />
             </div>
           </section>
 
@@ -585,35 +521,81 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="bg-white p-10 rounded-xl">
-                  <form className="space-y-8">
+                  {formStatus && (
+                    <div className={`mb-6 p-4 rounded-md ${
+                      formStatus.includes("error") 
+                        ? "bg-red-50 text-red-700 border border-red-200" 
+                        : "bg-green-50 text-green-700 border border-green-200"
+                    }`}>
+                      {formStatus}
+                    </div>
+                  )}
+                  <form onSubmit={async (event) => {
+                    event.preventDefault();
+                    setFormStatus("Sending...");
+                    const formData = new FormData(event.target as HTMLFormElement);
+                    formData.append("access_key", "d91d1c9b-e5f6-47df-abe1-0306225ab6bf");
+
+                    try {
+                      const response = await fetch("https://api.web3forms.com/submit", {
+                        method: "POST",
+                        body: formData
+                      });
+
+                      const data = await response.json();
+
+                      if (data.success) {
+                        setFormStatus("Thank you for your message. We'll get back to you soon!");
+                        (event.target as HTMLFormElement).reset();
+                      } else {
+                        console.log("Error", data);
+                        setFormStatus("There was an error sending your message. Please try again.");
+                      }
+                    } catch (error) {
+                      console.error("Error:", error);
+                      setFormStatus("There was an error sending your message. Please try again.");
+                    }
+                  }} className="space-y-8">
                     <div className="grid grid-cols-2 gap-8">
                       <input
                         type="text"
+                        name="firstName"
                         placeholder="First Name"
-                        className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400"
+                        required
+                        className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400 text-gray-800"
                       />
                       <input
                         type="text"
+                        name="lastName"
                         placeholder="Last Name"
-                        className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400"
+                        required
+                        className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400 text-gray-800"
                       />
                     </div>
                     <input
                       type="email"
+                      name="email"
                       placeholder="Email Address"
-                      className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400"
+                      required
+                      className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400 text-gray-800"
                     />
                     <input
                       type="tel"
+                      name="phone"
                       placeholder="Phone Number"
-                      className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400"
+                      required
+                      className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400 text-gray-800"
                     />
                     <textarea
+                      name="message"
                       placeholder="Message"
                       rows={4}
-                      className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400"
+                      required
+                      className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400 text-gray-800"
                     />
-                    <Button className="w-full bg-black text-white hover:bg-black/90 text-xl py-6">Send Message</Button>
+                    <Button type="submit" className="w-full bg-black text-white hover:bg-black/90 text-xl py-6">
+                      Send Message
+                    </Button>
                   </form>
                 </div>
               </div>

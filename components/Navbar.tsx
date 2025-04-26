@@ -17,6 +17,9 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
               <ChevronDown className="h-4 w-4 mt-0.5 group-hover:rotate-180 transition-transform duration-200" />
             </Link>
             <div className="absolute top-full left-0 mt-2 w-[300px] bg-green-900 text-white border border-green-800 rounded-md shadow-lg overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <Link href="/about" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
+                ABOUT LINDA
+              </Link>
               <Link href="/our-team" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
                 OUR TEAM
               </Link>
@@ -32,9 +35,7 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
               <Link href="/palm-beach-florida-real-estate-news" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
                 IN THE NEWS
               </Link>
-              <Link href="#" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
-                PRIVACY POLICY
-              </Link>
+             
             </div>
           </div>
           <div className="hidden md:flex items-center gap-6">
@@ -65,12 +66,10 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
                 <Link href="/luxury-palm-beach-condominium-co-op-buildings" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
                   LUXURY PALM BEACH CONDOMINIUM AND CO-OP BUILDINGS
                 </Link>
-                <Link href="#" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
-                  VIRTUAL TOURS
-                </Link>
+             
               </div>
             </div>
-            <Link href="#" className="text-white text-xl">
+            <Link href="/blog" className="text-white text-xl">
               Blog
             </Link>
           </div>
@@ -114,7 +113,7 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
           <Link href="/testimonials" className="text-white hidden md:block text-xl">
             Testimonials
           </Link>
-          <Link href="tel:(561) 313-6504" className="text-white text-xl">
+          <Link href="/contact" className="text-white text-xl">
             Contact
           </Link>
         </div>

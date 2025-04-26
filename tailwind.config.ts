@@ -9,6 +9,38 @@ export default {
                 serif: ['var(--font-instrument-serif)'],
                 mono: ['var(--font-geist-mono)'],
             },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        h1: {
+                            fontSize: '2.5rem',
+                            fontWeight: '300',
+                            fontFamily: 'var(--font-instrument-serif)',
+                            color: 'rgb(22 101 52)',
+                            lineHeight: '1.2',
+                        },
+                        h2: {
+                            fontSize: '2rem',
+                            fontWeight: '300',
+                            fontFamily: 'var(--font-instrument-serif)',
+                            color: 'rgb(22 101 52)',
+                            lineHeight: '1.2',
+                        },
+                        h3: {
+                            fontSize: '1.75rem',
+                            fontWeight: '300',
+                            fontFamily: 'var(--font-instrument-serif)',
+                            color: 'rgb(22 101 52)',
+                            lineHeight: '1.2',
+                        },
+                        img: {
+                            marginLeft: 'auto',
+                            marginRight: 'auto',
+                            display: 'block',
+                        },
+                    },
+                },
+            },
             colors: {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
@@ -58,5 +90,5 @@ export default {
             },
         },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;

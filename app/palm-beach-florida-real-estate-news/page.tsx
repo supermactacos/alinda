@@ -16,19 +16,9 @@ const instrumentSerif = Instrument_Serif({
 })
 
 export default function NewsPage() {
-  const [loadingVisible, setLoadingVisible] = useState(true);
-  const [contentVisible, setContentVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const fadeOutTimer = setTimeout(() => {
-      setLoadingVisible(false);
-    }, 1500);
-    
-    const contentTimer = setTimeout(() => {
-      setContentVisible(true);
-    }, 2000);
-
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 50);
@@ -37,8 +27,6 @@ export default function NewsPage() {
     window.addEventListener('scroll', handleScroll);
     
     return () => {
-      clearTimeout(fadeOutTimer);
-      clearTimeout(contentTimer);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -118,35 +106,9 @@ export default function NewsPage() {
 
   return (
     <>
-      {/* Loading overlay with slide-up transition */}
-      <div 
-        className={`fixed inset-0 bg-green-800 z-[200] flex items-center justify-center transition-all duration-500 ease-in-out ${
-          loadingVisible 
-            ? 'translate-y-0 opacity-100' 
-            : '-translate-y-full opacity-0 pointer-events-none'
-        }`}
-      >
-        <div className="text-white text-center p-12">
-          <div className={`text-7xl md:text-8xl lg:text-9xl font-light mb-3 mt-3 text-white ${instrumentSerif.className}`}>
-            <TextAnimate 
-              animation="slideUp" 
-              by="word"
-              className={`${instrumentSerif.className} block`}
-              duration={0.5}
-              delay={0}
-              once
-              startOnView={false}
-            >
-              Linda R. Olsson
-            </TextAnimate>
-          </div>
-          <p className={`text-xl text-pink-200 ${instrumentSerif.className}`}>Loading...</p>
-        </div>
-      </div>
-
       {/* Main Content */}
-      <div className={`transition-opacity duration-500 ${contentVisible ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="fixed top-0 left-0 right-0 z-[40] bg-[#1b4e1f] shadow-lg">
+      <div>
+        <div className="fixed top-0 left-0 right-0 z-[100] bg-[#1b4e1f] shadow-lg">
           <Navbar isScrolled={isScrolled} alwaysSolid />
         </div>
         
