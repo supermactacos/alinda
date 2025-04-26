@@ -22,75 +22,81 @@ export default function MarketReportsPage() {
   type ReportItem = {
     type: 'year' | 'report';
     value: string;
+    pdfPath?: string;
   };
 
-  // Group reports by year
+  // Helper function to get PDF filename
+  const getPdfFilename = (year: string, quarter: string): string => {
+    return `${year}_${quarter}_Quarter.pdf`;
+  };
+
+  // Group reports by year with PDF file paths
   const reportsByYear = {
     "2024": [
-      "4th Quarter Report 2024",
-      "3rd Quarter Report 2024",
-      "2nd Quarter Report 2024",
-      "1st Quarter Report 2024"
+      { name: "4th Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "4th")}` },
+      { name: "3rd Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "3rd")}` },
+      { name: "2nd Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "2nd")}` },
+      { name: "1st Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "1st")}` }
     ],
     "2023": [
-      "4th Quarter Report 2023",
-      "3rd Quarter Report 2023",
-      "2nd Quarter Report 2023",
-      "1st Quarter Report 2023"
+      { name: "4th Quarter Report 2023", pdfPath: `/market_reports/${getPdfFilename("2023", "4th")}` },
+      { name: "3rd Quarter Report 2023", pdfPath: `/market_reports/${getPdfFilename("2023", "3rd")}` },
+      { name: "2nd Quarter Report 2023", pdfPath: `/market_reports/${getPdfFilename("2023", "2nd")}` },
+      { name: "1st Quarter Report 2023", pdfPath: `/market_reports/${getPdfFilename("2023", "1st")}` }
     ],
     "2022": [
-      "4th Quarter Report 2022",
-      "3rd Quarter Report 2022",
-      "2nd Quarter Report 2022",
-      "1st Quarter Report 2022"
+      { name: "4th Quarter Report 2022", pdfPath: `/market_reports/${getPdfFilename("2022", "4th")}` },
+      { name: "3rd Quarter Report 2022", pdfPath: `/market_reports/${getPdfFilename("2022", "3rd")}` },
+      { name: "2nd Quarter Report 2022", pdfPath: `/market_reports/${getPdfFilename("2022", "2nd")}` },
+      { name: "1st Quarter Report 2022", pdfPath: `/market_reports/${getPdfFilename("2022", "1st")}` }
     ],
     "2021": [
-      "4th Quarter Report 2021",
-      "3rd Quarter Report 2021",
-      "2nd Quarter Report 2021",
-      "1st Quarter Report 2021"
+      { name: "4th Quarter Report 2021", pdfPath: `/market_reports/${getPdfFilename("2021", "4th")}` },
+      { name: "3rd Quarter Report 2021", pdfPath: `/market_reports/${getPdfFilename("2021", "3rd")}` },
+      { name: "2nd Quarter Report 2021", pdfPath: `/market_reports/${getPdfFilename("2021", "2nd")}` },
+      { name: "1st Quarter Report 2021", pdfPath: `/market_reports/${getPdfFilename("2021", "1st")}` }
     ],
     "2020": [
-      "4th Quarter Report 2020",
-      "3rd Quarter Report 2020",
-      "2nd Quarter Report 2020",
-      "1st Quarter Report 2020"
+      { name: "4th Quarter Report 2020", pdfPath: `/market_reports/${getPdfFilename("2020", "4th")}` },
+      { name: "3rd Quarter Report 2020", pdfPath: `/market_reports/${getPdfFilename("2020", "3rd")}` },
+      { name: "2nd Quarter Report 2020", pdfPath: `/market_reports/${getPdfFilename("2020", "2nd")}` },
+      { name: "1st Quarter Report 2020", pdfPath: `/market_reports/${getPdfFilename("2020", "1st")}` }
     ],
     "2019": [
-      "4th Quarter Report 2019",
-      "3rd Quarter Report 2019",
-      "2nd Quarter Report 2019",
-      "1st Quarter Report 2019"
+      { name: "4th Quarter Report 2019", pdfPath: `/market_reports/${getPdfFilename("2019", "4th")}` },
+      { name: "3rd Quarter Report 2019", pdfPath: `/market_reports/${getPdfFilename("2019", "3rd")}` },
+      { name: "2nd Quarter Report 2019", pdfPath: `/market_reports/${getPdfFilename("2019", "2nd")}` },
+      { name: "1st Quarter Report 2019", pdfPath: `/market_reports/${getPdfFilename("2019", "1st")}` }
     ],
     "2018": [
-      "4th Quarter Report 2018",
-      "3rd Quarter Report 2018",
-      "2nd Quarter Report 2018",
-      "1st Quarter Report 2018"
+      { name: "4th Quarter Report 2018", pdfPath: `/market_reports/${getPdfFilename("2018", "4th")}` },
+      { name: "3rd Quarter Report 2018", pdfPath: `/market_reports/${getPdfFilename("2018", "3rd")}` },
+      { name: "2nd Quarter Report 2018", pdfPath: `/market_reports/${getPdfFilename("2018", "2nd")}` },
+      { name: "1st Quarter Report 2018", pdfPath: `/market_reports/${getPdfFilename("2018", "1st")}` }
     ],
     "2017": [
-      "4th Quarter Report 2017",
-      "3rd Quarter Report 2017",
-      "2nd Quarter Report 2017",
-      "1st Quarter Report 2017"
+      { name: "4th Quarter Report 2017", pdfPath: `/market_reports/${getPdfFilename("2017", "4th")}` },
+      { name: "3rd Quarter Report 2017", pdfPath: `/market_reports/${getPdfFilename("2017", "3rd")}` },
+      { name: "2nd Quarter Report 2017", pdfPath: `/market_reports/${getPdfFilename("2017", "2nd")}` },
+      { name: "1st Quarter Report 2017", pdfPath: `/market_reports/${getPdfFilename("2017", "1st")}` }
     ],
     "2016": [
-      "4th Quarter Report 2016",
-      "3rd Quarter Report 2016",
-      "2nd Quarter Report 2016",
-      "1st Quarter Report 2016"
+      { name: "4th Quarter Report 2016", pdfPath: `/market_reports/${getPdfFilename("2016", "4th")}` },
+      { name: "3rd Quarter Report 2016", pdfPath: `/market_reports/${getPdfFilename("2016", "3rd")}` },
+      { name: "2nd Quarter Report 2016", pdfPath: `/market_reports/${getPdfFilename("2016", "2nd")}` },
+      { name: "1st Quarter Report 2016", pdfPath: `/market_reports/${getPdfFilename("2016", "1st")}` }
     ],
     "2015": [
-      "4th Quarter Report 2015",
-      "3rd Quarter Report 2015",
-      "2nd Quarter Report 2015",
-      "1st Quarter Report 2015"
+      { name: "4th Quarter Report 2015", pdfPath: `/market_reports/${getPdfFilename("2015", "4th")}` },
+      { name: "3rd Quarter Report 2015", pdfPath: `/market_reports/${getPdfFilename("2015", "3rd")}` },
+      { name: "2nd Quarter Report 2015", pdfPath: `/market_reports/${getPdfFilename("2015", "2nd")}` },
+      { name: "1st Quarter Report 2015", pdfPath: `/market_reports/${getPdfFilename("2015", "1st")}` }
     ],
     "2014": [
-      "4th Quarter Report 2014",
-      "3rd Quarter Report 2014",
-      "2nd Quarter Report 2014",
-      "1st Quarter Report 2014"
+      { name: "4th Quarter Report 2014", pdfPath: `/market_reports/${getPdfFilename("2014", "4th")}` },
+      { name: "3rd Quarter Report 2014", pdfPath: `/market_reports/${getPdfFilename("2014", "3rd")}` },
+      { name: "2nd Quarter Report 2014", pdfPath: `/market_reports/${getPdfFilename("2014", "2nd")}` },
+      { name: "1st Quarter Report 2014", pdfPath: `/market_reports/${getPdfFilename("2014", "1st")}` }
     ]
   };
 
@@ -99,7 +105,11 @@ export default function MarketReportsPage() {
     .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA)) // Sort years in descending order
     .flatMap(([year, yearReports]): ReportItem[] => [
       { type: 'year' as const, value: year },
-      ...yearReports.map(report => ({ type: 'report' as const, value: report }))
+      ...yearReports.map(report => ({ 
+        type: 'report' as const, 
+        value: report.name,
+        pdfPath: report.pdfPath
+      }))
     ]);
 
   const reportsPerPage = 4;
@@ -195,13 +205,16 @@ export default function MarketReportsPage() {
                         {item.value}
                       </h3>
                     ) : (
-                      <button
+                      <a
                         key={index}
+                        href={item.pdfPath}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="w-full bg-[#1b4e1f] text-white py-3 px-4 rounded-lg hover:bg-[#143917] transition-colors duration-300 text-base font-medium flex items-center group relative"
                       >
                         <span className="flex-grow text-center">{item.value}</span>
                         <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform absolute right-4" />
-                      </button>
+                      </a>
                     )
                   ))}
                 </div>
