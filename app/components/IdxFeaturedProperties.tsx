@@ -222,14 +222,79 @@ export function IdxFeaturedProperties() {
       prevButton.className = 'idx-nav-button idx-prev';
       prevButton.innerHTML = '←';
       prevButton.onclick = () => {
-        customContainer.scrollBy({ left: -400, behavior: 'smooth' });
+        const cards = Array.from(customContainer.querySelectorAll('.custom-property-card'));
+        if (cards.length > 0) {
+          // Find the current scroll position
+          const scrollPosition = customContainer.scrollLeft;
+          const containerLeft = customContainer.getBoundingClientRect().left;
+          
+          // Find the previous card to snap to
+          let targetCard = null;
+          let closestDistance = Infinity;
+          
+          for (let i = cards.length - 1; i >= 0; i--) {
+            const card = cards[i];
+            const cardLeft = card.getBoundingClientRect().left - containerLeft + customContainer.scrollLeft;
+            // Look for the closest card to the left of the current view
+            if (cardLeft < scrollPosition - 10) { // 10px buffer
+              if (scrollPosition - cardLeft < closestDistance) {
+                closestDistance = scrollPosition - cardLeft;
+                targetCard = card;
+              }
+            }
+          }
+          
+          // If we found a card, scroll to it
+          if (targetCard) {
+            const targetPosition = targetCard.getBoundingClientRect().left - containerLeft + customContainer.scrollLeft;
+            customContainer.scrollTo({ left: targetPosition, behavior: 'smooth' });
+          } else {
+            // If no previous card found, go to the first card
+            const firstCard = cards[0];
+            const firstCardPosition = firstCard.getBoundingClientRect().left - containerLeft + customContainer.scrollLeft;
+            customContainer.scrollTo({ left: firstCardPosition, behavior: 'smooth' });
+          }
+        }
       };
       
       const nextButton = document.createElement('button');
       nextButton.className = 'idx-nav-button idx-next';
       nextButton.innerHTML = '→';
       nextButton.onclick = () => {
-        customContainer.scrollBy({ left: 400, behavior: 'smooth' });
+        const cards = Array.from(customContainer.querySelectorAll('.custom-property-card'));
+        if (cards.length > 0) {
+          // Find the current scroll position
+          const scrollPosition = customContainer.scrollLeft;
+          const containerWidth = customContainer.clientWidth;
+          const containerLeft = customContainer.getBoundingClientRect().left;
+          
+          // Find the next card to snap to
+          let targetCard = null;
+          let closestDistance = Infinity;
+          
+          for (let i = 0; i < cards.length; i++) {
+            const card = cards[i];
+            const cardLeft = card.getBoundingClientRect().left - containerLeft + customContainer.scrollLeft;
+            // Look for the closest card to the right of the current view
+            if (cardLeft > scrollPosition + 10) { // 10px buffer
+              if (cardLeft - scrollPosition < closestDistance) {
+                closestDistance = cardLeft - scrollPosition;
+                targetCard = card;
+              }
+            }
+          }
+          
+          // If we found a card, scroll to it
+          if (targetCard) {
+            const targetPosition = targetCard.getBoundingClientRect().left - containerLeft + customContainer.scrollLeft;
+            customContainer.scrollTo({ left: targetPosition, behavior: 'smooth' });
+          } else {
+            // If no next card found, go to the last card
+            const lastCard = cards[cards.length - 1];
+            const lastCardPosition = lastCard.getBoundingClientRect().left - containerLeft + customContainer.scrollLeft;
+            customContainer.scrollTo({ left: lastCardPosition, behavior: 'smooth' });
+          }
+        }
       };
       
       wrapper.appendChild(prevButton);

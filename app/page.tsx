@@ -143,7 +143,7 @@ export default function Home() {
           <section className="relative py-16">
             <div className="container mx-auto px-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-                <div className="relative w-[71.4%] ml-28">
+                <div className="relative w-[71.4%] md:ml-28 mx-auto md:mx-0">
                   <img
                     src="/linda.png"
                     alt="Linda R. Olsson"

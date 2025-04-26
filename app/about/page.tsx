@@ -46,11 +46,11 @@ export default function AboutPage() {
               About Linda
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-              <div className="relative flex justify-end">
+              <div className="relative flex md:justify-end justify-center">
                 <img
                   src="/linda.png"
                   alt="Linda R. Olsson"
-                  className="w-[75%] pr-20 rounded-lg"
+                  className="w-[75%] md:pr-20 pr-0 rounded-lg"
                 />
               </div>
               <div>
