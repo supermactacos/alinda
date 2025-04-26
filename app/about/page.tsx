@@ -161,67 +161,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Community Involvement */}
-        <section className="py-24 bg-white">
-          <div className="container mx-auto px-4">
-            <h2 className={`text-5xl font-light mb-16 text-center text-green-800 ${instrumentSerif.className}`}>
-              Community Involvement
-            </h2>
-            <div className="max-w-4xl mx-auto">
-              <p className="text-gray-700 text-xl leading-relaxed mb-8 text-center">
-                [Community involvement text will go here]
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Recognition Section */}
-        <section className="py-24 bg-[#1b4e1f] text-white">
-          <div className="container mx-auto px-4">
-            <h2 className={`text-5xl font-light mb-16 text-center ${instrumentSerif.className}`}>
-              Recognition & Awards
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-              {[
-                {
-                  title: "Wall Street Journal Recognition",
-                  description: "[Recognition details will go here]"
-                },
-                {
-                  title: "Industry Leadership",
-                  description: "[Leadership details will go here]"
-                },
-                {
-                  title: "Client Satisfaction",
-                  description: "[Satisfaction metrics will go here]"
-                }
-              ].map((recognition, index) => (
-                <div key={index} className="text-center">
-                  <h3 className={`text-2xl font-light mb-4 ${instrumentSerif.className}`}>
-                    {recognition.title}
-                  </h3>
-                  <p className="text-gray-200 text-lg">
-                    {recognition.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Contact CTA */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className={`text-4xl font-light mb-8 text-green-800 ${instrumentSerif.className}`}>
-              Ready to Work With Us?
-            </h2>
-            <Button variant="outline" size="lg" className="gap-2 text-xl bg-green-900 text-white px-8 py-6">
-              Get in Touch
-              <ArrowRight className="h-5 w-5" />
-            </Button>
-          </div>
-        </section>
-
+       
         {/* Footer */}
         <Footer />
       </main>
