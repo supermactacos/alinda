@@ -188,11 +188,13 @@ export default function Home() {
                 <div className="ticker-container">
                   <div className="ticker">
                     {/* First set with more logos and increased spacing */}
+                
+                
                     <div className="ticker-item">
-                      <img src="/mercer-island.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
+                      <img src="/pbdnx.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     <div className="ticker-item">
-                      <img src="/merc-2.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
+                      <img src="/illus.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     <div className="ticker-item">
                       <img src="/wsj.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
@@ -207,10 +209,10 @@ export default function Home() {
                       <img src="/Zillow.png" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     <div className="ticker-item">
-                      <img src="/mercer-island.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
+                      <img src="/pbdnx.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     <div className="ticker-item">
-                      <img src="/merc-2.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
+                      <img src="/illus.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     
                     {/* Duplicate set */}
@@ -218,13 +220,16 @@ export default function Home() {
                       <img src="/housingwire.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     <div className="ticker-item">
-                      <img src="/merc-2.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
+                      <img src="/illus.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     <div className="ticker-item">
                       <img src="/wsj.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     <div className="ticker-item">
-                      <img src="/mercer-island.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
+                      <img src="/pbdnx.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
+                    </div>
+                    <div className="ticker-item">
+                      <img src="/illus.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     <div className="ticker-item">
                       <img src="/wpbf.png" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
@@ -233,7 +238,7 @@ export default function Home() {
                       <img src="/Zillow.png" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     <div className="ticker-item">
-                      <img src="/mercer-island.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
+                      <img src="/illus.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
                     </div>
                     <div className="ticker-item">
                       <img src="/merc-2.svg" alt="Media Logo" className="h-8 grayscale hover:grayscale-0 transition-all mx-16" />
