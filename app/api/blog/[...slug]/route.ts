@@ -18,14 +18,14 @@ interface BlogData {
   posts: BlogPost[];
 }
 
-export async function GET(
-  request: NextRequest,
-  context: { params: { slug: string[] } }
-) {
+export async function GET(request: NextRequest) {
   try {
-    // Get the full slug from the URL segments
-    const slugParams = context.params;
-    const fullSlug = Array.isArray(slugParams.slug) ? slugParams.slug.join('/') : slugParams.slug;
+    // Extract slug from the URL
+    const url = new URL(request.url);
+    const pathSegments = url.pathname.split('/');
+    // Remove 'api/blog' from the segments
+    const slugSegments = pathSegments.slice(3);
+    const fullSlug = slugSegments.join('/');
     
     // Path to the blog data file
     const dataFilePath = path.join(process.cwd(), 'data', 'blogs.json');
@@ -76,13 +76,15 @@ const extractFirstImageUrl = (html: string): string | null => {
 };
 
 // Update a blog post
-export async function PUT(
-  request: NextRequest,
-  context: { params: { slug: string[] } }
-) {
+export async function PUT(request: NextRequest) {
   try {
-    const slugParams = context.params;
-    const fullSlug = Array.isArray(slugParams.slug) ? slugParams.slug.join('/') : slugParams.slug;
+    // Extract slug from the URL
+    const url = new URL(request.url);
+    const pathSegments = url.pathname.split('/');
+    // Remove 'api/blog' from the segments
+    const slugSegments = pathSegments.slice(3);
+    const fullSlug = slugSegments.join('/');
+    
     const { title, author, content, excerpt, image, date } = await request.json();
     
     // Path to the blog data file
@@ -143,13 +145,14 @@ export async function PUT(
 }
 
 // Delete a blog post
-export async function DELETE(
-  request: NextRequest,
-  context: { params: { slug: string[] } }
-) {
+export async function DELETE(request: NextRequest) {
   try {
-    const slugParams = context.params;
-    const fullSlug = Array.isArray(slugParams.slug) ? slugParams.slug.join('/') : slugParams.slug;
+    // Extract slug from the URL
+    const url = new URL(request.url);
+    const pathSegments = url.pathname.split('/');
+    // Remove 'api/blog' from the segments
+    const slugSegments = pathSegments.slice(3);
+    const fullSlug = slugSegments.join('/');
     
     // Path to the blog data file
     const dataFilePath = path.join(process.cwd(), 'data', 'blogs.json');
