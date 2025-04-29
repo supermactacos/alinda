@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
 
 export function Footer() {
   return (
@@ -8,6 +9,20 @@ export function Footer() {
           <div>
             <h3 className="text-2xl font-light mb-5">Linda R. Olsson</h3>
             <p className="text-gray-400 text-lg">Luxury Real Estate in Palm Beach and Beyond</p>
+            <div className="flex space-x-4 mt-5">
+              <a href="https://www.facebook.com/LindaOlssonRealtor" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <Facebook className="w-6 h-6 text-gray-400 hover:text-white transition-colors" />
+              </a>
+              <a href="https://www.instagram.com/LindaOlssonPB/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <Instagram className="w-6 h-6 text-gray-400 hover:text-white transition-colors" />
+              </a>
+              <a href="https://www.linkedin.com/in/lindaolsson/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <Linkedin className="w-6 h-6 text-gray-400 hover:text-white transition-colors" />
+              </a>
+              <a href="https://x.com/RealtorPalmBch" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <Twitter className="w-6 h-6 text-gray-400 hover:text-white transition-colors" />
+              </a>
+            </div>
           </div>
           <div>
             <h4 className="text-xl font-light mb-5">Quick Links</h4>
