@@ -59,7 +59,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury1.jpg"
+                      src="/lx/Winthrop-.jpg"
                       alt="Winthrop House"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -84,7 +84,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury2.jpg"
+                      src="/lx/The-Villas-425-Worth-AveDSC_8060-scaled.jpg"
                       alt="The Villas"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -109,7 +109,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury3.jpg"
+                      src="/lx/330-Building-330-S-Ocean-Blvd-0778-scaled.jpg"
                       alt="330 Building"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -134,7 +134,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury4.jpg"
+                      src="/lx/400-Building-400-S-Ocean-Blvd-5377-scaled.jpg"
                       alt="400 Building"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -159,7 +159,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury5.jpg"
+                      src="/lx/One-Royal-Palm-100-Royal-Palm-Way--scaled.jpg"
                       alt="One Royal Palm"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -184,7 +184,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury6.jpg"
+                      src="/lx/Sun-Surf-100-130-Sunrise-Ave-2-scaled.jpg"
                       alt="Sun & Surf"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -209,7 +209,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury7.jpg"
+                      src="/lx/Luggano-1-e1538585310862.jpg"
                       alt="Il Lugano"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -234,7 +234,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury8.jpg"
+                      src="/lx/Leverett-House-1-e1538585568220.jpg"
                       alt="Leverett House"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -259,7 +259,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury9.jpg"
+                      src="/lx/LeErmitage-200-Bradley-Place-4447-scaled.jpg"
                       alt="L'Ermitage"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -302,7 +302,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury10.jpg"
+                      src="/lx/Lowell-House-.jpg"
                       alt="Lowell House"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -327,7 +327,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury11.jpg"
+                      src="/lx/The-Bellaria-3000-South-Ocean-Blvd-2436-scaled.jpg"
                       alt="The Bellaria"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -375,7 +375,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury11.jpg"
+                      src="/lx/The-Plaza-525-and-529-S-Flagler-Dr-0941-scaled.jpg"
                       alt="The Plaza"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -400,7 +400,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury12.jpg"
+                      src="/lx/One-Watermark-622-N-Flagler-Dr-2-scaled.jpg"
                       alt="One Watermark"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -425,7 +425,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury13.jpg"
+                      src="/lx/The-Bristol-1100-S-Flagler-Dr-2-scaled.jpg"
                       alt="The Bristol"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -450,7 +450,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury14.jpg"
+                      src="/lx/Waterview-Towers-400-N-Flagler-DR-2-scaled.jpg"
                       alt="Waterview Towers"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -475,7 +475,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury15.jpg"
+                      src="/lx/Esplanade-Grande-201-Narcissus-Ave--scaled.jpg"
                       alt="Esplanade Grande"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -500,7 +500,7 @@ export default function LuxuryCondosPage() {
                   </p>
                   <div className="relative w-full aspect-[16/9] mb-6">
                     <Image
-                      src="/luxury16.jpg"
+                      src="/lx/Trianon-1200-S-Flagler-Dr--scaled.jpg"
                       alt="Trianon"
                       fill
                       className="object-cover rounded-lg shadow-lg"

@@ -68,8 +68,8 @@ export default function GlobalReachPage() {
               <div className="flex items-start gap-6 mb-6">
                 <p className="text-gray-800 text-xl leading-relaxed flex-1">
                   Our global reach is extensive on the world wide web through our extended website {" "}
-                  <Link href="http://www.LindaOlsson.com" className="text-[#1b4e1f] underline hover:no-underline">www.LindaOlsson.com</Link>, which is the best place to start your search for luxury {" "}
-                  <Link href="#" className="text-[#1b4e1f] underline hover:no-underline">Palm Beach properties</Link> all luxury condominiums and co-op buildings, including Palm Beach, Manalapan, Jupiter Island, and the top golf course communities in Palm Beach County. Specializing in Palm Beach Luxury Properties for over 28 years... our site is considered to be the best web site in Palm Beach...it is user friendly, shows all Palm Beach properties for sale, and is continually informed by providing quarterly market reports, featured property videos, new listings, testimonials from satisfied customers, and outstanding blog + market data on over 4,000 properties and basic.
+                  <Link href="http://www.LindaOlsson.com" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">www.LindaOlsson.com</Link>, which is the best place to start your search for luxury {" "}
+                  <Link href="https://mlspalmbeach.lindaolsson.com/idx/agent/15878726/linda-r-olsson" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Palm Beach properties</Link> all luxury condominiums and co-op buildings, including Palm Beach, Manalapan, Jupiter Island, and the top golf course communities in Palm Beach County. Specializing in Palm Beach Luxury Properties for over 28 years... our site is considered to be the best web site in Palm Beach...it is user friendly, shows all Palm Beach properties for sale, and is continually informed by providing quarterly market reports, featured property videos, new listings, testimonials from satisfied customers, and outstanding blog + market data on over 4,000 properties and basic.
                 </p>
                 <img
                   src="/grlinda1.jpg"
@@ -87,10 +87,13 @@ export default function GlobalReachPage() {
               <div className="flex items-start gap-6 mb-6">
                 <p className="text-gray-800 text-xl leading-relaxed flex-1">
                   Our unrivaled website ranks high on Google searches we continually update our web site with the most current information to keep our customers abreast of the market in Palm Beach and the surrounding area. Our web site is powered by the most current technology to advance our site in Google searches... their success in continuing to connect with qualified buyers and sellers worldwide is remarkable! We feature your luxury property on the internet's most highly visible websites, for example: {" "}
-                  <Link href="#" className="text-[#1b4e1f] underline hover:no-underline">REALTOR.COM</Link>, {" "}
-                  <Link href="#" className="text-[#1b4e1f] underline hover:no-underline">PALM BEACH CHAMBER OF COMMERCE.COM</Link>, {" "}
-                  <Link href="#" className="text-[#1b4e1f] underline hover:no-underline">WALL STREET JOURNAL.COM</Link>, {" "}
-                  <Link href="#" className="text-[#1b4e1f] underline hover:no-underline">MANSION GLOBAL.COM</Link>.
+                  <Link href="https://www.realtor.com/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">REALTOR.COM</Link>, {" "}
+                  <Link href="https://www.zillow.com/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">ZILLOW.COM</Link>, {" "}
+                  <Link href="https://www.trulia.com/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">TRULIA.COM</Link>, {" "}
+                  <Link href="https://www.google.com/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">GOOGLE.COM</Link>, {" "}
+                  <Link href="https://www.palmbeachchamber.com/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">PALM BEACH CHAMBER OF COMMERCE.COM</Link>, {" "}
+                  <Link href="https://www.wsj.com/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">WALL STREET JOURNAL.COM</Link>, {" "}
+                  <Link href="https://www.mansionglobal.com/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">MANSION GLOBAL.COM</Link>.
                 </p>
                 <img
                   src="/grlinda2.jpg"
@@ -104,7 +107,7 @@ export default function GlobalReachPage() {
               </p>
 
               <div className="text-center">
-                <Link href="#" className="text-[#1b4e1f] underline hover:no-underline text-xl">
+                <Link href="/testimonials" className="text-[#1b4e1f] underline hover:no-underline text-xl">
                   Click here to view our testimonials from satisfied customers.
                 </Link>
               </div>
