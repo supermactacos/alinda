@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
@@ -19,12 +19,12 @@ interface BlogData {
 }
 
 export async function GET(
-  request: Request,
-  { params }: { params: { slug: string[] } }
+  request: NextRequest,
+  context: { params: { slug: string[] } }
 ) {
   try {
     // Get the full slug from the URL segments
-    const slugParams = await params;
+    const slugParams = context.params;
     const fullSlug = Array.isArray(slugParams.slug) ? slugParams.slug.join('/') : slugParams.slug;
     
     // Path to the blog data file
@@ -77,11 +77,11 @@ const extractFirstImageUrl = (html: string): string | null => {
 
 // Update a blog post
 export async function PUT(
-  request: Request,
-  { params }: { params: { slug: string[] } }
+  request: NextRequest,
+  context: { params: { slug: string[] } }
 ) {
   try {
-    const slugParams = await params;
+    const slugParams = context.params;
     const fullSlug = Array.isArray(slugParams.slug) ? slugParams.slug.join('/') : slugParams.slug;
     const { title, author, content, excerpt, image, date } = await request.json();
     
@@ -144,11 +144,11 @@ export async function PUT(
 
 // Delete a blog post
 export async function DELETE(
-  request: Request,
-  { params }: { params: { slug: string[] } }
+  request: NextRequest,
+  context: { params: { slug: string[] } }
 ) {
   try {
-    const slugParams = await params;
+    const slugParams = context.params;
     const fullSlug = Array.isArray(slugParams.slug) ? slugParams.slug.join('/') : slugParams.slug;
     
     // Path to the blog data file
