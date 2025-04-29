@@ -29,7 +29,9 @@ export default function MLSSearchPage() {
       <main className="relative min-h-screen w-full overflow-x-hidden pt-[120px]">
         {/* IDX Widget Container */}
         <section className="pt-32 pb-24 bg-white">
-          <div id="idxStart"></div>
+          <div id="idxStart" className="idx-content-container" style={{minHeight: "500px", width: "100%"}}>
+            {/* IDX content will be injected here */}
+          </div>
           <div id="idxStop"></div>
         </section>
 

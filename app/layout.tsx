@@ -16,6 +16,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Linda R. Olsson Inc., Realtor",
   description: "Palm Beach FL Luxury Homes & Condos - Linda R. Olsson Inc., Realtor",
+  icons: {
+    icon: "http://www.lindaolsson.com/flogo.svg",
+    apple: "http://www.lindaolsson.com/flogo.svg",
+    shortcut: "http://www.lindaolsson.com/flogo.svg"
+  }
 };
 
 export default function RootLayout({
@@ -25,6 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="http://www.lindaolsson.com/flogo.svg" />
+      </head>
       <body
         className={`${instrumentSerif.variable} ${geistMono.variable} font-serif antialiased`}
       >
