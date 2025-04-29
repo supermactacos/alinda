@@ -20,6 +20,7 @@ import { testimonials } from "./data/testimonials"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "./components/Footer"
 import { IdxFeaturedProperties } from "./components/IdxFeaturedProperties"
+import { ContactCard } from "./components/ContactCard"
 
 const instrumentSerif = Instrument_Serif({ 
   weight: ['400'],
@@ -419,6 +420,9 @@ export default function Home() {
               <IdxFeaturedProperties />
             </div>
           </section>
+
+          {/* Contact Card Section */}
+          <ContactCard />
 
           {/* Testimonials */}
           <section className="py-32 bg-white">

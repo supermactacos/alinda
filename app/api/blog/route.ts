@@ -130,8 +130,8 @@ export async function POST(request: Request) {
       ? createCleanExcerpt(excerpt) 
       : createCleanExcerpt(content);
     
-    // For thumbnails only: if no image is provided, extract the first image from content
-    const thumbnailImage = image || extractFirstImageUrl(content) || null;
+    // For thumbnails: try image prop first, then first image in content, then default
+    const thumbnailImage = image || extractFirstImageUrl(content) || '/default.jpeg';
     
     // The actual featured image to display at the top of the post should only be set if manually provided
     const featuredImage = image || null;

@@ -5,9 +5,9 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
-import { Footer } from "../../components/Footer";
+import { Footer } from "../components/Footer";
 import { ArrowLeft, Calendar, User } from "lucide-react";
-import { ContactCard } from "../../components/ContactCard"
+import { ContactCard } from "../components/ContactCard"
 
 const instrumentSerif = Instrument_Serif({
   weight: ["400"],
@@ -26,7 +26,7 @@ interface BlogPost {
 }
 
 export default function BlogPostPage() {
-  const { slug } = useParams<{ slug: string }>();
+  const params = useParams<{ slug: string[] }>();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -37,7 +37,9 @@ export default function BlogPostPage() {
     // Fetch blog post from our API
     const fetchPost = async () => {
       try {
-        const response = await fetch(`/api/blog/${slug}`);
+        // Join the slug array back into a path
+        const fullSlug = Array.isArray(params.slug) ? params.slug.join('/') : params.slug;
+        const response = await fetch(`/api/blog/${fullSlug}`);
         if (!response.ok) {
           throw new Error('Post not found');
         }
@@ -52,10 +54,10 @@ export default function BlogPostPage() {
       }
     };
 
-    if (slug) {
+    if (params.slug) {
       fetchPost();
     }
-  }, [slug]);
+  }, [params.slug]);
 
   // Apply correct fonts to headings after content is loaded
   useEffect(() => {
@@ -82,7 +84,7 @@ export default function BlogPostPage() {
         <div className="container mx-auto px-4">
           <Link href="/blog" className="inline-flex items-center text-green-800 hover:text-green-700 font-medium mb-8">
             <ArrowLeft className="mr-1 h-4 w-4" />
-            Back to Blog
+            Back to Articles
           </Link>
 
           {loading ? (
@@ -137,7 +139,7 @@ export default function BlogPostPage() {
               <div className="border-t border-gray-200 pt-8 mt-12">
                 <Link href="/blog" className="inline-flex items-center text-green-800 hover:text-green-700 font-medium">
                   <ArrowLeft className="mr-1 h-4 w-4" />
-                  Back to Blog
+                  Back to Articles
                 </Link>
               </div>
             </div>

@@ -6,6 +6,7 @@ import { Instrument_Serif } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "../components/Footer";
 import { ArrowRight } from "lucide-react";
+import { ContactCard } from "../components/ContactCard"
 
 const instrumentSerif = Instrument_Serif({
   weight: ["400"],
@@ -101,7 +102,7 @@ export default function BlogPage() {
                     </h2>
                     <p className="text-gray-600 mb-4 line-clamp-3">{stripHtmlTags(post.excerpt)}</p>
                     <Link 
-                      href={`/blog/${post.slug}`}
+                      href={`/${post.slug}`}
                       className="inline-flex items-center text-green-800 hover:text-green-700 font-medium"
                     >
                       Read More <ArrowRight className="ml-1 h-4 w-4" />
@@ -113,6 +114,9 @@ export default function BlogPage() {
           )}
         </div>
       </div>
+
+      {/* Contact Card Section */}
+      <ContactCard />
 
       <Footer />
     </div>

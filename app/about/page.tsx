@@ -9,6 +9,7 @@ import { TextAnimate } from "@/components/magicui/text-animate"
 import { useEffect, useState } from "react"
 import { Logo } from "@/app/components/Logo"
 import { Footer } from "../components/Footer"
+import { ContactCard } from "@/app/components/ContactCard"
 
 const instrumentSerif = Instrument_Serif({ 
   weight: ['400'],
@@ -84,9 +85,11 @@ export default function AboutPage() {
               Linda Olsson has been specializing in Palm Beach luxury properties for over 30 years. Contact us for experience you can TRUST!
             </p>
             <div className="flex justify-center mb-16">
-              <Button className="bg-[#1b4e1f] text-white text-xl py-6 px-12 rounded-full hover:bg-[#1b4e1f]/90">
-                VIEW LISTINGS
-              </Button>
+              <Link href="https://mlspalmbeach.lindaolsson.com/idx/agent/15878726/linda-r-olsson">
+                <Button className="bg-[#1b4e1f] text-white text-xl py-6 px-12 rounded-full hover:bg-[#1b4e1f]/90">
+                  VIEW LISTINGS
+                </Button>
+              </Link>
             </div>
 
             <div className="max-w-3xl mx-auto space-y-6 text-lg">
@@ -119,49 +122,8 @@ export default function AboutPage() {
         </section>
 
         {/* Contact Card Section */}
-        <section className="py-24 bg-[#fcfcfc]">
-          <div className="container mx-auto px-4">
-          <h2 className={`text-5xl md:text-6xl text-center font-light mb-6 ${instrumentSerif.className}`}>
-              Contact Us Today
-            </h2>
-            <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8 border border-gray-200">
-              <div className="flex justify-between items-start gap-8">
-                
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-semibold">Linda R. Olsson, Inc., Realtor</h2>
-                  <div className="space-y-2">
-                    
-                    <div className="space-y-1">
-                      <p>Office: <a href="tel:5618209195" className="text-green-900 hover:underline">(561) 820-9195</a></p>
-                      <p>Cell: <a href="tel:5613294044" className="text-green-900 hover:underline">(561) 329-4044</a></p>
-                      <p>Email: <a href="mailto:linda@lindaolsson.com" className="text-green-900 hover:underline">linda@lindaolsson.com</a></p>
-                    </div>
-                    <div className="space-y-1 pt-2">
-                      <p><Link href="#" className="text-green-900  hover:underline">View Active Listings →</Link></p>
-                      <p><Link href="#" className="text-green-900 hover:underline">View Sold Listings →</Link></p>
-                    </div>
-                    <div className="pt-2">
-                      <p>101 Bradley Place</p>
-                      <p>Palm Beach, FL 33480</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-shrink-0 flex items-center gap-4">
-                  <div className="w-54 pr-4">
-                    <Logo />
-                  </div>
-                  <img
-                    src="/linda.png"
-                    alt="Linda R. Olsson"
-                    className="w-52 h-auto rounded-lg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ContactCard className="py-24 bg-[#fcfcfc]" />
 
-       
         {/* Footer */}
         <Footer />
       </main>

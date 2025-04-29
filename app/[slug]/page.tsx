@@ -5,9 +5,9 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
-import { Footer } from "../../components/Footer";
+import { Footer } from "../components/Footer";
 import { ArrowLeft, Calendar, User } from "lucide-react";
-import { ContactCard } from "../../components/ContactCard"
+import { ContactCard } from "../components/ContactCard"
 
 const instrumentSerif = Instrument_Serif({
   weight: ["400"],
@@ -82,7 +82,7 @@ export default function BlogPostPage() {
         <div className="container mx-auto px-4">
           <Link href="/blog" className="inline-flex items-center text-green-800 hover:text-green-700 font-medium mb-8">
             <ArrowLeft className="mr-1 h-4 w-4" />
-            Back to Blog
+            Back to Articles
           </Link>
 
           {loading ? (
@@ -137,7 +137,7 @@ export default function BlogPostPage() {
               <div className="border-t border-gray-200 pt-8 mt-12">
                 <Link href="/blog" className="inline-flex items-center text-green-800 hover:text-green-700 font-medium">
                   <ArrowLeft className="mr-1 h-4 w-4" />
-                  Back to Blog
+                  Back to Articles
                 </Link>
               </div>
             </div>
