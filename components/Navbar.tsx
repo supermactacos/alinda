@@ -53,7 +53,7 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
         {/* Desktop Left Navigation */}
         <div className="hidden md:flex items-center gap-8">
           <div className="relative group">
-            <Link href="/about" className="flex items-center gap-1 text-white text-xl group-hover:text-white/90 transition-colors">
+            <Link href="/about-us" className="flex items-center gap-1 text-white text-xl group-hover:text-white/90 transition-colors">
               About
               <ChevronDown className="h-4 w-4 mt-0.5 group-hover:rotate-180 transition-transform duration-200" />
             </Link>
