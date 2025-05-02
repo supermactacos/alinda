@@ -17,9 +17,16 @@ export const metadata: Metadata = {
   title: "Linda R. Olsson Inc., Realtor",
   description: "Palm Beach FL Luxury Homes & Condos - Linda R. Olsson Inc., Realtor",
   icons: {
-    icon: "http://www.lindaolsson.com/flogo.svg",
-    apple: "http://www.lindaolsson.com/flogo.svg",
-    shortcut: "http://www.lindaolsson.com/flogo.svg"
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }
+    ],
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    other: [
+      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" }
+    ]
   }
 };
 
@@ -31,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="http://www.lindaolsson.com/flogo.svg" />
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
         className={`${instrumentSerif.variable} ${geistMono.variable} font-serif antialiased`}

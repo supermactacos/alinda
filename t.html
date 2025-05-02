@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linda R. Olsson Inc., Realtor | Palm Beach Luxury Homes</title>
+  <link rel="icon" href="http://www.lindaolsson.com/flogo.svg">
+  <style>
+    /* Basic resets */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f5f5f5; /* Light gray background for contrast with white box */
+    }
+    
+    /* NAVBAR STYLES - Adjusted for horizontal layout with logo top centered */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      width: 100%;
+      padding: 0.5rem 0;
+      background-color: #1b4e1f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .logo-container {
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+    
+    .logo {
+      height: 3.5rem;
+    }
+    
+    .nav-menu {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      padding: 0.5rem 0;
+    }
+    
+    .menu-items {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+    
+    .nav-item {
+      position: relative;
+    }
+    
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: color 0.2s;
+    }
+    
+    .nav-link:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .dropdown-icon {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      margin-left: 0.25rem;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid white;
+      transition: transform 0.2s;
+    }
+    
+    .nav-item:hover .dropdown-icon {
+      transform: rotate(180deg);
+    }
+    
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 300px;
+      background-color: #1b4e1f;
+      border: 1px solid #184b1c;
+      border-radius: 0.25rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s;
+      z-index: 101;
+    }
+    
+    .nav-item:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .dropdown-link {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+    }
+    
+    .dropdown-link:hover {
+      background-color: #184b1c;
+    }
+    
+    /* Mobile menu button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+    }
+    
+    /* Responsive styles for navbar */
+    @media (max-width: 992px) {
+      .menu-items {
+        gap: 1rem;
+      }
+      
+      .nav-link {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+      
+      .nav-menu {
+        display: none;
+      }
+      
+      .mobile-menu.open {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #1b4e1f;
+        z-index: 200;
+        padding: 4rem 1rem 1rem;
+        overflow-y: auto;
+      }
+      
+      .mobile-menu-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      
+      .mobile-menu-sections {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .mobile-section {
+        border-bottom: 1px solid #184b1c;
+        padding-bottom: 1rem;
+      }
+      
+      .mobile-section-title {
+        color: white;
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .mobile-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-left: 1rem;
+      }
+      
+      .mobile-link {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 0.5rem 0;
+      }
+    }
+    
+    /* KEY CHANGE: Push down the main content to make room for navbar */
+    body {
+      padding-top: 7rem;
+    }
+    
+    /* White box container for IDX content */
+    .idx-container-wrapper {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      overflow: hidden;
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: #1b4e1f;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 20px;
+    }
+    
+    .footer p {
+      margin: 5px 0;
+    }
+    
+    /* CRITICAL CHANGE: Make sure all IDX content gets wrapped in our white box */
+    /* This directly targets the IDX's actual structure */
+    #IDX-main, 
+    .IDX-wrapper-standard,
+    #IDX-resultsRow, 
+    #IDX-resultsContainer,
+    .IDX-pageContainer,
+    #IDX-resultsContent,
+    .IDX-resultsContent {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    
+    /* Style search option buttons instead of hiding them */
+    .idx-search-buttons-container {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 10px !important;
+      margin: 0 0 20px 0 !important;
+      justify-content: center !important;
+    }
+    
+    /* Target the exact IDX classes instead of by href */
+    #IDX-saveSearch,
+    .IDX-saveSearch,
+    .IDX-newSearch,
+    .IDX-modifySearch,
+    .IDX-btn--map-toggle,
+    a.IDX-resultsAction,
+    .IDX-topAction a {
+      display: inline-block !important;
+      background-color: #1b4e1f !important;
+      color: white !important;
+      padding: 8px 16px !important;
+      border-radius: 4px !important;
+      text-decoration: none !important;
+      font-weight: bold !important;
+      text-transform: uppercase !important;
+      font-size: 14px !important;
+      letter-spacing: 0.5px !important;
+      transition: background-color 0.2s ease !important;
+      border: none !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    }
+    
+    #IDX-saveSearch:hover,
+    .IDX-saveSearch:hover,
+    .IDX-newSearch:hover,
+    .IDX-modifySearch:hover,
+    .IDX-btn--map-toggle:hover,
+    a.IDX-resultsAction:hover,
+    .IDX-topAction a:hover {
+      background-color: #184b1c !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+    }
+    
+    /* Make sure the container is styled appropriately */
+    #IDX-resultsTopActions {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 10px !important;
+      margin: 0 0 20px 0 !important;
+      justify-content: center !important;
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 10px !important;
+    }
+    
+    .IDX-topAction {
+      margin: 5px !important;
+    }
+    
+    /* HIDE non-button elements within the actions area */
+    #IDX-saveSearchWrapper,
+    .IDX-hidden,
+    #IDX-start {
+      display: none !important;
+    }
+    
+    /* Still hide the "Results Found" text */
+    .IDX-results-title:contains("Results Found"),
+    #IDX-resultsPager-data,
+    .IDX-hopoZoning {
+      display: none !important;
+    }
+    
+    /* Hide Hopo Zoning and coordinate information */
+    [id*="hopoZoning"],
+    [class*="hopoZoning"],
+    [id*="IDX-hopoZoning"],
+    [class*="IDX-hopoZoning"],
+    *:contains("Hopo Zoning"),
+    .IDX-field-hopoZoning,
+    .IDX-field-latitude,
+    .IDX-field-longitude,
+    .IDX-field-latlong,
+    [class*="IDX-latLong"],
+    [class*="IDX-latlong"],
+    [class*="IDX-LatLong"],
+    [id*="latLong"],
+    [id*="latlong"],
+    [id*="LatLong"] {
+      display: none !important;
+    }
+    
+    /* EXACT MATCHES for the elements to hide - based on HTML inspection */
+    .IDX-hopoZoning,
+    div.IDX-hopoZoning,
+    .IDX-resultsAddressLatLng,
+    span.IDX-resultsAddressLatLng,
+    .IDX-resultsPropStatus,
+    span.IDX-resultsPropStatus {
+      display: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+      width: 0 !important;
+      opacity: 0 !important;
+      position: absolute !important;
+      left: -9999px !important;
+      overflow: hidden !important;
+    }
+    
+    /* Force removal of unwanted content */
+    label:contains("Hopo Zoning"),
+    *:contains("Hopo Zoning:") {
+      display: none !important;
+    }
+    
+    /* TARGET THE EXACT IDX STRUCTURE */
+    .IDX-resultsCellsContainer {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      list-style: none !important;
+      margin: 0 -10px !important;
+      padding: 0 !important;
+    }
+    
+    /* Fix each listing cell */
+    .IDX-results--cell {
+      width: 33.333% !important;
+      padding: 10px !important;
+      float: none !important;
+      display: block !important;
+    }
+    
+    /* Make entire property clickable */
+    .IDX-results--cell-inner-wrapper {
+      border: 1px solid #e0e0e0 !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+      height: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+      background: white !important;
+      position: relative !important;
+      transition: box-shadow 0.3s ease !important;
+      cursor: pointer !important;
+    }
+    
+    .IDX-results--cell-inner-wrapper:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+    }
+    
+    /* Fix the image container to be at the top */
+    .IDX-resultsPhoto {
+      width: 100% !important;
+      height: 220px !important;
+      overflow: hidden !important;
+      position: relative !important;
+      order: -1 !important; /* Move to top */
+    }
+    
+    /* Fix image dimensions to prevent stretching */
+    .IDX-resultsPhotoImg {
+      width: 100% !important;
+      height: 220px !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+    }
+    
+    /* Preserve the original link but make it cover the entire property card */
+    .IDX-resultsPhotoLink {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      z-index: 10 !important;
+      text-decoration: none !important;
+      background: transparent !important;
+      border: none !important;
+      outline: none !important;
+      opacity: 0 !important;
+      font-size: 0 !important;
+    }
+    
+    /* Ensure details appear below image */
+    .IDX-results--card-content {
+      padding: 15px !important;
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    
+    .IDX-resultsAddress {
+      order: 1 !important;
+    }
+    
+    /* Fix property details */
+    .IDX-results--details-field {
+      margin-bottom: 5px !important;
+    }
+    
+    /* Price styling */
+    .IDX-field-price {
+      font-size: 1.3em !important;
+      font-weight: bold !important;
+      color: #1b4e1f !important;
+      margin: 10px 0 !important;
+    }
+    
+    /* Fix for heart/save property button */
+    .IDX-propertyActions {
+      position: absolute !important;
+      top: 10px !important;
+      right: 10px !important;
+      z-index: 15 !important;
+    }
+    
+    .IDX-propertyActions a {
+      display: block !important;
+      opacity: 1 !important;
+      position: relative !important;
+      width: auto !important;
+      height: auto !important;
+    }
+    
+    /* Pagination fixes */
+    .IDX-results--pagination {
+      text-align: center !important;
+      margin: 20px 0 !important;
+    }
+    
+    /* Fix for MLS logo container */
+    .IDX-mlsContainer {
+      display: none !important; /* Usually just shows a logo - remove if needed */
+    }
+    
+    /* Fix navigation */
+    nav[aria-label="Page Navigation"] {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    
+    nav[aria-label="Page Navigation"] ul {
+      display: flex !important;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    nav[aria-label="Page Navigation"] li {
+      margin: 0 5px;
+      width: auto !important;
+      padding: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+    
+    nav[aria-label="Page Navigation"] a {
+      padding: 5px 10px;
+      text-decoration: none;
+      color: #1b4e1f;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+    
+    nav[aria-label="Page Navigation"] a:hover {
+      background-color: #1b4e1f;
+      color: white;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 992px) {
+      .IDX-results--cell {
+        width: 50% !important;
+      }
+      
+      .idx-container-wrapper {
+        max-width: 90%;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .IDX-results--cell {
+        width: 100% !important;
+      }
+      
+      .idx-container-wrapper {
+        max-width: 95%;
+        padding: 15px;
+      }
+      
+      .idx-search-buttons-container {
+        flex-direction: column !important;
+        align-items: center !important;
+      }
+      
+      a[href*="Save Search"],
+      a[href*="New Search"],
+      a[href*="Modify Search"],
+      a[href*="Show Map"] {
+        width: 100% !important;
+        text-align: center !important;
+      }
+    }
+    
+    /* DETAIL PAGE STYLING */
+    /* Photo Gallery Styling */
+    .IDX-detailsSlider,
+    .IDX-detailsSlider .slick-list,
+    .slick-initialized .slick-slide {
+      max-width: 100% !important;
+      overflow: hidden !important;
+      border-radius: 8px !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+      margin-bottom: 15px !important;
+    }
+    
+    /* Force single image display */
+    .IDX-detailsSlider .slick-track {
+      width: 100% !important;
+      transform: none !important;
+    }
+    
+    .IDX-detailsSlider .slick-slide {
+      width: 100% !important;
+      display: none !important;
+    }
+    
+    .IDX-detailsSlider .slick-slide.slick-current {
+      display: block !important;
+      opacity: 1 !important;
+    }
+    
+    .gallery-image {
+      height: 500px !important;
+      background-size: contain !important;
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      background-color: #f8f8f8 !important;
+    }
+    
+    /* Style the gallery arrows - make them more like the reference design */
+    .slick-arrow {
+      width: 40px !important;
+      height: 40px !important;
+      background-color: rgba(0, 0, 0, 0.5) !important;
+      color: white !important;
+      border-radius: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      z-index: 10 !important;
+      cursor: pointer !important;
+      transition: background-color 0.2s ease !important;
+      font-size: 18px !important;
+      opacity: 1 !important;
+      position: absolute !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+    }
+    
+    .slick-arrow.fa-arrow-left {
+      left: 0 !important;
+    }
+    
+    .slick-arrow.fa-arrow-right {
+      right: 0 !important;
+    }
+    
+    .slick-arrow:hover {
+      background-color: rgba(0, 0, 0, 0.8) !important;
+    }
+    
+    /* See all photos link - styled as a button */
+    #IDX-viewGallery {
+      display: inline-block !important;
+      margin: 15px 0 !important;
+      color: #fff !important;
+      text-decoration: none !important;
+      font-weight: bold !important;
+      background-color: #1b4e1f !important;
+      padding: 10px 15px !important;
+      border-radius: 4px !important;
+      transition: background-color 0.2s ease !important;
+      text-align: center !important;
+      width: 100% !important;
+      max-width: 300px !important;
+    }
+    
+    #IDX-viewGallery:hover {
+      background-color: #184b1c !important;
+    }
+    
+    #IDX-viewGallery i {
+      color: #fff !important;
+    }
+    
+    /* Create a thumbnail gallery below the main image */
+    .IDX-detailsPhotoThumbnails,
+    .slick-dots,
+    .IDX-detailsThumbnailNav {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      gap: 10px !important;
+      padding: 10px 0 !important;
+      justify-content: flex-start !important;
+      list-style: none !important;
+      margin: 0 !important;
+      overflow-x: hidden !important;
+      position: relative !important;
+      width: 100% !important;
+      scrollbar-width: none !important; /* Firefox */
+    }
+    
+    .IDX-detailsPhotoThumbnails::-webkit-scrollbar,
+    .slick-dots::-webkit-scrollbar,
+    .IDX-detailsThumbnailNav::-webkit-scrollbar {
+      display: none !important; /* Hide scrollbar */
+    }
+    
+    .IDX-thumbnailWrapper {
+      position: relative !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 30px !important; /* Space for arrows */
+      box-sizing: border-box !important;
+    }
+    
+    /* Arrows for thumbnail navigation */
+    .thumbnail-nav {
+      position: absolute !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      width: 25px !important;
+      height: 25px !important;
+      background-color: rgba(0,0,0,0.5) !important;
+      color: white !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      z-index: 5 !important;
+      cursor: pointer !important;
+      border: none !important;
+      font-size: 14px !important;
+    }
+    
+    .thumbnail-nav.prev {
+      left: 0 !important;
+    }
+    
+    .thumbnail-nav.next {
+      right: 0 !important;
+    }
+    
+    .thumbnail-nav:hover {
+      background-color: rgba(0,0,0,0.8) !important;
+    }
+    
+    .IDX-detailsPhotoThumbnails li,
+    .slick-dots li,
+    .IDX-detailsThumbnailNav li {
+      width: 80px !important;
+      min-width: 80px !important;
+      height: 60px !important;
+      overflow: hidden !important;
+      cursor: pointer !important;
+      border: 2px solid transparent !important;
+      transition: all 0.2s ease !important;
+      opacity: 0.7 !important;
+      flex-shrink: 0 !important;
+    }
+    
+    .IDX-detailsPhotoThumbnails li img,
+    .slick-dots li img,
+    .IDX-detailsThumbnailNav li img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+    
+    .IDX-detailsPhotoThumbnails li:hover,
+    .slick-dots li:hover,
+    .IDX-detailsThumbnailNav li:hover {
+      opacity: 1 !important;
+      border-color: #1b4e1f !important;
+    }
+    
+    .IDX-detailsPhotoThumbnails li.slick-active,
+    .slick-dots li.slick-active,
+    .IDX-detailsThumbnailNav li.slick-active {
+      opacity: 1 !important;
+      border-color: #1b4e1f !important;
+    }
+    
+    /* Gallery navigation container */
+    .IDX-detailsGalleryNav {
+      margin: 10px 0 30px !important;
+      text-align: center !important;
+    }
+    
+    /* Broker/MLS attribution */
+    .IDX-attribution {
+      font-size: 12px !important;
+      text-align: center !important;
+      color: #777 !important;
+      margin-top: 10px !important;
+      font-style: italic !important;
+    }
+    
+    /* Photo count styling */
+    .IDX-photoCount {
+      position: absolute !important;
+      bottom: 10px !important;
+      right: 10px !important;
+      background: rgba(0, 0, 0, 0.6) !important;
+      color: white !important;
+      padding: 5px 10px !important;
+      border-radius: 3px !important;
+      font-size: 12px !important;
+      z-index: 5 !important;
+    }
+    
+    /* View Photo Gallery button styling */
+    .view-photo-gallery-btn {
+      display: block !important;
+      width: 100% !important;
+      text-align: center !important;
+      padding: 12px !important;
+      background-color: #f0f0f0 !important;
+      color: #333 !important;
+      text-decoration: none !important;
+      border-radius: 4px !important;
+      margin: 15px 0 !important;
+      font-weight: bold !important;
+      transition: background-color 0.2s ease !important;
+    }
+    
+    .view-photo-gallery-btn:hover {
+      background-color: #e0e0e0 !important;
+    }
+    
+    /* Property Details Styling - NEW TABULAR FORMAT */
+    .IDX-detailsContainer {
+      font-family: Arial, sans-serif !important;
+      line-height: 1.6 !important;
+      color: #333 !important;
+      max-width: 1100px !important;
+      margin: 0 auto !important;
+      padding: 20px !important;
+    }
+    
+    .IDX-detailsAddress {
+      font-size: 1.8em !important;
+      font-weight: 700 !important;
+      margin-bottom: 20px !important;
+      color: #1b4e1f !important;
+    }
+
+    .IDX-detailsPrice {
+      font-size: 1.5em !important;
+      font-weight: 700 !important;
+      margin-bottom: 5px !important;
+      color: #1b4e1f !important;
+    }
+    
+    /* Tabular details layout */
+    .IDX-detailsField,
+    .IDX-detailsKeyInfo div,
+    .IDX-resultsDetailsContainer div,
+    .IDX-propertyDetailsContainer div {
+      display: flex !important;
+      border-bottom: 1px solid #eee !important;
+      padding: 8px 0 !important;
+      align-items: flex-start !important;
+    }
+    
+    .IDX-detailsLabel,
+    .IDX-label {
+      font-weight: 600 !important;
+      color: #555 !important;
+      min-width: 150px !important;
+      padding-right: 10px !important;
+    }
+    
+    .IDX-detailsText,
+    .IDX-text {
+      flex: 1 !important;
+    }
+    
+    /* Property details table */
+    .IDX-propertyDetailsWrapper,
+    .IDX-propertyDetails,
+    .IDX-detailsPropertyDetails {
+      margin: 20px 0 !important;
+      width: 100% !important;
+    }
+    
+    /* Style for each property detail row */
+    .IDX-propertyDetailsInfo,
+    .IDX-propertyDetailsInfo div,
+    .IDX-detailsInfo {
+      display: flex !important;
+      padding: 8px 0 !important;
+      border-bottom: 1px solid #eee !important;
+    }
+    
+    /* Make last item in list have no bottom border */
+    .IDX-propertyDetailsInfo div:last-child,
+    .IDX-detailsField:last-child {
+      border-bottom: none !important;
+    }
+    
+    /* Override all previous inline display styles for the details */
+    .IDX-resultsDetailsContainer,
+    .IDX-propertyDetailsContainer,
+    .IDX-detailsKeyInfo,
+    .IDX-resultsSummary,
+    .IDX-field-listingStatus,
+    .IDX-field-bedrooms,
+    .IDX-field-totalBaths,
+    .IDX-field-sqFt,
+    .IDX-field-propType,
+    .IDX-field-yearBuilt,
+    .IDX-propertyInfoItem {
+      display: block !important;
+      white-space: normal !important;
+    }
+
+    /* Ensure description text has proper spacing */
+    .IDX-detailsDescription {
+      margin: 20px 0 !important;
+      line-height: 1.8 !important;
+    }
+    
+    /* Section styling */
+    .IDX-detailsSection {
+      margin: 30px 0 !important;
+      padding: 20px !important;
+      background-color: #f9f9f9 !important;
+      border-radius: 8px !important;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+    }
+    
+    .IDX-detailsSectionTitle {
+      font-size: 1.3em !important;
+      font-weight: 700 !important;
+      margin-bottom: 15px !important;
+      color: #1b4e1f !important;
+      border-bottom: 2px solid #1b4e1f !important;
+      padding-bottom: 5px !important;
+    }
+    
+    /* Similar Listings styling */
+    .IDX-propertyTypeHeader,
+    #IDX-similarPropertyHeader {
+      font-size: 1.5em !important;
+      font-weight: 700 !important;
+      margin: 30px 0 15px !important;
+      color: #1b4e1f !important;
+      padding-bottom: 5px !important;
+      border-bottom: 2px solid #1b4e1f !important;
+    }
+    
+    /* Similar Listings Grid - Updated with exact classes */
+    .IDX-similar-listings {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      gap: 15px !important;
+      margin: 20px 0 !important;
+      padding-bottom: 10px !important;
+      scrollbar-width: thin !important;
+    }
+    
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .IDX-similar-listings::-webkit-scrollbar {
+      height: 5px !important;
+    }
+    
+    .IDX-similar-listings::-webkit-scrollbar-thumb {
+      background: #c0c0c0 !important;
+      border-radius: 10px !important;
+    }
+    
+    /* Similar Listings Cards - Target exact class */
+    .IDX-similar-listings--item {
+      flex: 0 0 auto !important;
+      width: 200px !important;
+      border: 1px solid #e0e0e0 !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+      max-height: 300px !important;
+    }
+    
+    /* Similar Listings Images - Target exact class */
+    .IDX-similar-listings--item-image {
+      width: 100% !important;
+      height: 120px !important; /* Smaller height */
+      object-fit: cover !important;
+      display: block !important;
+    }
+    
+    /* MLS Logo in similar listings */
+    .IDX-similar-listings--item-MLSLogo {
+      display: none !important; /* Hide MLS logo to save space */
+    }
+    
+    /* Similar Property Contents - Target exact class */
+    .IDX-similar-listings--info {
+      padding: 8px !important;
+      font-size: 12px !important;
+      line-height: 1.3 !important;
+    }
+    
+    .IDX-similar-listings--details {
+      margin-bottom: 5px !important;
+    }
+    
+    /* Address styling - Target exact class */
+    .IDX-similar-listings--address {
+      font-weight: 600 !important;
+      margin-bottom: 3px !important;
+      font-size: 12px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+    
+    /* Price styling - Target exact class */
+    .IDX-similar-listings--price {
+      color: #1b4e1f !important;
+      font-weight: 700 !important;
+      margin-bottom: 3px !important;
+      font-size: 14px !important;
+    }
+    
+    /* Property specs styling - Target exact class */
+    .IDX-similar-listings--bed-bath-sqft-acre {
+      font-size: 11px !important;
+      color: #555 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+    
+    /* View Details button styling */
+    .IDX-similar-listings--redirect .IDX-btn {
+      font-size: 12px !important;
+      padding: 3px 8px !important;
+      background-color: #1b4e1f !important;
+      color: white !important;
+      border: none !important;
+      border-radius: 4px !important;
+      text-decoration: none !important;
+      display: inline-block !important;
+    }
+    
+    /* Hide the Show Map button */
+    .IDX-topAction.IDX-topAction--map-toggle,
+    .IDX-topAction--map-toggle,
+    .IDX-btn--map-toggle,
+    div[class*="map-toggle"],
+    a[class*="map-toggle"] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      height: 0 !important;
+      width: 0 !important;
+      overflow: hidden !important;
+      position: absolute !important;
+      pointer-events: none !important;
+    }
+    
+    /* Make old selectors still work for compatibility */
+    #IDX-similarProperties,
+    .IDX-similarListings {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      gap: 15px !important;
+      margin: 20px 0 !important;
+      padding-bottom: 10px !important;
+    }
+    
+    /* Snapshot Styling - Add this new section */
+    #IDX-snapshot {
+      margin: 20px 0 !important;
+      width: 100% !important;
+    }
+    
+    #IDX-snapshot > div {
+      display: flex !important;
+      padding: 8px 0 !important;
+      border-bottom: 1px solid #eee !important;
+      align-items: center !important;
+    }
+    
+    #IDX-snapshot > div > i {
+      min-width: 40px !important;
+      color: #1b4e1f !important;
+      text-align: center !important;
+    }
+    
+    #IDX-snapshot .IDX-field {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    
+    #IDX-snapshot .label {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    
+    /* Create label sections for snapshot items */
+    #IDX-snapshot > div::before {
+      content: attr(data-label);
+      font-weight: 600 !important;
+      color: #555 !important;
+      min-width: 150px !important;
+      padding-right: 10px !important;
+    }
+    
+    /* Set labels for each snapshot item */
+    #IDX-snapshot > div:nth-child(1)::before {
+      content: "Status:";
+    }
+    
+    #IDX-snapshot > div:nth-child(2)::before {
+      content: "Bedrooms:";
+    }
+    
+    #IDX-snapshot > div:nth-child(3)::before {
+      content: "SqFt:";
+    }
+    
+    #IDX-snapshot > div:nth-child(4)::before {
+      content: "Property Type:";
+    }
+    
+    #IDX-snapshot > div:nth-child(5)::before {
+      content: "Year Built:";
+    }
+  </style>
+</head>
+<body>
+  <!-- New Navbar -->
+  <nav class="navbar">
+    <!-- Logo -->
+    <div class="logo-container">
+      <a href="http://www.lindaolsson.com/">
+        <img src="http://www.lindaolsson.com/flogo.svg" alt="Linda R. Olsson Inc., Realtor" class="logo">
+      </a>
+    </div>
+    
+    <!-- Desktop Menu -->
+    <div class="nav-menu">
+      <ul class="menu-items">
+        <li class="nav-item">
+          <a href="http://www.lindaolsson.com/about" class="nav-link">
+            About <span class="dropdown-icon"></span>
+          </a>
+          <div class="dropdown">
+            <a href="http://www.lindaolsson.com/about" class="dropdown-link">ABOUT LINDA</a>
+            <a href="http://www.lindaolsson.com/our-team" class="dropdown-link">OUR TEAM</a>
+            <a href="http://www.lindaolsson.com/a-leader-in-palm-beach-real-estate" class="dropdown-link">A LEADER IN PALM BEACH REAL ESTATE</a>
+            <a href="http://www.lindaolsson.com/concierge-quality-realty-services" class="dropdown-link">CONCIERGE QUALITY REALTY SERVICES</a>
+            <a href="http://www.lindaolsson.com/community-involvement" class="dropdown-link">GIVING BACK...COMMUNITY INVOLVEMENT</a>
+            <a href="http://www.lindaolsson.com/palm-beach-florida-real-estate-news" class="dropdown-link">IN THE NEWS</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="http://www.lindaolsson.com/search" class="nav-link">
+            Search For Homes <span class="dropdown-icon"></span>
+          </a>
+          <div class="dropdown">
+            <a href="http://www.lindaolsson.com/north-end-palm-beach-real-estate" class="dropdown-link">NORTH END HOMES</a>
+            <a href="http://www.lindaolsson.com/in-town-palm-beach-real-estate" class="dropdown-link">IN TOWN HOMES</a>
+            <a href="http://www.lindaolsson.com/estate-section" class="dropdown-link">ESTATE SECTION HOMES</a>
+            <a href="http://www.lindaolsson.com/in-town-townhomes" class="dropdown-link">IN-TOWN TOWNHOMES</a>
+            <a href="http://www.lindaolsson.com/in-town-condos" class="dropdown-link">IN-TOWN CONDOS</a>
+            <a href="http://www.lindaolsson.com/sloans-curve-south-to-manalapan" class="dropdown-link">SLOANS CURVE SOUTH TO MANALAPAN CONDOMINIUMS</a>
+            <a href="http://www.lindaolsson.com/luxury-palm-beach-condominium-co-op-buildings" class="dropdown-link">LUXURY PALM BEACH CONDOMINIUM AND CO-OP BUILDINGS</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="http://www.lindaolsson.com/blog" class="nav-link">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a href="http://www.lindaolsson.com/tax-benefits" class="nav-link">
+            Tax Benefits <span class="dropdown-icon"></span>
+          </a>
+          <div class="dropdown">
+            <a href="http://www.lindaolsson.com/global-reach-local-expertise" class="dropdown-link">GLOBAL REACH/LOCAL EXPERTISE</a>
+            <a href="http://www.lindaolsson.com/palm-beach-a-slice-of-paradise" class="dropdown-link">PALM BEACH – A SLICE OF PARADISE</a>
+            <a href="http://www.lindaolsson.com/buying-selling-hire-professional" class="dropdown-link">BUYING OR SELLING? HIRE A PROFESSIONAL!</a>
+            <a href="http://www.lindaolsson.com/4-essential-things-to-consider-when-buying-a-condo" class="dropdown-link">4 ESSENTIAL THINGS TO CONSIDER WHEN BUYING A CONDO</a>
+            <a href="http://www.lindaolsson.com/sellers-tips" class="dropdown-link">SELLERS TIPS</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="http://www.lindaolsson.com/market-reports" class="nav-link">Market Reports</a>
+        </li>
+        <li class="nav-item">
+          <a href="http://www.lindaolsson.com/testimonials" class="nav-link">Testimonials</a>
+        </li>
+        <li class="nav-item">
+          <a href="http://www.lindaolsson.com/contact" class="nav-link">Contact</a>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+    <button class="mobile-menu-close" onclick="toggleMobileMenu()">✕</button>
+    
+    <div class="mobile-menu-sections">
+      <!-- About Section -->
+      <div class="mobile-section">
+        <div class="mobile-section-title">About</div>
+        <div class="mobile-links">
+          <a href="http://www.lindaolsson.com/about" class="mobile-link">ABOUT LINDA</a>
+          <a href="http://www.lindaolsson.com/our-team" class="mobile-link">OUR TEAM</a>
+          <a href="http://www.lindaolsson.com/a-leader-in-palm-beach-real-estate" class="mobile-link">A LEADER IN PALM BEACH REAL ESTATE</a>
+          <a href="http://www.lindaolsson.com/concierge-quality-realty-services" class="mobile-link">CONCIERGE QUALITY REALTY SERVICES</a>
+          <a href="http://www.lindaolsson.com/community-involvement" class="mobile-link">GIVING BACK...COMMUNITY INVOLVEMENT</a>
+          <a href="http://www.lindaolsson.com/palm-beach-florida-real-estate-news" class="mobile-link">IN THE NEWS</a>
+        </div>
+      </div>
+      
+      <!-- Search For Homes Section -->
+      <div class="mobile-section">
+        <div class="mobile-section-title">Search For Homes</div>
+        <div class="mobile-links">
+          <a href="http://www.lindaolsson.com/north-end-palm-beach-real-estate" class="mobile-link">NORTH END HOMES</a>
+          <a href="http://www.lindaolsson.com/in-town-palm-beach-real-estate" class="mobile-link">IN TOWN HOMES</a>
+          <a href="http://www.lindaolsson.com/estate-section" class="mobile-link">ESTATE SECTION HOMES</a>
+          <a href="http://www.lindaolsson.com/in-town-townhomes" class="mobile-link">IN-TOWN TOWNHOMES</a>
+          <a href="http://www.lindaolsson.com/in-town-condos" class="mobile-link">IN-TOWN CONDOS</a>
+          <a href="http://www.lindaolsson.com/sloans-curve-south-to-manalapan" class="mobile-link">SLOANS CURVE SOUTH TO MANALAPAN CONDOMINIUMS</a>
+          <a href="http://www.lindaolsson.com/luxury-palm-beach-condominium-co-op-buildings" class="mobile-link">LUXURY PALM BEACH CONDOMINIUM AND CO-OP BUILDINGS</a>
+        </div>
+      </div>
+      
+      <!-- Tax Benefits Section -->
+      <div class="mobile-section">
+        <div class="mobile-section-title">Tax Benefits</div>
+        <div class="mobile-links">
+          <a href="http://www.lindaolsson.com/global-reach-local-expertise" class="mobile-link">GLOBAL REACH/LOCAL EXPERTISE</a>
+          <a href="http://www.lindaolsson.com/palm-beach-a-slice-of-paradise" class="mobile-link">PALM BEACH – A SLICE OF PARADISE</a>
+          <a href="http://www.lindaolsson.com/buying-selling-hire-professional" class="mobile-link">BUYING OR SELLING? HIRE A PROFESSIONAL!</a>
+          <a href="http://www.lindaolsson.com/4-essential-things-to-consider-when-buying-a-condo" class="mobile-link">4 ESSENTIAL THINGS TO CONSIDER WHEN BUYING A CONDO</a>
+          <a href="http://www.lindaolsson.com/sellers-tips" class="mobile-link">SELLERS TIPS</a>
+        </div>
+      </div>
+      
+      <!-- Other Links -->
+      <div class="mobile-section">
+        <a href="http://www.lindaolsson.com/blog" class="mobile-link">Blog</a>
+        <a href="http://www.lindaolsson.com/market-reports" class="mobile-link">Market Reports</a>
+        <a href="http://www.lindaolsson.com/testimonials" class="mobile-link">Testimonials</a>
+        <a href="http://www.lindaolsson.com/contact" class="mobile-link">Contact</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- !!! CRITICAL: WHITE BOX WRAPPER FOR IDX CONTENT !!! -->
+  <div class="idx-container-wrapper">
+    <!-- NOTE: DO NOT PUT ANYTHING HERE - IDX CONTENT WILL BE LOADED DIRECTLY INTO THE PAGE -->
+    <!-- This wrapper will automatically capture all the IDX content through custom CSS -->
+  </div>
+  
+  <!-- Footer -->
+  <div class="footer">
+    <p>Linda R. Olsson, Inc., Realtor</p>
+    <p>561-820-9195</p>
+    <p>Linda@LindaOlsson.com</p>
+    <p>101 Bradley Place, Palm Beach, FL 33480</p>
+  </div>
+
+  <!-- Mobile menu toggle script -->
+  <script>
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (mobileMenu.classList.contains('open')) {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      } else {
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    
+    // CRITICAL: Move the IDX content into our white box container when the page loads
+    window.addEventListener('DOMContentLoaded', function() {
+      // This will find the IDX content and move it into our container
+      const idxContent = document.getElementById('IDX-main');
+      const idxWrapper = document.querySelector('.idx-container-wrapper');
+      
+      if (idxContent && idxWrapper) {
+        idxWrapper.appendChild(idxContent);
+      }
+      
+      // Alternative approach if the above doesn't work
+      // This moves all elements outside our navigation and footer into the wrapper
+      if (!idxContent) {
+        const bodyChildren = Array.from(document.body.children);
+        bodyChildren.forEach(function(child) {
+          if (child !== document.querySelector('.navbar') && 
+              child !== document.querySelector('.mobile-menu') &&
+              child !== document.querySelector('.footer') &&
+              child !== idxWrapper) {
+            idxWrapper.appendChild(child);
+          }
+        });
+      }
+      
+      // Create container for search buttons if needed
+      setTimeout(function() {
+        // Target the exact IDX classes we need for buttons
+        const searchButtons = document.querySelectorAll('.IDX-saveSearch, .IDX-newSearch, .IDX-modifySearch, .IDX-btn--map-toggle, #IDX-saveSearch, .IDX-topAction a');
+        
+        // Check if we already have the existing container
+        const existingContainer = document.getElementById('IDX-resultsTopActions');
+        
+        if (existingContainer) {
+          // If the container exists, we just need to make sure it's styled properly
+          existingContainer.classList.add('idx-search-buttons-container');
+          
+          // Make sure any hidden elements stay hidden
+          const hiddenElements = existingContainer.querySelectorAll('.IDX-hidden, #IDX-start, #IDX-saveSearchWrapper');
+          hiddenElements.forEach(function(el) {
+            el.style.display = 'none';
+          });
+        }
+        // If no existing container but we found buttons, create a new container
+        else if (searchButtons.length > 0) {
+          let buttonContainer = document.querySelector('.idx-search-buttons-container');
+          
+          if (!buttonContainer) {
+            buttonContainer = document.createElement('div');
+            buttonContainer.className = 'idx-search-buttons-container';
+            
+            // Insert at the top of the IDX content
+            const idxContainer = document.querySelector('#IDX-main') || document.querySelector('.IDX-wrapper-standard');
+            if (idxContainer) {
+              idxContainer.insertBefore(buttonContainer, idxContainer.firstChild);
+            } else {
+              idxWrapper.insertBefore(buttonContainer, idxWrapper.firstChild);
+            }
+          }
+          
+          // Move all search buttons into the container
+          searchButtons.forEach(function(button) {
+            buttonContainer.appendChild(button.cloneNode(true));
+          });
+        }
+      }, 1000); // Delay to ensure IDX content has loaded
+    });
+  </script>
+  
+  <!-- Allow IDX Popups -->
+  <script>
+    // Function to enable IDX popups
+    window.addEventListener('DOMContentLoaded', function() {
+      // Allow any IDX popups to display by their natural functionality
+      setTimeout(function() {
+        // Enable any login/register popups
+        const loginLinks = document.querySelectorAll('[data-action="login"], [data-action="register"], .IDX-loginAction, .IDX-registerAction');
+        if (loginLinks.length > 0) {
+          loginLinks.forEach(function(link) {
+            // Remove any prevented default behavior
+            const originalClickHandler = link.onclick;
+            link.onclick = null;
+            
+            // Re-enable click functionality
+            link.addEventListener('click', function(e) {
+              // Allow natural behavior to take place
+              return true;
+            });
+          });
+        }
+        
+        // Make sure any modal containers are visible
+        const modalContainers = document.querySelectorAll('.IDX-modalContainer, .IDX-modal, .IDX-modal-container, .ui-dialog, .IDX-registerModal, .IDX-loginModal');
+        if (modalContainers.length > 0) {
+          modalContainers.forEach(function(container) {
+            container.style.display = '';
+            container.style.visibility = '';
+            container.style.opacity = '';
+            container.style.pointerEvents = '';
+          });
+        }
+        
+        // Additionally check for any IDX dialog systems
+        if (typeof idx !== 'undefined' && idx.modal) {
+          // Re-enable IDX modal system if it exists
+          idx.modal.isDisabled = false;
+        }
+        
+        console.log('IDX popups have been enabled');
+      }, 1500);
+    });
+  </script>
+  
+  <!-- Enhanced Photo Gallery Script -->
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        // Enhance the photo gallery to match reference design
+        enhancePhotoGallery();
+      }, 2000);
+    });
+    
+    function enhancePhotoGallery() {
+      // Find the photo gallery elements
+      const mainGallery = document.querySelector('.IDX-detailsSlider, .IDX-propertyGallery');
+      
+      if (!mainGallery) {
+        console.log('Gallery not found, will try again later');
+        setTimeout(enhancePhotoGallery, 1000);
+        return;
+      }
+      
+      console.log('Enhancing photo gallery');
+      
+      // Fix the main gallery to show only one image at a time
+      if (typeof idx !== 'undefined' && idx.$ && typeof idx.$.fn.slick !== 'undefined') {
+        try {
+          // Check if slick is already initialized
+          if (idx.$(mainGallery).hasClass('slick-initialized')) {
+            // Unslick first to reset configuration
+            idx.$(mainGallery).slick('unslick');
+          }
+          
+          // Reinitialize with proper settings
+          idx.$(mainGallery).slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: false,
+            arrows: true,
+            adaptiveHeight: true,
+            prevArrow: '<i class="fa-solid fa-arrow-left slick-arrow"></i>',
+            nextArrow: '<i class="fa-solid fa-arrow-right slick-arrow"></i>'
+          });
+        } catch(e) {
+          console.log('Could not reconfigure slider: ', e);
+        }
+      } else {
+        console.log('Slick not available, applying CSS-based fix only');
+        
+        // Ensure only current slide is displayed via CSS
+        const allSlides = mainGallery.querySelectorAll('.slick-slide');
+        if (allSlides.length > 0) {
+          allSlides.forEach(function(slide) {
+            if (!slide.classList.contains('slick-current')) {
+              slide.style.display = 'none';
+            } else {
+              slide.style.display = 'block';
+            }
+          });
+          
+          // Add event listeners to arrows for manual navigation
+          const prevArrow = mainGallery.querySelector('.slick-prev, .fa-arrow-left');
+          const nextArrow = mainGallery.querySelector('.slick-next, .fa-arrow-right');
+          
+          if (prevArrow && nextArrow) {
+            prevArrow.addEventListener('click', function() {
+              const current = mainGallery.querySelector('.slick-current');
+              if (current) {
+                const prev = current.previousElementSibling || allSlides[allSlides.length - 1];
+                current.classList.remove('slick-current');
+                current.style.display = 'none';
+                prev.classList.add('slick-current');
+                prev.style.display = 'block';
+                updatePhotoCounter(Array.from(allSlides).indexOf(prev));
+              }
+            });
+            
+            nextArrow.addEventListener('click', function() {
+              const current = mainGallery.querySelector('.slick-current');
+              if (current) {
+                const next = current.nextElementSibling || allSlides[0];
+                current.classList.remove('slick-current');
+                current.style.display = 'none';
+                next.classList.add('slick-current');
+                next.style.display = 'block';
+                updatePhotoCounter(Array.from(allSlides).indexOf(next));
+              }
+            });
+          }
+        }
+      }
+      
+      // Create a photo counter
+      const totalSlides = document.querySelectorAll('.slick-slide:not(.slick-cloned)').length;
+      if (totalSlides > 0) {
+        const photoCounter = document.createElement('div');
+        photoCounter.className = 'IDX-photoCount';
+        photoCounter.id = 'IDX-photoCounter';
+        photoCounter.innerHTML = `1/${totalSlides}`;
+        mainGallery.appendChild(photoCounter);
+        
+        // Update counter when slides change
+        function updatePhotoCounter(currentSlide) {
+          const counter = document.getElementById('IDX-photoCounter');
+          if (counter) {
+            counter.innerHTML = `${currentSlide + 1}/${totalSlides}`;
+          }
+        }
+        
+        // Try to hook into slick events if available
+        if (typeof idx !== 'undefined' && idx.$ && typeof idx.$.fn.slick !== 'undefined') {
+          idx.$(mainGallery).on('afterChange', function(event, slick, currentSlide) {
+            updatePhotoCounter(currentSlide);
+          });
+        }
+      }
+      
+      // Create thumbnail gallery if it doesn't exist
+      if (!document.querySelector('.IDX-detailsPhotoThumbnails, .slick-dots')) {
+        const allSlides = document.querySelectorAll('.slick-slide:not(.slick-cloned) .gallery-image, .slick-slide:not(.slick-cloned) img');
+        
+        if (allSlides.length > 0) {
+          // Create a wrapper for the thumbnails to allow for scrolling
+          const thumbnailWrapper = document.createElement('div');
+          thumbnailWrapper.className = 'IDX-thumbnailWrapper';
+          
+          // Create the thumbnail container
+          const thumbnailContainer = document.createElement('div');
+          thumbnailContainer.className = 'IDX-detailsPhotoThumbnails';
+          
+          // Create left arrow for thumbnails
+          const prevArrow = document.createElement('button');
+          prevArrow.className = 'thumbnail-nav prev';
+          prevArrow.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+          prevArrow.addEventListener('click', function() {
+            thumbnailContainer.scrollBy({ left: -240, behavior: 'smooth' });
+          });
+          
+          // Create right arrow for thumbnails
+          const nextArrow = document.createElement('button');
+          nextArrow.className = 'thumbnail-nav next';
+          nextArrow.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+          nextArrow.addEventListener('click', function() {
+            thumbnailContainer.scrollBy({ left: 240, behavior: 'smooth' });
+          });
+          
+          // Create thumbnails
+          allSlides.forEach(function(slide, index) {
+            const thumbnail = document.createElement('li');
+            thumbnail.className = index === 0 ? 'slick-active' : '';
+            
+            const bgImage = slide.style.backgroundImage || 
+                           (slide.tagName === 'IMG' ? `url(${slide.src})` : '');
+            
+            if (bgImage) {
+              const img = document.createElement('img');
+              img.src = bgImage.replace('url("', '').replace('")', '').replace("url('", "").replace("')", "");
+              thumbnail.appendChild(img);
+              
+              // Add click handler
+              thumbnail.addEventListener('click', function() {
+                // If slick is available, go to this slide
+                if (typeof idx !== 'undefined' && idx.$ && typeof idx.$.fn.slick !== 'undefined') {
+                  idx.$(mainGallery).slick('slickGoTo', index);
+                }
+                
+                // Update active state
+                document.querySelectorAll('.IDX-detailsPhotoThumbnails li').forEach(function(thumb) {
+                  thumb.classList.remove('slick-active');
+                });
+                thumbnail.classList.add('slick-active');
+                
+                // Scroll the thumbnail into view
+                thumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+              });
+              
+              thumbnailContainer.appendChild(thumbnail);
+            }
+          });
+          
+          // Add the arrows and thumbnails to the wrapper
+          thumbnailWrapper.appendChild(prevArrow);
+          thumbnailWrapper.appendChild(thumbnailContainer);
+          thumbnailWrapper.appendChild(nextArrow);
+          
+          // Insert after the main gallery
+          if (thumbnailContainer.children.length > 0) {
+            mainGallery.parentNode.insertBefore(thumbnailWrapper, mainGallery.nextSibling);
+            
+            // Hook into main gallery slide change to update thumbnails
+            if (typeof idx !== 'undefined' && idx.$ && typeof idx.$.fn.slick !== 'undefined') {
+              idx.$(mainGallery).on('afterChange', function(event, slick, currentSlide) {
+                // Update active thumbnail
+                document.querySelectorAll('.IDX-detailsPhotoThumbnails li').forEach(function(thumb, i) {
+                  if (i === currentSlide) {
+                    thumb.classList.add('slick-active');
+                    
+                    // Scroll to the active thumbnail
+                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                  } else {
+                    thumb.classList.remove('slick-active');
+                  }
+                });
+              });
+            }
+          }
+        }
+      }
+      
+      // Create a "View All Photos" button if it doesn't already exist
+      if (!document.getElementById('IDX-viewGallery')) {
+        const viewAllBtn = document.createElement('a');
+        viewAllBtn.id = 'IDX-viewGallery';
+        viewAllBtn.href = '#';
+        viewAllBtn.innerHTML = '<i class="fa-regular fa-images" style="margin-right:12px;"></i>View All Photos';
+        
+        // Add click handler to show full screen gallery
+        viewAllBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // If slick has a fullscreen mode, use it
+          if (typeof idx !== 'undefined' && idx.$ && idx.$.fn.slick) {
+            // Attempt to trigger fullscreen mode
+            const firstImage = document.querySelector('.slick-slide:not(.slick-cloned) .gallery-image, .slick-slide:not(.slick-cloned) img');
+            if (firstImage) {
+              firstImage.click();
+            }
+          }
+        });
+        
+        // Insert after thumbnails
+        const insertAfter = document.querySelector('.IDX-thumbnailWrapper') || mainGallery;
+        insertAfter.parentNode.insertBefore(viewAllBtn, insertAfter.nextSibling);
+      }
+      
+      // Style the arrows to match reference design
+      const arrows = document.querySelectorAll('.slick-arrow');
+      arrows.forEach(function(arrow) {
+        // Remove any existing classes
+        if (arrow.classList.contains('slick-prev')) {
+          arrow.classList.add('fa-arrow-left');
+        } else if (arrow.classList.contains('slick-next')) {
+          arrow.classList.add('fa-arrow-right');
+        }
+      });
+    }
+  </script>
+  
+  <!-- Property Details Formatting Script -->
+  <script>
+    // Function to ensure property details are properly formatted
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        // Format property details correctly
+        formatPropertyDetails();
+        // Format snapshot section
+        formatSnapshotSection();
+        // Format similar listings
+        formatSimilarListings();
+      }, 1000);
+    });
+    
+    function formatPropertyDetails() {
+      // Create tabular layout for property details
+      const detailsContainer = document.querySelector('.IDX-detailsInfo, .IDX-propertyDetailsInfo');
+      
+      if (detailsContainer) {
+        // Find all property details
+        const detailItems = document.querySelectorAll('.IDX-field-listingStatus, .IDX-field-bedrooms, .IDX-field-totalBaths, .IDX-field-sqFt, .IDX-field-propType, .IDX-field-yearBuilt, .IDX-propertyInfoItem');
+        
+        detailItems.forEach(function(item) {
+          // Set display to block to ensure items are on separate rows
+          item.style.display = 'flex';
+          item.style.borderBottom = '1px solid #eee';
+          item.style.padding = '8px 0';
+          
+          // If this is a wrapped element with label/value, ensure proper formatting
+          const label = item.querySelector('.IDX-label') || item.querySelector('.IDX-propertyInfoLabel');
+          const value = item.querySelector('.IDX-text') || item.querySelector('.IDX-propertyInfoValue');
+          
+          if (label) {
+            label.style.fontWeight = '600';
+            label.style.color = '#555';
+            label.style.minWidth = '150px';
+            label.style.paddingRight = '10px';
+          }
+          
+          if (value) {
+            value.style.flex = '1';
+          }
+        });
+      }
+      
+      // Attempt to create tabular layout if one doesn't exist
+      const propertyDetails = document.querySelector('.IDX-detailsContainer');
+      if (propertyDetails && !detailsContainer) {
+        // Find all key property details that should be displayed in tabular format
+        const keyItems = [
+          { label: 'Price:', value: document.querySelector('.IDX-detailsPrice')?.textContent?.trim() },
+          { label: 'Status:', value: document.querySelector('.IDX-status')?.textContent?.trim() || 'Active' },
+          { label: 'Bedrooms:', value: document.querySelector('.IDX-field-bedrooms')?.textContent?.trim().replace(/\s+/g, ' ') },
+          { label: 'Total Baths:', value: document.querySelector('.IDX-field-totalBaths')?.textContent?.trim().replace(/\s+/g, ' ') },
+          { label: 'SqFt:', value: document.querySelector('.IDX-field-sqFt')?.textContent?.trim().replace(/\s+/g, ' ') },
+          { label: 'Property Type:', value: document.querySelector('.IDX-field-propType')?.textContent?.trim().replace(/\s+/g, ' ') }
+        ];
+        
+        // Create a details container if it doesn't exist
+        const detailsTable = document.createElement('div');
+        detailsTable.className = 'IDX-propertyDetailsInfo';
+        detailsTable.style.margin = '20px 0';
+        
+        // Add each detail row
+        keyItems.forEach(function(item) {
+          if (item.value) {
+            const row = document.createElement('div');
+            row.style.display = 'flex';
+            row.style.borderBottom = '1px solid #eee';
+            row.style.padding = '8px 0';
+            
+            const label = document.createElement('div');
+            label.className = 'IDX-label';
+            label.textContent = item.label;
+            label.style.fontWeight = '600';
+            label.style.color = '#555';
+            label.style.minWidth = '150px';
+            label.style.paddingRight = '10px';
+            
+            const value = document.createElement('div');
+            value.className = 'IDX-text';
+            value.textContent = item.value;
+            value.style.flex = '1';
+            
+            row.appendChild(label);
+            row.appendChild(value);
+            detailsTable.appendChild(row);
+          }
+        });
+        
+        // Insert the table after the address
+        const addressElement = document.querySelector('.IDX-detailsAddress');
+        if (addressElement && detailsTable.children.length > 0) {
+          addressElement.parentNode.insertBefore(detailsTable, addressElement.nextSibling);
+        }
+      }
+    }
+    
+    // Format the snapshot section into tabular layout
+    function formatSnapshotSection() {
+      const snapshot = document.getElementById('IDX-snapshot');
+      
+      // If the snapshot section doesn't exist but we have the elements, create it
+      if (!snapshot) {
+        const propertyInfo = document.querySelector('.IDX-propertyDetailsInfo');
+        const addressElement = document.querySelector('.IDX-detailsAddress');
+        
+        if (addressElement) {
+          // Create snapshot container
+          const newSnapshot = document.createElement('div');
+          newSnapshot.id = 'IDX-snapshot';
+          newSnapshot.style.margin = '20px 0';
+          newSnapshot.style.width = '100%';
+          
+          // Define the snapshot items with their icons and values
+          const snapshotItems = [
+            { 
+              label: 'Status:', 
+              icon: 'fa-solid fa-circle fa-2xs', 
+              value: document.querySelector('.IDX-field-propStatus .IDX-text')?.textContent?.trim() || 'Active'
+            },
+            { 
+              label: 'Bedrooms:', 
+              icon: 'fa-solid fa-bed fa-xs', 
+              value: document.querySelector('.IDX-field-bedrooms .IDX-text')?.textContent?.trim() || '',
+              suffix: ' beds'
+            },
+            { 
+              label: 'SqFt:', 
+              icon: 'fa-solid fa-ruler-combined fa-xs', 
+              value: document.querySelector('.IDX-field-sqFt .IDX-text')?.textContent?.trim() || '',
+              suffix: ' sqft'
+            },
+            { 
+              label: 'Property Type:', 
+              icon: 'fa-solid fa-house fa-xs', 
+              value: document.querySelector('.IDX-field-propSubType .IDX-text')?.textContent?.trim() || 'Single Family Residence'
+            },
+            { 
+              label: 'Year Built:', 
+              icon: 'fa-solid fa-hammer fa-xs', 
+              value: document.querySelector('.IDX-field-yearBuilt .IDX-text')?.textContent?.trim() || '',
+              prefix: 'Built in '
+            }
+          ];
+          
+          // Create each row in the snapshot
+          snapshotItems.forEach(function(item, index) {
+            // Skip if no value and no appropriate fallback for this field
+            if (!item.value && !(item.label === 'Status:' || item.label === 'Property Type:')) {
+              return;
+            }
+            
+            const row = document.createElement('div');
+            row.setAttribute('data-label', item.label);
+            row.style.display = 'flex';
+            row.style.padding = '8px 0';
+            row.style.borderBottom = '1px solid #eee';
+            row.style.alignItems = 'center';
+            
+            // Create icon
+            const icon = document.createElement('i');
+            icon.className = item.icon;
+            icon.style.width = '15px';
+            icon.style.marginRight = '12px';
+            icon.style.color = '#1b4e1f';
+            icon.setAttribute('aria-hidden', 'true');
+            
+            // Create field container
+            const field = document.createElement('div');
+            field.className = 'IDX-field';
+            
+            // Add prefix if exists and we have a value
+            if (item.prefix && item.value) {
+              const prefix = document.createElement('span');
+              prefix.className = 'label';
+              prefix.style.margin = '0';
+              prefix.textContent = item.prefix;
+              row.appendChild(prefix);
+            }
+            
+            // Create text span
+            const text = document.createElement('span');
+            text.className = 'IDX-text';
+            text.textContent = item.value;
+            field.appendChild(text);
+            
+            // Add elements to row
+            row.appendChild(icon);
+            row.appendChild(field);
+            
+            // Add suffix if exists and we have a value
+            if (item.suffix && item.value) {
+              const suffix = document.createElement('span');
+              suffix.className = 'label';
+              suffix.textContent = item.suffix;
+              row.appendChild(suffix);
+            }
+            
+            newSnapshot.appendChild(row);
+          });
+          
+          // Insert after the address but before property info
+          if (propertyInfo) {
+            addressElement.parentNode.insertBefore(newSnapshot, propertyInfo);
+          } else {
+            addressElement.parentNode.insertBefore(newSnapshot, addressElement.nextSibling);
+          }
+        }
+      } else {
+        // If snapshot exists, format it
+        const rows = snapshot.querySelectorAll('> div');
+        
+        rows.forEach(function(row, index) {
+          // Set the data-label attribute for CSS ::before pseudo-element
+          switch(index) {
+            case 0:
+              row.setAttribute('data-label', 'Status:');
+              break;
+            case 1:
+              row.setAttribute('data-label', 'Bedrooms:');
+              break;
+            case 2:
+              row.setAttribute('data-label', 'SqFt:');
+              break;
+            case 3:
+              row.setAttribute('data-label', 'Property Type:');
+              break;
+            case 4:
+              row.setAttribute('data-label', 'Year Built:');
+              break;
+          }
+          
+          // Format the row
+          row.style.display = 'flex';
+          row.style.padding = '8px 0';
+          row.style.borderBottom = '1px solid #eee';
+          row.style.alignItems = 'center';
+          
+          // Format the icon
+          const icon = row.querySelector('i');
+          if (icon) {
+            icon.style.minWidth = '40px';
+            icon.style.color = '#1b4e1f';
+            icon.style.textAlign = 'center';
+          }
+        });
+      }
+    }
+    
+    // Format similar listings to display horizontally in a single row
+    function formatSimilarListings() {
+      // Target both the old and new class structures
+      const similarProperties = document.querySelector('#IDX-similarProperties, .IDX-similarListings, .IDX-similar-listings');
+      
+      if (similarProperties) {
+        // Force horizontal layout
+        similarProperties.style.display = 'flex';
+        similarProperties.style.flexWrap = 'nowrap';
+        similarProperties.style.overflowX = 'auto';
+        similarProperties.style.gap = '15px';
+        similarProperties.style.paddingBottom = '10px';
+        
+        // Style each similar property - target both old and new class structures
+        const properties = similarProperties.querySelectorAll('.IDX-similarProperty, .IDX-similarListing, .IDX-similar-listings--item');
+        properties.forEach(function(property) {
+          // Force width
+          property.style.flex = '0 0 auto';
+          property.style.width = '200px';
+          property.style.maxHeight = '300px';
+          property.style.overflow = 'hidden';
+          
+          // Style image - target both old and new class structures
+          const images = property.querySelectorAll('img, .IDX-similar-listings--item-image');
+          images.forEach(function(image) {
+            // Skip MLS logo
+            if (image.classList.contains('IDX-similar-listings--item-MLSLogo')) {
+              image.style.display = 'none';
+              return;
+            }
+            
+            image.style.width = '100%';
+            image.style.height = '120px';
+            image.style.objectFit = 'cover';
+          });
+          
+          // Style info section - target both old and new class structures
+          const info = property.querySelector('.IDX-similarPropertyInfo, .IDX-similarListingInfo, .IDX-similar-listings--info');
+          if (info) {
+            info.style.padding = '8px';
+            info.style.fontSize = '12px';
+          }
+          
+          // Style address - target both old and new class structures
+          const address = property.querySelector('.IDX-similarPropertyAddress, .IDX-similarListingAddress, .IDX-similar-listings--address');
+          if (address) {
+            address.style.fontSize = '12px';
+            address.style.marginBottom = '3px';
+            address.style.whiteSpace = 'nowrap';
+            address.style.overflow = 'hidden';
+            address.style.textOverflow = 'ellipsis';
+          }
+          
+          // Style price - target both old and new class structures
+          const price = property.querySelector('.IDX-similarPropertyPrice, .IDX-similarListingPrice, .IDX-similar-listings--price');
+          if (price) {
+            price.style.fontSize = '14px';
+            price.style.marginBottom = '3px';
+            price.style.color = '#1b4e1f';
+          }
+          
+          // Style property details - target both old and new class structures
+          const details = property.querySelectorAll('.IDX-similarPropertyBeds, .IDX-similarPropertyBaths, .IDX-similarPropertySqFt, .IDX-similarListingBeds, .IDX-similarListingBaths, .IDX-similarListingSqFt, .IDX-similar-listings--bed-bath-sqft-acre');
+          details.forEach(function(detail) {
+            detail.style.fontSize = '11px';
+            detail.style.whiteSpace = 'nowrap';
+            detail.style.overflow = 'hidden';
+            detail.style.textOverflow = 'ellipsis';
+          });
+          
+          // Style the view details button
+          const viewDetailsBtn = property.querySelector('.IDX-btn, .IDX-similar-listings--redirect .IDX-btn');
+          if (viewDetailsBtn) {
+            viewDetailsBtn.style.fontSize = '12px';
+            viewDetailsBtn.style.padding = '3px 8px';
+            viewDetailsBtn.style.backgroundColor = '#1b4e1f';
+            viewDetailsBtn.style.color = 'white';
+            viewDetailsBtn.style.border = 'none';
+            viewDetailsBtn.style.borderRadius = '4px';
+          }
+        });
+      }
+    }
+  </script>
+</body>
+</html>

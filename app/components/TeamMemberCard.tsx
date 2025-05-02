@@ -4,10 +4,11 @@ interface TeamMemberCardProps {
   name: string;
   email: string;
   image: string;
-  viewListings?: boolean;
+  readFullBio?: boolean;
+  bioLink?: string;
 }
 
-export function TeamMemberCard({ name, email, image, viewListings }: TeamMemberCardProps) {
+export function TeamMemberCard({ name, email, image, readFullBio = true, bioLink }: TeamMemberCardProps) {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
       <div className="flex flex-col items-center text-center">
@@ -20,14 +21,15 @@ export function TeamMemberCard({ name, email, image, viewListings }: TeamMemberC
         <a href={`mailto:${email}`} className="text-green-900 hover:underline mb-3">
           {email}
         </a>
-        {viewListings && (
-          <Link href="#" className="text-green-900 hover:underline block">
-            View Listings →
-          </Link>
+        {readFullBio && (
+          bioLink ? (
+            <Link href={bioLink} className="text-green-900 hover:underline block mt-2">
+              Read Full Bio →
+            </Link>
+          ) : (
+            <span className="text-gray-400 block mt-2">Bio Coming Soon</span>
+          )
         )}
-        <Link href="#" className="text-green-900 hover:underline block mt-2">
-          Read Full Bio →
-        </Link>
       </div>
     </div>
   )

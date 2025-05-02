@@ -58,10 +58,10 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
               <ChevronDown className="h-4 w-4 mt-0.5 group-hover:rotate-180 transition-transform duration-200" />
             </Link>
             <div className="absolute top-full left-0 mt-2 w-[300px] bg-green-900 text-white border border-green-800 rounded-md shadow-lg overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-              <Link href="/about" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
+              <Link href="/about-us" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
                 ABOUT LINDA
               </Link>
-              <Link href="/our-team" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
+              <Link href="/about-us/our-team" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
                 OUR TEAM
               </Link>
               <Link href="/a-leader-in-palm-beach-real-estate" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">

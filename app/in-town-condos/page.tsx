@@ -50,7 +50,7 @@ export default function InTownCondosPage() {
               {/* Hero Image */}
               <div className="relative w-full aspect-[16/9] mb-12">
                 <Image
-                  src="/condo.jpg"
+                  src="/condo1.svg"
                   alt="In-Town Condos Palm Beach"
                   fill
                   className="object-cover rounded-lg shadow-lg"

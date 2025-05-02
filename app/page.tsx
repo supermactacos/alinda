@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link"
-import { Menu, MapPin, ArrowRight, Star, Calendar, Phone, Mail } from "lucide-react"
+import { Menu, MapPin, ArrowRight, Star, Calendar, Phone, Mail, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Instrument_Serif } from "next/font/google"
 import * as React from "react"
@@ -21,6 +21,7 @@ import { Navbar } from "@/components/Navbar"
 import { Footer } from "./components/Footer"
 import { IdxFeaturedProperties } from "./components/IdxFeaturedProperties"
 import { ContactCard } from "./components/ContactCard"
+import { useState, useEffect } from "react"
 
 const instrumentSerif = Instrument_Serif({ 
   weight: ['400'],
@@ -28,13 +29,15 @@ const instrumentSerif = Instrument_Serif({
 })
 
 export default function Home() {
-  const [loadingVisible, setLoadingVisible] = React.useState(true);
-  const [contentVisible, setContentVisible] = React.useState(false);
-  const [isScrolled, setIsScrolled] = React.useState(false);
-  const [formStatus, setFormStatus] = React.useState("");
+  const [loadingVisible, setLoadingVisible] = useState(true);
+  const [contentVisible, setContentVisible] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [formStatus, setFormStatus] = useState("");
   
   // Use useEffect to set a timer for showing content
-  React.useEffect(() => {
+  useEffect(() => {
     // Start fading out the loading screen after 1.5 seconds
     const fadeOutTimer = setTimeout(() => {
       setLoadingVisible(false);
@@ -44,8 +47,15 @@ export default function Home() {
     const contentTimer = setTimeout(() => {
       setContentVisible(true);
     }, 2000);
-
-    // Add scroll event listener
+    
+    return () => {
+      clearTimeout(fadeOutTimer);
+      clearTimeout(contentTimer);
+    }; // Cleanup on unmount
+  }, []);
+  
+  // Track scroll position for navbar
+  useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 50); // Change to green after scrolling 50px
@@ -54,11 +64,38 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll);
     
     return () => {
-      clearTimeout(fadeOutTimer);
-      clearTimeout(contentTimer);
       window.removeEventListener('scroll', handleScroll);
-    }; // Cleanup on unmount
+    };
   }, []);
+  
+  // Handle form submission
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setFormStatus("Sending...");
+
+    const formData = new FormData(event.target as HTMLFormElement);
+    formData.append("access_key", "d91d1c9b-e5f6-47df-abe1-0306225ab6bf");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setFormStatus("Thank you for your message. We'll get back to you soon!");
+        (event.target as HTMLFormElement).reset();
+      } else {
+        console.log("Error", data);
+        setFormStatus("There was an error sending your message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setFormStatus("There was an error sending your message. Please try again.");
+    }
+  };
   
   return (
     <>
@@ -281,7 +318,7 @@ export default function Home() {
                   },
                   {
                     name: "In Town Condominiums",
-                    image: "/condo.svg?height=600&width=600",
+                    image: "/condo1.svg?height=600&width=600",
                     description: "Sophisticated Urban Living",
                     location: "South of the Estate Section along S Ocean Blvd",
                     details: "The exclusive Sloan's Curve condominium complex. The approximate three mile strip of gorgeous oceanfront properties and coastline.",
@@ -496,40 +533,58 @@ export default function Home() {
           </section>
 
           {/* Contact Section */}
-          <section className="py-32 bg-[#1b4e1f] text-white">
+          <section className="py-16 bg-[#f8f8f8]">
             <div className="container mx-auto px-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+              <h2 className={`text-6xl font-light mb-12 text-center text-[#1b4e1f] pb-20 ${instrumentSerif.className}`}>
+                Schedule A Consultation
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
-                  <h2 className="text-5xl font-light mb-10">Schedule a Consultation</h2>
-                  <p className="text-gray-400 mb-10 text-xl">
-                    Let's discuss your real estate goals. Whether you're looking to buy, sell, or learn more about the
-                    Palm Beach market, we're here to help.
-                  </p>
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-5">
-                      <Phone className="h-8 w-8" />
+                  <h3 className={`text-4xl font-light mb-8 text-[#1b4e1f] ${instrumentSerif.className}`}>
+                    Get in Touch
+                  </h3>
+                  <div className="space-y-8">
+                    <div className="flex items-start gap-4">
+                      <div className="bg-[#1b4e1f] text-white p-3 rounded-full">
+                        <Phone className="h-6 w-6" />
+                      </div>
                       <div>
-                        <p className="font-light text-lg">Call Us</p>
-                        <p className="text-xl">(561) 820-9195</p>
+                        <h3 className="text-xl font-semibold mb-1">Phone</h3>
+                        <p className="text-gray-600 mb-1">Office: <a href="tel:5618209195" className="text-[#1b4e1f] hover:underline">(561) 820-9195</a></p>
+                        <p className="text-gray-600">Cell: <a href="tel:5613294044" className="text-[#1b4e1f] hover:underline">(561) 329-4044</a></p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-5">
-                      <Mail className="h-8 w-8" />
+                    
+                    <div className="flex items-start gap-4">
+                      <div className="bg-[#1b4e1f] text-white p-3 rounded-full">
+                        <Mail className="h-6 w-6" />
+                      </div>
                       <div>
-                        <p className="font-light text-lg">Email Us</p>
-                        <p className="text-xl">contact@lindaolsson.com</p>
+                        <h3 className="text-xl font-semibold mb-1">Email</h3>
+                        <p className="text-gray-600">
+                          <a href="mailto:linda@lindaolsson.com" className="text-[#1b4e1f] hover:underline">linda@lindaolsson.com</a>
+                        </p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-5">
-                      <Calendar className="h-8 w-8" />
+                    
+                    <div className="flex items-start gap-4">
+                      <div className="bg-[#1b4e1f] text-white p-3 rounded-full">
+                        <MapPin className="h-6 w-6" />
+                      </div>
                       <div>
-                        <p className="font-light text-lg">Office Hours</p>
-                        <p className="text-xl">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        <h3 className="text-xl font-semibold mb-1">Office Location</h3>
+                        <p className="text-gray-600 mb-1">Linda R. Olsson, Inc., Realtor</p>
+                        <p className="text-gray-600 mb-1">101 Bradley Place</p>
+                        <p className="text-gray-600">Palm Beach, FL 33480</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="bg-white p-10 rounded-xl">
+                
+                <div>
+                  <h3 className={`text-4xl font-light mb-8 text-[#1b4e1f] ${instrumentSerif.className}`}>
+                    Send Us a Message
+                  </h3>
                   {formStatus && (
                     <div className={`mb-6 p-4 rounded-md ${
                       formStatus.includes("error") 
@@ -539,72 +594,77 @@ export default function Home() {
                       {formStatus}
                     </div>
                   )}
-                  <form onSubmit={async (event) => {
-                    event.preventDefault();
-                    setFormStatus("Sending...");
-                    const formData = new FormData(event.target as HTMLFormElement);
-                    formData.append("access_key", "d91d1c9b-e5f6-47df-abe1-0306225ab6bf");
-
-                    try {
-                      const response = await fetch("https://api.web3forms.com/submit", {
-                        method: "POST",
-                        body: formData
-                      });
-
-                      const data = await response.json();
-
-                      if (data.success) {
-                        setFormStatus("Thank you for your message. We'll get back to you soon!");
-                        (event.target as HTMLFormElement).reset();
-                      } else {
-                        console.log("Error", data);
-                        setFormStatus("There was an error sending your message. Please try again.");
-                      }
-                    } catch (error) {
-                      console.error("Error:", error);
-                      setFormStatus("There was an error sending your message. Please try again.");
-                    }
-                  }} className="space-y-8">
-                    <div className="grid grid-cols-2 gap-8">
-                      <input
-                        type="text"
-                        name="firstName"
-                        placeholder="First Name"
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                        <input 
+                          type="text" 
+                          name="name" 
+                          id="name" 
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f]" 
+                          placeholder="Your name"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                        <input 
+                          type="tel" 
+                          name="phone"
+                          id="phone" 
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f]" 
+                          placeholder="Your phone number"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                      <input 
+                        type="email" 
+                        name="email"
+                        id="email" 
                         required
-                        className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400 text-gray-800"
-                      />
-                      <input
-                        type="text"
-                        name="lastName"
-                        placeholder="Last Name"
-                        required
-                        className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400 text-gray-800"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f]" 
+                        placeholder="Your email address"
                       />
                     </div>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      required
-                      className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400 text-gray-800"
-                    />
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Phone Number"
-                      required
-                      className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400 text-gray-800"
-                    />
-                    <textarea
-                      name="message"
-                      placeholder="Message"
-                      rows={4}
-                      required
-                      className="w-full p-4 text-lg border border-gray-200 focus:outline-none focus:border-gray-400 text-gray-800"
-                    />
-                    <Button type="submit" className="w-full bg-black text-white hover:bg-black/90 text-xl py-6">
-                      Send Message
-                    </Button>
+                    
+                    <div>
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                      <input 
+                        type="text" 
+                        name="subject"
+                        id="subject" 
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f]" 
+                        placeholder="Message subject"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                      <textarea 
+                        id="message" 
+                        name="message"
+                        rows={6} 
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f]" 
+                        placeholder="Your message"
+                      ></textarea>
+                    </div>
+                    
+                    <div>
+                      <Button 
+                        type="submit" 
+                        className="bg-[#1b4e1f] hover:bg-[#173e1a] text-white py-3 px-6 rounded-md flex items-center gap-2"
+                      >
+                        Send Message
+                        <Send className="h-5 w-5" />
+                      </Button>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -646,3 +706,5 @@ export default function Home() {
     </>
   )
 }
+
+
