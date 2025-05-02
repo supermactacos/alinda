@@ -60,13 +60,13 @@ export default function LindaPantanoPage() {
                 <div className="mt-6 space-y-4">
                   <div className="flex items-center">
                     <Mail className="h-5 w-5 mr-2 text-[#1b4e1f]" />
-                    <a href="mailto:linda@lindaolsson.com" className="text-[#1b4e1f] hover:underline">
-                      linda@lindaolsson.com
+                    <a href="mailto:lpantano@lindaolsson.com" className="text-[#1b4e1f] hover:underline">
+                      lpantano@lindaolsson.com
                     </a>
                   </div>
                   
                   <Button asChild className="w-full bg-[#1b4e1f] hover:bg-[#143917]">
-                    <a href="mailto:linda@lindaolsson.com">Contact Linda</a>
+                    <a href="mailto:lpantano@lindaolsson.com">Contact Linda</a>
                   </Button>
                 </div>
               </div>
