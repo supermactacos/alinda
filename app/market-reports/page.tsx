@@ -24,6 +24,14 @@ export default function MarketReportsPage() {
     type: 'year' | 'report';
     value: string;
     pdfPath?: string;
+    available?: boolean;
+  };
+  
+  // Type for the report data
+  type Report = {
+    name: string;
+    pdfPath: string;
+    available?: boolean;
   };
 
   // Helper function to get PDF filename
@@ -32,7 +40,13 @@ export default function MarketReportsPage() {
   };
 
   // Group reports by year with PDF file paths
-  const reportsByYear = {
+  const reportsByYear: Record<string, Report[]> = {
+    "2025": [
+      { name: "4th Quarter Report 2025", pdfPath: `/market_reports/${getPdfFilename("2025", "4th")}`, available: false },
+      { name: "3rd Quarter Report 2025", pdfPath: `/market_reports/${getPdfFilename("2025", "3rd")}`, available: false },
+      { name: "2nd Quarter Report 2025", pdfPath: `/market_reports/${getPdfFilename("2025", "2nd")}`, available: false },
+      { name: "1st Quarter Report 2025", pdfPath: `/market_reports/${getPdfFilename("2025", "1st")}`, available: true }
+    ],
     "2024": [
       { name: "4th Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "4th")}` },
       { name: "3rd Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "3rd")}` },
@@ -109,7 +123,8 @@ export default function MarketReportsPage() {
       ...yearReports.map(report => ({ 
         type: 'report' as const, 
         value: report.name,
-        pdfPath: report.pdfPath
+        pdfPath: report.pdfPath,
+        available: report.available !== false // Default to true unless explicitly set to false
       }))
     ]);
 
@@ -205,6 +220,14 @@ export default function MarketReportsPage() {
                       <h3 key={index} className="text-2xl font-semibold text-[#1b4e1f] mt-6 first:mt-0">
                         {item.value}
                       </h3>
+                    ) : item.available === false ? (
+                      <div
+                        key={index}
+                        className="w-full bg-gray-300 text-gray-600 py-3 px-4 rounded-lg text-base font-medium flex items-center group relative cursor-not-allowed opacity-70"
+                      >
+                        <span className="flex-grow text-center">{item.value}</span>
+                        <span className="absolute right-4 text-xs italic">Coming soon</span>
+                      </div>
                     ) : (
                       <a
                         key={index}

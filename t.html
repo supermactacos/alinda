@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Linda R. Olsson Inc., Realtor | Palm Beach Luxury Homes</title>
   <link rel="icon" href="http://www.lindaolsson.com/flogo.svg">
+  <!-- Google Fonts - Instrument Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400&display=swap" rel="stylesheet">
   <style>
     /* Basic resets */
     * {
@@ -17,6 +21,17 @@
       font-family: Arial, sans-serif;
       line-height: 1.6;
       background-color: #f5f5f5; /* Light gray background for contrast with white box */
+    }
+    
+    /* Font variables */
+    :root {
+      --font-instrument: 'Instrument Serif', serif;
+    }
+    
+    /* Apply Instrument Serif to headings */
+    h1, h2, h3, .instrument-serif {
+      font-family: var(--font-instrument);
+      font-weight: 400;
     }
     
     /* NAVBAR STYLES - Adjusted for horizontal layout with logo top centered */
@@ -32,6 +47,21 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+    
+    /* Apply Instrument Serif to navbar elements */
+    .nav-link, 
+    .dropdown-link, 
+    .mobile-link,
+    .mobile-section-title {
+      font-family: var(--font-instrument);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+    
+    /* Apply font to mobile menu section titles */
+    .mobile-section-title {
+      font-family: var(--font-instrument);
     }
     
     .logo-container {
@@ -260,6 +290,22 @@
       padding: 0 !important;
     }
     
+    /* Hide unwanted property type headers */
+    h4.IDX-propertyTypeHeader,
+    .IDX-propertyTypeHeader,
+    div.IDX-propertyTypeHeader,
+    .IDX-propertyTypeHeader:contains("Rental"),
+    .IDX-propertyTypeHeader:contains("Residential"),
+    .IDX-propertyTypeHeader:contains("Land/Acreage"),
+    .IDX-propertyTypeHeader:contains("Condo/Co-Op") {
+      display: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+    }
+    
     /* Style search option buttons instead of hiding them */
     .idx-search-buttons-container {
       display: flex !important;
@@ -326,6 +372,29 @@
     .IDX-hidden,
     #IDX-start {
       display: none !important;
+    }
+    
+    /* Apply Instrument Serif to specific IDX elements */
+    .IDX-propertyTypeHeader,
+    .IDX-similar-listings--address,
+    .IDX-detailsAddress,
+    .IDX-detailsPrice,
+    .IDX-propertyTypeHeader,
+    #IDX-similarPropertyHeader,
+    .IDX-detailsSectionTitle,
+    h4.IDX-propertyTypeHeader,
+    .IDX-resultsPaging {
+      font-family: var(--font-instrument) !important;
+      font-weight: 400 !important;
+    }
+    
+    /* Apply font to specific pricing elements for consistency */
+    .IDX-field-price,
+    .IDX-similar-listings--price,
+    .IDX-detailsPrice {
+      font-family: var(--font-instrument) !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.02em !important;
     }
     
     /* Still hide the "Results Found" text */
@@ -1266,8 +1335,51 @@
       }
     }
     
+    // Apply Instrument Serif font to navbar elements
+    function applyFontToNavbar() {
+      const navElements = document.querySelectorAll(
+        '.nav-link, .dropdown-link, .mobile-link, .mobile-section-title'
+      );
+      
+      navElements.forEach(element => {
+        element.style.fontFamily = 'var(--font-instrument)';
+        element.style.fontWeight = '400';
+        element.style.letterSpacing = '0.02em';
+      });
+    }
+    
+    // Apply fonts to dynamically loaded content
+    function applyFontsToIDX() {
+      // Find all headings and titles
+      const headings = document.querySelectorAll(
+        '.IDX-propertyTypeHeader, .IDX-similar-listings--address, ' + 
+        '.IDX-detailsAddress, .IDX-detailsPrice, #IDX-similarPropertyHeader, ' + 
+        '.IDX-detailsSectionTitle, h4.IDX-propertyTypeHeader, .IDX-resultsPaging, ' +
+        '.IDX-field-price, .IDX-similar-listings--price'
+      );
+      
+      // Apply the Instrument Serif font
+      headings.forEach(element => {
+        element.style.fontFamily = 'var(--font-instrument)';
+        element.style.fontWeight = '400';
+      });
+      
+      // Apply to price elements
+      const priceElements = document.querySelectorAll(
+        '.IDX-field-price, .IDX-similar-listings--price, .IDX-detailsPrice'
+      );
+      
+      priceElements.forEach(element => {
+        element.style.fontFamily = 'var(--font-instrument)';
+        element.style.letterSpacing = '0.02em';
+      });
+    }
+    
     // CRITICAL: Move the IDX content into our white box container when the page loads
     window.addEventListener('DOMContentLoaded', function() {
+      // Apply font to navbar immediately
+      applyFontToNavbar();
+      
       // This will find the IDX content and move it into our container
       const idxContent = document.getElementById('IDX-main');
       const idxWrapper = document.querySelector('.idx-container-wrapper');
@@ -1289,6 +1401,13 @@
           }
         });
       }
+      
+      // Apply fonts to initial content
+      setTimeout(applyFontsToIDX, 800);
+      
+      // And again after potential AJAX loads
+      setTimeout(applyFontsToIDX, 2000);
+      setTimeout(applyFontsToIDX, 4000);
       
       // Create container for search buttons if needed
       setTimeout(function() {
@@ -1635,7 +1754,14 @@
         formatSnapshotSection();
         // Format similar listings
         formatSimilarListings();
+        
+        // Immediately perform aggressive removal of property type headers
+        removePropertyTypeHeaders();
       }, 1000);
+      
+      // And check again after IDX content is likely loaded
+      setTimeout(removePropertyTypeHeaders, 2500);
+      setTimeout(removePropertyTypeHeaders, 5000);
     });
     
     function formatPropertyDetails() {
@@ -1887,6 +2013,13 @@
         similarProperties.style.gap = '15px';
         similarProperties.style.paddingBottom = '10px';
         
+        // Add the Instrument Serif font to the section title
+        const similarHeader = document.querySelector('#IDX-similarPropertyHeader, .IDX-propertyTypeHeader, .IDX-propertySectionHeader');
+        if (similarHeader) {
+          similarHeader.style.fontFamily = 'var(--font-instrument)';
+          similarHeader.style.fontWeight = '400';
+        }
+        
         // Style each similar property - target both old and new class structures
         const properties = similarProperties.querySelectorAll('.IDX-similarProperty, .IDX-similarListing, .IDX-similar-listings--item');
         properties.forEach(function(property) {
@@ -1957,6 +2090,77 @@
         });
       }
     }
+    
+    // More aggressive function to completely remove headers from DOM
+    function removePropertyTypeHeaders() {
+      console.log("Searching for property type headers to remove...");
+      
+      // Find all property type headers
+      const headers = document.querySelectorAll('.IDX-propertyTypeHeader, h4.IDX-propertyTypeHeader, .IDX-propertyTypeSection');
+      console.log(`Found ${headers.length} property type headers`);
+      
+      // Remove them from the DOM completely
+      headers.forEach(function(header) {
+        if (header && header.parentNode) {
+          header.parentNode.removeChild(header);
+          console.log("Removed header:", header.textContent.trim());
+        }
+      });
+      
+      // Also look for any h2, h3, h4 that might contain property type words
+      const potentialHeaders = document.querySelectorAll('h2, h3, h4');
+      potentialHeaders.forEach(function(header) {
+        const text = header.textContent.trim().toLowerCase();
+        if (text === 'rental' || text === 'residential' || 
+            text === 'land/acreage' || text === 'condo/co-op' ||
+            text.includes('rental') || text.includes('residential') ||
+            text.includes('land/acreage') || text.includes('condo/co-op')) {
+          
+          if (header.parentNode) {
+            header.parentNode.removeChild(header);
+            console.log("Removed potential header:", text);
+          }
+        }
+      });
+    }
+    
+    // Run periodically to catch dynamically loaded content
+    setInterval(removePropertyTypeHeaders, 1000);
+    
+    // Also observe DOM changes to catch any dynamic additions
+    const observer = new MutationObserver(function(mutations) {
+      let shouldRemove = false;
+      
+      // Check if any relevant nodes were added
+      mutations.forEach(function(mutation) {
+        if (mutation.addedNodes.length) {
+          mutation.addedNodes.forEach(function(node) {
+            // Check if this is an element node
+            if (node.nodeType === 1) {
+              // If this is a property type header or contains one, remove headers
+              if (node.classList && (node.classList.contains('IDX-propertyTypeHeader') || 
+                  node.classList.contains('IDX-propertyTypeSection'))) {
+                shouldRemove = true;
+              } else if (node.querySelector) {
+                // Check if it contains any headers
+                const hasHeaders = node.querySelector('.IDX-propertyTypeHeader, h4.IDX-propertyTypeHeader, .IDX-propertyTypeSection');
+                if (hasHeaders) {
+                  shouldRemove = true;
+                }
+              }
+            }
+          });
+        }
+      });
+      
+      // Remove headers if needed
+      if (shouldRemove) {
+        removePropertyTypeHeaders();
+      }
+    });
+    
+    // Start observing the document with the configured parameters
+    observer.observe(document.body, { childList: true, subtree: true });
   </script>
 </body>
 </html>

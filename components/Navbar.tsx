@@ -117,7 +117,7 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
         {/* Center Logo */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <Link href="/">
-            <img src="/flogo.svg" alt="Logo" className="h-20 sm:mr-10" />
+            <img src="/flogo.svg" alt="Logo" className="h-20" />
           </Link>
         </div>
 
