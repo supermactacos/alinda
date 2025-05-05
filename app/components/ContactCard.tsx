@@ -16,7 +16,7 @@ interface ContactCardProps {
 
 export function ContactCard({ showLogo = true, showImage = true, className = "", style }: ContactCardProps) {
   return (
-    <section className={`pt-16 pb-24 bg-white ${className}`} style={style}>
+    <section className={`pt-24 pb-24 bg-white ${className}`} style={style}>
       <div className="container mx-auto px-4">
         <h2 className={`text-5xl md:text-6xl text-center font-light mb-6 ${instrumentSerif.className}`}>
           Contact Us Today
@@ -32,8 +32,8 @@ export function ContactCard({ showLogo = true, showImage = true, className = "",
                   <p>Email: <a href="mailto:linda@lindaolsson.com" className="text-green-900 hover:underline">linda@lindaolsson.com</a></p>
                 </div>
                 <div className="space-y-1 pt-2">
-                  <p><Link href="https://mlspalmbeach.lindaolsson.com/idx/agent/15878726/linda-r-olsson" className="text-green-900 hover:underline">View Active Listings →</Link></p>
-                  <p><Link href="https://mlspalmbeach.lindaolsson.com/i/featured-properties" className="text-green-900 hover:underline">View Featured Properties →</Link></p>
+                  <p><Link href="/about-us/our-team" className="text-green-900 hover:underline">Our Team →</Link></p>
+                  <p><Link href="/properties" className="text-green-900 hover:underline">View Featured Properties →</Link></p>
                 </div>
                 <div className="pt-2">
                   <p>101 Bradley Place</p>

@@ -374,7 +374,7 @@ export default function Home() {
           </section>
 
           {/* Search for Homes */}
-          <section className="py-32 bg-white">
+          <section className="py-24 bg-white">
             <div className="container mx-auto px-4">
               <div className="text-center mb-20">
                 <h2 className={`text-6xl font-light mb-6 text-green-800 ${instrumentSerif.className}`}>Search by Price</h2>
@@ -455,7 +455,7 @@ export default function Home() {
           </section>
 
           {/* Featured Properties */}
-          <section className="py-32 bg-[#fcfcfc]">
+          <section className="py-24 bg-[#fcfcfc]">
             <div className="container mx-auto px-4">
               <div className="text-center mb-20">
                 <h2 className={`text-6xl font-light mb-6 text-green-800 ${instrumentSerif.className}`}>Featured Properties</h2>
@@ -469,7 +469,7 @@ export default function Home() {
           <ContactCard />
 
           {/* Testimonials */}
-          <section className="py-32 bg-white">
+          <section className="py-24 bg-white">
             <div className="container mx-auto px-4">
               <div className="text-center mb-20">
                 <h2 className={`text-6xl font-light mb-6 text-green-800 ${instrumentSerif.className}`}>Testimonials</h2>
@@ -535,7 +535,7 @@ export default function Home() {
           </section>
 
           {/* Contact Section */}
-          <section className="py-16 bg-[#f8f8f8]">
+          <section className="py-24 bg-[#f8f8f8]">
             <div className="container mx-auto px-4">
               <h2 className={`text-6xl font-light mb-12 text-center text-[#1b4e1f] pb-20 ${instrumentSerif.className}`}>
                 Schedule A Consultation
