@@ -1262,11 +1262,11 @@
     <div class="nav-menu">
       <ul class="menu-items">
         <li class="nav-item">
-          <a href="http://www.lindaolsson.com/about" class="nav-link">
+          <a href="http://www.lindaolsson.com/about-us" class="nav-link">
             About <span class="dropdown-icon"></span>
           </a>
           <div class="dropdown">
-            <a href="http://www.lindaolsson.com/about" class="dropdown-link">ABOUT LINDA</a>
+            <a href="http://www.lindaolsson.com/about-us" class="dropdown-link">ABOUT LINDA</a>
             <a href="http://www.lindaolsson.com/our-team" class="dropdown-link">OUR TEAM</a>
             <a href="http://www.lindaolsson.com/a-leader-in-palm-beach-real-estate" class="dropdown-link">A LEADER IN PALM BEACH REAL ESTATE</a>
             <a href="http://www.lindaolsson.com/concierge-quality-realty-services" class="dropdown-link">CONCIERGE QUALITY REALTY SERVICES</a>
@@ -1330,7 +1330,7 @@
       <div class="mobile-section">
         <div class="mobile-section-title">About</div>
         <div class="mobile-links">
-          <a href="http://www.lindaolsson.com/about" class="mobile-link">ABOUT LINDA</a>
+          <a href="http://www.lindaolsson.com/about-us" class="mobile-link">ABOUT LINDA</a>
           <a href="http://www.lindaolsson.com/our-team" class="mobile-link">OUR TEAM</a>
           <a href="http://www.lindaolsson.com/a-leader-in-palm-beach-real-estate" class="mobile-link">A LEADER IN PALM BEACH REAL ESTATE</a>
           <a href="http://www.lindaolsson.com/concierge-quality-realty-services" class="mobile-link">CONCIERGE QUALITY REALTY SERVICES</a>
@@ -1382,12 +1382,7 @@
   </div>
   
   <!-- Footer -->
-  <div class="footer">
-    <p>Linda R. Olsson, Inc., Realtor</p>
-    <p>561-820-9195</p>
-    <p>Linda@LindaOlsson.com</p>
-    <p>101 Bradley Place, Palm Beach, FL 33480</p>
-  </div>
+  
 
   <!-- Mobile menu toggle script -->
   <script>
@@ -1442,6 +1437,171 @@
       });
     }
     
+    // Fix IDX search URLs by adding direct URL handling
+    function fixIDXSearchURLs() {
+      console.log('Fixing IDX search button URLs...');
+      
+      // Find all search-related buttons
+      const newSearchButtons = document.querySelectorAll('.IDX-newSearch, a[href*="newSearch"], a[href*="search/homes"]');
+      const modifySearchButtons = document.querySelectorAll('.IDX-modifySearch, a[href*="modifySearch"]');
+      
+      // Base IDX URL - use the correct one for Linda Olsson
+      const idxBaseURL = 'https://mlspalmbeach.lindaolsson.com';
+      
+      // Update new search buttons - FIX: Use /idx/search/advanced instead of /idx/search/homes
+      newSearchButtons.forEach(button => {
+        // Update href to correct URL
+        button.href = `${idxBaseURL}/idx/search/advanced`;
+        // Ensure it opens in same window
+        button.target = '_self';
+        console.log('Fixed New Search button:', button);
+      });
+      
+      // Update modify search buttons
+      modifySearchButtons.forEach(button => {
+        // Update href to correct URL - FIX: Use /idx/search/advanced instead of /idx/search/homes
+        button.href = `${idxBaseURL}/idx/search/advanced?modifySearch=true`;
+        // Ensure it opens in same window
+        button.target = '_self';
+        console.log('Fixed Modify Search button:', button);
+      });
+      
+      // Fix save search (these are more complex as they use forms)
+      const saveSearchButtons = document.querySelectorAll('.IDX-saveSearch, #IDX-saveSearch');
+      saveSearchButtons.forEach(button => {
+        // Update any direct hrefs (though these usually trigger JS)
+        if (button.href && !button.href.startsWith('#')) {
+          button.href = `${idxBaseURL}/idx/user/login`;
+        }
+        
+        // Look for the associated form and fix its action
+        const saveForm = button.closest('form') || 
+                        document.querySelector('#IDX-saveSearchForm') ||
+                        button.parentNode?.querySelector('form');
+        
+        if (saveForm) {
+          // Update form action to use correct domain
+          saveForm.action = `${idxBaseURL}/idx/ajax/verse.php`;
+          console.log('Fixed Save Search form:', saveForm);
+        }
+        
+        console.log('Fixed Save Search button:', button);
+      });
+      
+      // Fix any show map buttons
+      const mapButtons = document.querySelectorAll('.IDX-btn--map-toggle, a[data-uw-rm-kbnav="anohref"]');
+      mapButtons.forEach(button => {
+        // These usually use JavaScript, but add a fallback href just in case
+        if (!button.href || button.href === '#' || button.href.includes('javascript:')) {
+          button.href = window.location.href + (window.location.href.includes('?') ? '&' : '?') + 'map=1';
+        }
+        console.log('Fixed Map button:', button);
+      });
+    }
+    
+    // Run the URL fix after a delay to ensure IDX content has loaded
+    setTimeout(fixIDXSearchURLs, 1500);
+    setTimeout(fixIDXSearchURLs, 3000); // Run again later to catch any that might be added dynamically
+    
+    // NEW: Immediate fix for form submission prevention
+    // This runs as early as possible, directly in the initial script
+    (function() {
+      console.log('Setting up early form submission prevention');
+      
+      // Stop form submissions as soon as possible
+      document.addEventListener('submit', function(e) {
+        // If this is the initial page load auto-submission, prevent it
+        if (!window.submittedByUser && 
+            (e.target.id === 'IDX-searchForm' || 
+             (e.target.action && e.target.action.includes('mlspalmbeach')))) {
+          console.log('Prevented automatic form submission via event listener');
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+      }, true); // Use capturing phase to catch events before they propagate
+      
+      // Function to be called as early as possible
+      function earlyFormFixes() {
+        // Clear selected property type options
+        const ptSelects = document.querySelectorAll('select[name="pt"], #IDX-pt');
+        ptSelects.forEach(select => {
+          Array.from(select.options).forEach(option => {
+            option.selected = false;
+            option.removeAttribute('selected');
+          });
+          console.log('Early fix: Cleared pre-selected property type');
+        });
+        
+        // Make sure the form doesn't auto-submit
+        const forms = document.querySelectorAll('form[action*="mlspalmbeach"], #IDX-searchForm');
+        forms.forEach(form => {
+          // Backup the original submit for later use by user-initiated submissions
+          form._originalSubmit = form.submit;
+          
+          // Override submit method
+          form.submit = function() {
+            console.log('Form submit method called');
+            if (window.submittedByUser) {
+              // We've confirmed this is a user-initiated submission
+              console.log('Allowing user-initiated form submission');
+              if (this._originalSubmit) {
+                this._originalSubmit.apply(this);
+              }
+            } else {
+              console.log('Blocked automatic form submission via submit method override');
+              return false;
+            }
+          };
+          
+          // Also catch onsubmit events
+          const originalOnSubmit = form.onsubmit;
+          form.onsubmit = function(e) {
+            if (!window.submittedByUser) {
+              console.log('Blocked automatic form submission via onsubmit handler');
+              e.preventDefault();
+              return false;
+            }
+            if (typeof originalOnSubmit === 'function') {
+              return originalOnSubmit.apply(this, arguments);
+            }
+          };
+        });
+      }
+      
+      // Call right away if document is ready, or wait for DOM content loaded
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        earlyFormFixes();
+      } else {
+        document.addEventListener('DOMContentLoaded', earlyFormFixes);
+      }
+      
+      // Set up a mutation observer to catch any dynamically added forms
+      if (typeof MutationObserver !== 'undefined') {
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+              for (let i = 0; i < mutation.addedNodes.length; i++) {
+                const node = mutation.addedNodes[i];
+                if (node.tagName === 'FORM' || 
+                    (node.id && node.id === 'IDX-searchForm')) {
+                  console.log('Detected dynamically added form, applying fixes');
+                  earlyFormFixes();
+                  break;
+                }
+              }
+            }
+          });
+        });
+        
+        // Start observing document for new forms
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true
+        });
+      }
+    })();
+    
     // CRITICAL: Move the IDX content into our white box container when the page loads
     window.addEventListener('DOMContentLoaded', function() {
       // Apply font to navbar immediately
@@ -1452,7 +1612,13 @@
       const idxWrapper = document.querySelector('.idx-container-wrapper');
       
       if (idxContent && idxWrapper) {
+        // Make sure search page elements are visible
+        document.querySelectorAll('#IDX-searchPageWrapper, #IDX-navbar, #IDX-searchForm').forEach(el => {
+          if(el) el.style.display = 'block';
+        });
+        
         idxWrapper.appendChild(idxContent);
+        console.log('Moved IDX content into wrapper container');
       }
       
       // Alternative approach if the above doesn't work
@@ -1465,9 +1631,282 @@
               child !== document.querySelector('.footer') &&
               child !== idxWrapper) {
             idxWrapper.appendChild(child);
+            
+            // If this is an IDX search form related element, make it visible
+            if(child.id && (child.id.includes('IDX-') || child.id === 'footer')) {
+              child.style.display = 'block';
+              child.style.visibility = 'visible';
+            }
           }
         });
       }
+      
+      // ******************************************
+      // CRITICAL: Fix HTTP links to HTTPS
+      // ******************************************
+      setTimeout(function() {
+        // Fix all HTTP URLs to use HTTPS
+        document.querySelectorAll('a[href^="http://mlspalmbeach"], form[action^="http://mlspalmbeach"]').forEach(el => {
+          if (el.href) {
+            el.href = el.href.replace('http://', 'https://');
+            console.log('Fixed link from HTTP to HTTPS:', el.href);
+          }
+          if (el.action) {
+            el.action = el.action.replace('http://', 'https://');
+            console.log('Fixed form action from HTTP to HTTPS:', el.action);
+          }
+        });
+      }, 800);
+      
+      // ******************************************
+      // CRITICAL: Fix auto-submission of search form 
+      // ******************************************
+      setTimeout(function() {
+        // Prevent auto-form submission
+        const searchForm = document.querySelector('#IDX-searchForm, form[action*="mlspalmbeach"]');
+        if (searchForm) {
+          console.log('Found search form, preventing auto-submission:', searchForm);
+          
+          // 1. Fix form action to HTTPS
+          if (searchForm.action && searchForm.action.includes('http://')) {
+            searchForm.action = searchForm.action.replace('http://', 'https://');
+            console.log('Fixed search form action to HTTPS:', searchForm.action);
+          }
+          
+          // 2. Clear any pre-selected values that might cause auto-submission
+          const preselectedInputs = searchForm.querySelectorAll('select[selected], input[checked], select option[selected]');
+          preselectedInputs.forEach(input => {
+            if (input.tagName === 'OPTION') {
+              input.selected = false;
+              input.removeAttribute('selected');
+            } else if (input.hasAttribute('checked')) {
+              input.checked = false;
+              input.removeAttribute('checked');
+            }
+            console.log('Cleared pre-selected form element:', input);
+          });
+          
+          // 3. Directly deselect the property type options
+          searchForm.querySelectorAll('#IDX-pt option, select[name="pt"] option').forEach(option => {
+            option.selected = false;
+            if (option.hasAttribute('selected')) {
+              option.removeAttribute('selected');
+              console.log('Removed selected attribute from property type option:', option.value);
+            }
+          });
+          
+          // 4. Override the form's submit method to prevent auto-submission
+          if (!searchForm._originalSubmit) { // Don't override twice
+            searchForm._originalSubmit = searchForm.submit;
+            searchForm.submit = function(event) {
+              console.log('Form submission intercepted');
+              if (window.submittedByUser) {
+                console.log('Allowing user-initiated submission');
+                if (this._originalSubmit) {
+                  this._originalSubmit.apply(this);
+                }
+              } else {
+                console.log('Blocking automatic submission');
+                if (event) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                return false;
+              }
+            };
+          }
+          
+          // 5. Add a new submit handler for when the user clicks the button
+          const submitButton = searchForm.querySelector('button[type="submit"], input[type="submit"], #IDX-formSubmit');
+          if (submitButton) {
+            submitButton.addEventListener('click', function(e) {
+              console.log('User clicked submit button');
+              // Flag that this is a user-initiated submission
+              window.submittedByUser = true;
+              window.manualSubmit = true;
+              // Fix form action one more time just to be sure
+              if (searchForm.action && searchForm.action.includes('http://')) {
+                searchForm.action = searchForm.action.replace('http://', 'https://');
+              }
+            });
+          }
+        }
+        
+        // Handle direct property type selects
+        const ptSelects = document.querySelectorAll('select[name="pt"], #IDX-pt');
+        ptSelects.forEach(select => {
+          // Ensure no options are selected
+          Array.from(select.options).forEach(option => {
+            option.selected = false;
+            if (option.hasAttribute('selected')) {
+              option.removeAttribute('selected');
+            }
+          });
+          
+          // Set the value to empty string
+          select.value = '';
+          
+          console.log('Reset property type select:', select);
+          
+          // Add a change handler to stop auto-submission
+          select.addEventListener('change', function(e) {
+            // If no window.submittedByUser is set, this is likely an automated change
+            if (!window.submittedByUser && !window.userInitiatedChange) {
+              console.log('Detected automated property type change, preventing');
+              e.stopPropagation();
+              
+              // Reset the select to no selection
+              setTimeout(() => {
+                window.userInitiatedChange = true;
+                this.value = '';
+                Array.from(this.options).forEach(opt => opt.selected = false);
+                window.userInitiatedChange = false;
+              }, 0);
+              
+              return false;
+            }
+          });
+        });
+      }, 1000);
+      
+      // Search form specific fixes
+      setTimeout(function() {
+        // Fix the search form visibility
+        const searchForm = document.querySelector('#IDX-searchForm');
+        const searchWrapper = document.querySelector('#IDX-searchPageWrapper');
+        
+        if(searchForm) {
+          searchForm.style.display = 'block';
+          searchForm.style.visibility = 'visible';
+          console.log('Made search form visible');
+          
+          // Fix search form buttons
+          const searchButtons = searchForm.querySelectorAll('button');
+          searchButtons.forEach(button => {
+            button.style.backgroundColor = '#1b4e1f';
+            button.style.color = 'white';
+            button.style.border = 'none';
+            button.style.padding = '8px 16px';
+            button.style.margin = '5px';
+            button.style.borderRadius = '4px';
+            button.style.cursor = 'pointer';
+            console.log('Styled search form button:', button);
+          });
+        }
+        
+        if(searchWrapper) {
+          searchWrapper.style.display = 'block';
+          searchWrapper.style.visibility = 'visible';
+          searchWrapper.classList.remove('IDX-hide');
+          console.log('Made search wrapper visible');
+        }
+        
+        // Make sure form fields are visible
+        document.querySelectorAll('.IDX-control-group, .IDX-controls, .IDX-input, .IDX-select').forEach(el => {
+          el.style.display = '';
+          el.style.visibility = 'visible';
+        });
+        
+        // Add specific styling for search form elements
+        const style = document.createElement('style');
+        style.textContent = `
+          /* Search form styling */
+          #IDX-searchForm {
+            font-family: Arial, sans-serif !important;
+            padding: 20px !important;
+            max-width: 1000px !important;
+            margin: 0 auto !important;
+          }
+          
+          #IDX-searchForm .IDX-control-group {
+            margin-bottom: 15px !important;
+            display: block !important;
+          }
+          
+          #IDX-searchForm label {
+            display: block !important;
+            margin-bottom: 5px !important;
+            font-weight: bold !important;
+          }
+          
+          #IDX-searchForm .IDX-input,
+          #IDX-searchForm .IDX-select {
+            width: 100% !important;
+            padding: 8px !important;
+            border: 1px solid #ddd !important;
+            border-radius: 4px !important;
+            box-sizing: border-box !important;
+          }
+          
+          #IDX-searchForm #IDX-formSubmit,
+          #IDX-searchForm #IDX-formReset {
+            background-color: #1b4e1f !important;
+            color: white !important;
+            padding: 10px 20px !important;
+            border: none !important;
+            border-radius: 4px !important;
+            cursor: pointer !important;
+            font-weight: bold !important;
+          }
+          
+          #IDX-searchForm #IDX-formReset {
+            background-color: #666 !important;
+          }
+          
+          #IDX-navbar {
+            background-color: #f5f5f5 !important;
+            padding: 10px !important;
+            margin-bottom: 20px !important;
+            border-radius: 4px !important;
+          }
+          
+          #IDX-navbar .IDX-navbar-nav {
+            display: flex !important;
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            justify-content: center !important;
+          }
+          
+          #IDX-navbar .IDX-navbar-nav li {
+            margin: 0 10px !important;
+          }
+          
+          #IDX-navbar .IDX-navbar-nav a {
+            color: #1b4e1f !important;
+            text-decoration: none !important;
+            font-weight: bold !important;
+          }
+          
+          #IDX-navbar .IDX-navbar-nav li.IDX-active a {
+            text-decoration: underline !important;
+          }
+          
+          #IDX-searchPageWrapper {
+            display: block !important;
+            visibility: visible !important;
+          }
+          
+          .IDX-hide {
+            display: block !important;
+          }
+          
+          /* Row content styling */
+          #IDX-coreSearchFields .IDX-row-content {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            margin: 0 -10px !important;
+          }
+          
+          #IDX-coreSearchFields .IDX-control-group {
+            flex: 1 0 200px !important;
+            margin: 0 10px 15px !important;
+          }
+        `;
+        
+        document.head.appendChild(style);
+        console.log('Added search form specific styling');
+      }, 800);
       
       // Apply fonts to initial content
       setTimeout(applyFontsToIDX, 800);
@@ -1476,603 +1915,639 @@
       setTimeout(applyFontsToIDX, 2000);
       setTimeout(applyFontsToIDX, 4000);
       
-      // Create container for search buttons if needed
+      // Fix search form submission
       setTimeout(function() {
-        // Target the exact IDX classes we need for buttons
-        const searchButtons = document.querySelectorAll('.IDX-saveSearch, .IDX-newSearch, .IDX-modifySearch, .IDX-btn--map-toggle, #IDX-saveSearch, .IDX-topAction a');
-        
-        // Check if we already have the existing container
-        const existingContainer = document.getElementById('IDX-resultsTopActions');
-        
-        if (existingContainer) {
-          // If the container exists, we just need to make sure it's styled properly
-          existingContainer.classList.add('idx-search-buttons-container');
-          
-          // Make sure any hidden elements stay hidden
-          const hiddenElements = existingContainer.querySelectorAll('.IDX-hidden, #IDX-start, #IDX-saveSearchWrapper');
-          hiddenElements.forEach(function(el) {
-            el.style.display = 'none';
-          });
-        }
-        // If no existing container but we found buttons, create a new container
-        else if (searchButtons.length > 0) {
-          let buttonContainer = document.querySelector('.idx-search-buttons-container');
-          
-          if (!buttonContainer) {
-            buttonContainer = document.createElement('div');
-            buttonContainer.className = 'idx-search-buttons-container';
-            
-            // Insert at the top of the IDX content
-            const idxContainer = document.querySelector('#IDX-main') || document.querySelector('.IDX-wrapper-standard');
-            if (idxContainer) {
-              idxContainer.insertBefore(buttonContainer, idxContainer.firstChild);
-            } else {
-              idxWrapper.insertBefore(buttonContainer, idxWrapper.firstChild);
-            }
+        const searchForm = document.querySelector('#IDX-searchForm');
+        if (searchForm) {
+          // Make sure the form action is correctly set
+          if (searchForm.action && !searchForm.action.includes('mlspalmbeach.lindaolsson.com')) {
+            searchForm.action = 'https://mlspalmbeach.lindaolsson.com/idx/results/listings';
+            console.log('Fixed search form action URL');
           }
           
-          // Move all search buttons into the container
-          searchButtons.forEach(function(button) {
-            buttonContainer.appendChild(button.cloneNode(true));
-          });
-        }
-      }, 1000); // Delay to ensure IDX content has loaded
-    });
-  </script>
-  
-  <!-- Allow IDX Popups -->
-  <script>
-    // Function to enable IDX popups
-    window.addEventListener('DOMContentLoaded', function() {
-      // Allow any IDX popups to display by their natural functionality
-      setTimeout(function() {
-        // Enable any login/register popups
-        const loginLinks = document.querySelectorAll('[data-action="login"], [data-action="register"], .IDX-loginAction, .IDX-registerAction');
-        if (loginLinks.length > 0) {
-          loginLinks.forEach(function(link) {
-            // Remove any prevented default behavior
-            const originalClickHandler = link.onclick;
-            link.onclick = null;
-            
-            // Re-enable click functionality
-            link.addEventListener('click', function(e) {
-              // Allow natural behavior to take place
-              return true;
-            });
-          });
-        }
-        
-        // Make sure any modal containers are visible
-        const modalContainers = document.querySelectorAll('.IDX-modalContainer, .IDX-modal, .IDX-modal-container, .ui-dialog, .IDX-registerModal, .IDX-loginModal');
-        if (modalContainers.length > 0) {
-          modalContainers.forEach(function(container) {
-            container.style.display = '';
-            container.style.visibility = '';
-            container.style.opacity = '';
-            container.style.pointerEvents = '';
-          });
-        }
-        
-        // Additionally check for any IDX dialog systems
-        if (typeof idx !== 'undefined' && idx.modal) {
-          // Re-enable IDX modal system if it exists
-          idx.modal.isDisabled = false;
-        }
-        
-        console.log('IDX popups have been enabled');
-      }, 1500);
-    });
-  </script>
-  
-  <!-- Enhanced Photo Gallery Script -->
-  <script>
-    window.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        // Enhance the photo gallery to match reference design
-        enhancePhotoGallery();
-      }, 2000);
-    });
-    
-    function enhancePhotoGallery() {
-      // Find the photo gallery elements
-      const mainGallery = document.querySelector('.IDX-detailsSlider, .IDX-propertyGallery');
-      
-      if (!mainGallery) {
-        console.log('Gallery not found, will try again later');
-        setTimeout(enhancePhotoGallery, 1000);
-        return;
-      }
-      
-      console.log('Enhancing photo gallery');
-      
-      // Fix the main gallery to show only one image at a time
-      if (typeof idx !== 'undefined' && idx.$ && typeof idx.$.fn.slick !== 'undefined') {
-        try {
-          // Check if slick is already initialized
-          if (idx.$(mainGallery).hasClass('slick-initialized')) {
-            // Unslick first to reset configuration
-            idx.$(mainGallery).slick('unslick');
-          }
-          
-          // Reinitialize with proper settings
-          idx.$(mainGallery).slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: false,
-            arrows: true,
-            adaptiveHeight: true,
-            prevArrow: '<i class="fa-solid fa-arrow-left slick-arrow"></i>',
-            nextArrow: '<i class="fa-solid fa-arrow-right slick-arrow"></i>'
-          });
-        } catch(e) {
-          console.log('Could not reconfigure slider: ', e);
-        }
-      } else {
-        console.log('Slick not available, applying CSS-based fix only');
-        
-        // Ensure only current slide is displayed via CSS
-        const allSlides = mainGallery.querySelectorAll('.slick-slide');
-        if (allSlides.length > 0) {
-          allSlides.forEach(function(slide) {
-            if (!slide.classList.contains('slick-current')) {
-              slide.style.display = 'none';
-            } else {
-              slide.style.display = 'block';
-            }
-          });
-          
-          // Add event listeners to arrows for manual navigation
-          const prevArrow = mainGallery.querySelector('.slick-prev, .fa-arrow-left');
-          const nextArrow = mainGallery.querySelector('.slick-next, .fa-arrow-right');
-          
-          if (prevArrow && nextArrow) {
-            prevArrow.addEventListener('click', function() {
-              const current = mainGallery.querySelector('.slick-current');
-              if (current) {
-                const prev = current.previousElementSibling || allSlides[allSlides.length - 1];
-                current.classList.remove('slick-current');
-                current.style.display = 'none';
-                prev.classList.add('slick-current');
-                prev.style.display = 'block';
-                updatePhotoCounter(Array.from(allSlides).indexOf(prev));
+          // Make sure the submit button works
+          const submitButton = searchForm.querySelector('#IDX-formSubmit');
+          if (submitButton) {
+            const originalClickHandler = submitButton.onclick;
+            submitButton.onclick = function(e) {
+              console.log('Search form submit button clicked');
+              window.submittedByUser = true;
+              window.manualSubmit = true;
+              // If there was an original handler, call it
+              if (typeof originalClickHandler === 'function') {
+                return originalClickHandler.call(this, e);
               }
-            });
-            
-            nextArrow.addEventListener('click', function() {
-              const current = mainGallery.querySelector('.slick-current');
-              if (current) {
-                const next = current.nextElementSibling || allSlides[0];
-                current.classList.remove('slick-current');
-                current.style.display = 'none';
-                next.classList.add('slick-current');
-                next.style.display = 'block';
-                updatePhotoCounter(Array.from(allSlides).indexOf(next));
-              }
-            });
+            };
           }
         }
-      }
-      
-      // Create a photo counter
-      const totalSlides = document.querySelectorAll('.slick-slide:not(.slick-cloned)').length;
-      if (totalSlides > 0) {
-        const photoCounter = document.createElement('div');
-        photoCounter.className = 'IDX-photoCount';
-        photoCounter.id = 'IDX-photoCounter';
-        photoCounter.innerHTML = `1/${totalSlides}`;
-        mainGallery.appendChild(photoCounter);
-        
-        // Update counter when slides change
-        function updatePhotoCounter(currentSlide) {
-          const counter = document.getElementById('IDX-photoCounter');
-          if (counter) {
-            counter.innerHTML = `${currentSlide + 1}/${totalSlides}`;
-          }
-        }
-        
-        // Try to hook into slick events if available
-        if (typeof idx !== 'undefined' && idx.$ && typeof idx.$.fn.slick !== 'undefined') {
-          idx.$(mainGallery).on('afterChange', function(event, slick, currentSlide) {
-            updatePhotoCounter(currentSlide);
-          });
-        }
-      }
-      
-      // Create thumbnail gallery if it doesn't exist
-      if (!document.querySelector('.IDX-detailsPhotoThumbnails, .slick-dots')) {
-        const allSlides = document.querySelectorAll('.slick-slide:not(.slick-cloned) .gallery-image, .slick-slide:not(.slick-cloned) img');
-        
-        if (allSlides.length > 0) {
-          // Create a wrapper for the thumbnails to allow for scrolling
-          const thumbnailWrapper = document.createElement('div');
-          thumbnailWrapper.className = 'IDX-thumbnailWrapper';
-          
-          // Create the thumbnail container
-          const thumbnailContainer = document.createElement('div');
-          thumbnailContainer.className = 'IDX-detailsPhotoThumbnails';
-          
-          // Create left arrow for thumbnails
-          const prevArrow = document.createElement('button');
-          prevArrow.className = 'thumbnail-nav prev';
-          prevArrow.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-          prevArrow.addEventListener('click', function() {
-            thumbnailContainer.scrollBy({ left: -240, behavior: 'smooth' });
-          });
-          
-          // Create right arrow for thumbnails
-          const nextArrow = document.createElement('button');
-          nextArrow.className = 'thumbnail-nav next';
-          nextArrow.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
-          nextArrow.addEventListener('click', function() {
-            thumbnailContainer.scrollBy({ left: 240, behavior: 'smooth' });
-          });
-          
-          // Create thumbnails
-          allSlides.forEach(function(slide, index) {
-            const thumbnail = document.createElement('li');
-            thumbnail.className = index === 0 ? 'slick-active' : '';
-            
-            const bgImage = slide.style.backgroundImage || 
-                           (slide.tagName === 'IMG' ? `url(${slide.src})` : '');
-            
-            if (bgImage) {
-              const img = document.createElement('img');
-              img.src = bgImage.replace('url("', '').replace('")', '').replace("url('", "").replace("')", "");
-              thumbnail.appendChild(img);
-              
-              // Add click handler
-              thumbnail.addEventListener('click', function() {
-                // If slick is available, go to this slide
-                if (typeof idx !== 'undefined' && idx.$ && typeof idx.$.fn.slick !== 'undefined') {
-                  idx.$(mainGallery).slick('slickGoTo', index);
-                }
-                
-                // Update active state
-                document.querySelectorAll('.IDX-detailsPhotoThumbnails li').forEach(function(thumb) {
-                  thumb.classList.remove('slick-active');
-                });
-                thumbnail.classList.add('slick-active');
-                
-                // Scroll the thumbnail into view
-                thumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-              });
-              
-              thumbnailContainer.appendChild(thumbnail);
-            }
-          });
-          
-          // Add the arrows and thumbnails to the wrapper
-          thumbnailWrapper.appendChild(prevArrow);
-          thumbnailWrapper.appendChild(thumbnailContainer);
-          thumbnailWrapper.appendChild(nextArrow);
-          
-          // Insert after the main gallery
-          if (thumbnailContainer.children.length > 0) {
-            mainGallery.parentNode.insertBefore(thumbnailWrapper, mainGallery.nextSibling);
-            
-            // Hook into main gallery slide change to update thumbnails
-            if (typeof idx !== 'undefined' && idx.$ && typeof idx.$.fn.slick !== 'undefined') {
-              idx.$(mainGallery).on('afterChange', function(event, slick, currentSlide) {
-                // Update active thumbnail
-                document.querySelectorAll('.IDX-detailsPhotoThumbnails li').forEach(function(thumb, i) {
-                  if (i === currentSlide) {
-                    thumb.classList.add('slick-active');
-                    
-                    // Scroll to the active thumbnail
-                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                  } else {
-                    thumb.classList.remove('slick-active');
-                  }
-                });
-              });
-            }
-          }
-        }
-      }
-      
-      // Create a "View All Photos" button if it doesn't already exist
-      if (!document.getElementById('IDX-viewGallery')) {
-        const viewAllBtn = document.createElement('a');
-        viewAllBtn.id = 'IDX-viewGallery';
-        viewAllBtn.href = '#';
-        viewAllBtn.innerHTML = '<i class="fa-regular fa-images" style="margin-right:12px;"></i>View All Photos';
-        
-        // Add click handler to show full screen gallery
-        viewAllBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          // If slick has a fullscreen mode, use it
-          if (typeof idx !== 'undefined' && idx.$ && idx.$.fn.slick) {
-            // Attempt to trigger fullscreen mode
-            const firstImage = document.querySelector('.slick-slide:not(.slick-cloned) .gallery-image, .slick-slide:not(.slick-cloned) img');
-            if (firstImage) {
-              firstImage.click();
-            }
-          }
-        });
-        
-        // Insert after thumbnails
-        const insertAfter = document.querySelector('.IDX-thumbnailWrapper') || mainGallery;
-        insertAfter.parentNode.insertBefore(viewAllBtn, insertAfter.nextSibling);
-      }
-      
-      // Style the arrows to match reference design
-      const arrows = document.querySelectorAll('.slick-arrow');
-      arrows.forEach(function(arrow) {
-        // Remove any existing classes
-        if (arrow.classList.contains('slick-prev')) {
-          arrow.classList.add('fa-arrow-left');
-        } else if (arrow.classList.contains('slick-next')) {
-          arrow.classList.add('fa-arrow-right');
-        }
-      });
-    }
-  </script>
-  
-  <!-- Property Details Formatting Script -->
-  <script>
-    // Function to ensure property details are properly formatted
-    window.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        // Format property details correctly
-        formatPropertyDetails();
-        // Format snapshot section
-        formatSnapshotSection();
-        // Format similar listings
-        formatSimilarListings();
-        
-        // Immediately perform aggressive removal of property type headers
-        removePropertyTypeHeaders();
       }, 1000);
       
-      // And check again after IDX content is likely loaded
-      setTimeout(removePropertyTypeHeaders, 2500);
-      setTimeout(removePropertyTypeHeaders, 5000);
+      // Add a script fix in case other methods fail
+      const scriptFix = document.createElement('script');
+      scriptFix.textContent = `
+        // Fix to prevent automatic form submission
+        (function() {
+          // Get references to various IDX variables and functions
+          if (typeof idx !== 'undefined') {
+            console.log("Found IDX library, applying fixes");
+            
+            // Try to intercept any auto-submission
+            const originalSubmit = HTMLFormElement.prototype.submit;
+            HTMLFormElement.prototype.submit = function() {
+              if (this.id === 'IDX-searchForm' || (this.action && this.action.includes('mlspalmbeach'))) {
+                if (!window.manualSubmit && !window.submittedByUser) {
+                  console.log('Prevented auto-submission of IDX form');
+                  return false;
+                }
+              }
+              return originalSubmit.apply(this, arguments);
+            };
+            
+            // Override any IDX methods that might auto-submit
+            if (idx.subscribeEvent) {
+              const originalSubscribe = idx.subscribeEvent;
+              idx.subscribeEvent = function(event, selector, callback) {
+                if (event === 'submit' && (selector.includes('#IDX-searchForm') || selector.includes('[action*="mlspalmbeach"]'))) {
+                  console.log('Intercepted IDX form submit event subscription');
+                  const wrappedCallback = function(e) {
+                    if (!window.manualSubmit && !window.submittedByUser) {
+                      console.log('Prevented callback from auto-submitting form');
+                      e.preventDefault();
+                      return false;
+                    }
+                    return callback.apply(this, arguments);
+                  };
+                  return originalSubscribe.call(this, event, selector, wrappedCallback);
+                }
+                return originalSubscribe.apply(this, arguments);
+              };
+            }
+            
+            // Find any property type fields and clear them
+            setTimeout(function() {
+              document.querySelectorAll('#IDX-pt option, select[name="pt"] option').forEach(option => {
+                option.selected = false;
+                if (option.hasAttribute('selected')) {
+                  option.removeAttribute('selected');
+                }
+              });
+              
+              // Find and fix the form if IDX has loaded it dynamically
+              const searchForm = document.querySelector('#IDX-searchForm');
+              if (searchForm) {
+                searchForm.addEventListener('submit', function(e) {
+                  if (!window.manualSubmit && !window.submittedByUser) {
+                    console.log('Blocked IDX form submission via event listener');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                  }
+                }, true);
+                
+                // Fix the IDX submit handlers
+                const submitBtn = searchForm.querySelector('#IDX-formSubmit');
+                if (submitBtn) {
+                  submitBtn.addEventListener('click', function(e) {
+                    window.manualSubmit = true;
+                    window.submittedByUser = true;
+                  });
+                }
+              }
+            }, 1000);
+          }
+        })();
+      `;
+      
+      document.head.appendChild(scriptFix);
+      console.log('Added emergency script to prevent auto-submission');
+      
+      // Create container for search buttons if needed
+      // ... existing code ...
     });
     
-    function formatPropertyDetails() {
-      // Create tabular layout for property details
-      const detailsContainer = document.querySelector('.IDX-detailsInfo, .IDX-propertyDetailsInfo');
+    // Function to fix pagination display
+    function fixPagination() {
+      console.log('Checking for pagination...');
       
-      if (detailsContainer) {
-        // Find all property details
-        const detailItems = document.querySelectorAll('.IDX-field-listingStatus, .IDX-field-bedrooms, .IDX-field-totalBaths, .IDX-field-sqFt, .IDX-field-propType, .IDX-field-yearBuilt, .IDX-propertyInfoItem');
-        
-        detailItems.forEach(function(item) {
-          // Set display to block to ensure items are on separate rows
-          item.style.display = 'flex';
-          item.style.borderBottom = '1px solid #eee';
-          item.style.padding = '8px 0';
-          
-          // If this is a wrapped element with label/value, ensure proper formatting
-          const label = item.querySelector('.IDX-label') || item.querySelector('.IDX-propertyInfoLabel');
-          const value = item.querySelector('.IDX-text') || item.querySelector('.IDX-propertyInfoValue');
-          
-          if (label) {
-            label.style.fontWeight = '600';
-            label.style.color = '#555';
-            label.style.minWidth = '150px';
-            label.style.paddingRight = '10px';
-          }
-          
-          if (value) {
-            value.style.flex = '1';
-          }
-        });
-      }
+      // Target all possible pagination elements
+      const paginationElements = document.querySelectorAll(
+        '#IDX-results-pagination, .IDX-results--pagination, nav[id*="pagination"], .IDX-pagination-container, nav[aria-label="Page Navigation"], .IDX-resultsPager'
+      );
       
-      // Attempt to create tabular layout if one doesn't exist
-      const propertyDetails = document.querySelector('.IDX-detailsContainer');
-      if (propertyDetails && !detailsContainer) {
-        // Find all key property details that should be displayed in tabular format
-        const keyItems = [
-          { label: 'Price:', value: document.querySelector('.IDX-detailsPrice')?.textContent?.trim() },
-          { label: 'Status:', value: document.querySelector('.IDX-status')?.textContent?.trim() || 'Active' },
-          { label: 'Bedrooms:', value: document.querySelector('.IDX-field-bedrooms')?.textContent?.trim().replace(/\s+/g, ' ') },
-          { label: 'Total Baths:', value: document.querySelector('.IDX-field-totalBaths')?.textContent?.trim().replace(/\s+/g, ' ') },
-          { label: 'SqFt:', value: document.querySelector('.IDX-field-sqFt')?.textContent?.trim().replace(/\s+/g, ' ') },
-          { label: 'Property Type:', value: document.querySelector('.IDX-field-propType')?.textContent?.trim().replace(/\s+/g, ' ') }
-        ];
+      console.log(`Found ${paginationElements.length} pagination elements`);
+      
+      // Make them visible
+      paginationElements.forEach(function(pagination) {
+        pagination.style.display = 'flex';
+        pagination.style.justifyContent = 'center';
+        pagination.style.width = '100%';
+        pagination.style.margin = '30px 0';
+        pagination.style.visibility = 'visible';
+        pagination.style.opacity = '1';
+        pagination.style.pointerEvents = 'auto';
         
-        // Create a details container if it doesn't exist
-        const detailsTable = document.createElement('div');
-        detailsTable.className = 'IDX-propertyDetailsInfo';
-        detailsTable.style.margin = '20px 0';
+        console.log('Fixed pagination:', pagination);
         
-        // Add each detail row
-        keyItems.forEach(function(item) {
-          if (item.value) {
-            const row = document.createElement('div');
-            row.style.display = 'flex';
-            row.style.borderBottom = '1px solid #eee';
-            row.style.padding = '8px 0';
-            
-            const label = document.createElement('div');
-            label.className = 'IDX-label';
-            label.textContent = item.label;
-            label.style.fontWeight = '600';
-            label.style.color = '#555';
-            label.style.minWidth = '150px';
-            label.style.paddingRight = '10px';
-            
-            const value = document.createElement('div');
-            value.className = 'IDX-text';
-            value.textContent = item.value;
-            value.style.flex = '1';
-            
-            row.appendChild(label);
-            row.appendChild(value);
-            detailsTable.appendChild(row);
-          }
+        // Make sure the UL inside is displayed correctly
+        const paginationUL = pagination.querySelector('ul');
+        if (paginationUL) {
+          paginationUL.style.display = 'flex';
+          paginationUL.style.flexWrap = 'wrap';
+          paginationUL.style.justifyContent = 'center';
+          paginationUL.style.gap = '8px';
+          paginationUL.style.padding = '0';
+          paginationUL.style.margin = '0';
+          paginationUL.style.listStyle = 'none';
+        }
+        
+        // Style all links in the pagination
+        const paginationLinks = pagination.querySelectorAll('a');
+        paginationLinks.forEach(function(link) {
+          link.style.display = 'inline-flex';
+          link.style.alignItems = 'center';
+          link.style.justifyContent = 'center';
+          link.style.minWidth = '40px';
+          link.style.height = '40px';
+          link.style.padding = '0 12px';
+          link.style.border = '1px solid #e0e0e0';
+          link.style.borderRadius = '4px';
+          link.style.backgroundColor = '#fff';
+          link.style.color = '#1b4e1f';
+          link.style.textDecoration = 'none';
+          link.style.fontSize = '16px';
+          link.style.fontWeight = '500';
+          link.style.transition = 'all 0.2s ease';
         });
         
-        // Insert the table after the address
-        const addressElement = document.querySelector('.IDX-detailsAddress');
-        if (addressElement && detailsTable.children.length > 0) {
-          addressElement.parentNode.insertBefore(detailsTable, addressElement.nextSibling);
+        // Style active page
+        const activeItems = pagination.querySelectorAll('.IDX-active a, .active a, .current a, a.current');
+        activeItems.forEach(function(activeLink) {
+          activeLink.style.backgroundColor = '#1b4e1f';
+          activeLink.style.borderColor = '#1b4e1f';
+          activeLink.style.color = '#fff';
+        });
+        
+        // Style the ellipsis
+        const ellipsis = pagination.querySelectorAll('.idx-paginator--ellipsis');
+        ellipsis.forEach(function(el) {
+          el.style.display = 'inline-flex';
+          el.style.alignItems = 'center';
+          el.style.justifyContent = 'center';
+          el.style.minWidth = '40px';
+          el.style.height = '40px';
+          el.style.color = '#666';
+        });
+      });
+      
+      // If no pagination was found but we have results, check for hidden pagination or create it
+      if (paginationElements.length === 0) {
+        console.log('No visible pagination found, searching deeper...');
+        
+        // Look for ANY hidden pagination elements
+        const hiddenPagination = document.querySelectorAll(
+          '[id*="pagination"], [class*="pagination"], [class*="Paging"], [id*="Paging"], [class*="pager"], [id*="pager"]'
+        );
+        
+        if (hiddenPagination.length > 0) {
+          console.log(`Found ${hiddenPagination.length} potentially hidden pagination elements`);
+          
+          hiddenPagination.forEach(function(el) {
+            // Make it visible
+            el.style.display = 'flex';
+            el.style.visibility = 'visible';
+            el.style.opacity = '1';
+            el.style.pointerEvents = 'auto';
+            
+            // Add styles to make it look nice
+            el.style.justifyContent = 'center';
+            el.style.width = '100%';
+            el.style.margin = '30px 0';
+            
+            console.log('Revealed hidden pagination:', el);
+          });
+        } else {
+          // Check if we have total results information to create pagination
+          console.log('No hidden pagination found either, checking for results count...');
+          
+          // Try to find the total results and create pagination
+          createCustomPagination();
         }
       }
     }
     
-    // Format the snapshot section into tabular layout
-    function formatSnapshotSection() {
-      const snapshot = document.getElementById('IDX-snapshot');
+    // Function to create custom pagination if none exists
+    function createCustomPagination() {
+      // Look for any count information
+      const countElements = document.querySelectorAll(
+        '.IDX-resultsCount, .IDX-results-count, .IDX-resultCount, [id*="resultCount"], [class*="resultCount"]'
+      );
       
-      // If the snapshot section doesn't exist but we have the elements, create it
-      if (!snapshot) {
-        const propertyInfo = document.querySelector('.IDX-propertyDetailsInfo');
-        const addressElement = document.querySelector('.IDX-detailsAddress');
+      let totalResults = 0;
+      let resultsPerPage = 10; // Default to 10
+      
+      // Try to find total results
+      countElements.forEach(function(element) {
+        const text = element.textContent.trim();
+        console.log('Found count element:', text);
         
-        if (addressElement) {
-          // Create snapshot container
-          const newSnapshot = document.createElement('div');
-          newSnapshot.id = 'IDX-snapshot';
-          newSnapshot.style.margin = '20px 0';
-          newSnapshot.style.width = '100%';
+        // Extract numbers from text
+        const matches = text.match(/(\d+)(?:\+)?\s+results?/i);
+        if (matches && matches[1]) {
+          totalResults = parseInt(matches[1], 10);
+          console.log('Found total results:', totalResults);
+        }
+      });
+      
+      // Count visible results to determine per page
+      const visibleResults = document.querySelectorAll(
+        '.IDX-results--cell, .IDX-resultsCell, .IDX-result-cell, .IDX-result, .IDX-listing'
+      ).length;
+      
+      if (visibleResults > 0) {
+        resultsPerPage = visibleResults;
+        console.log('Detected results per page:', resultsPerPage);
+      }
+      
+      // Only create pagination if we found total results and it's more than per page
+      if (totalResults > resultsPerPage) {
+        console.log('Creating custom pagination for', totalResults, 'results');
+        
+        // Calculate total pages
+        const totalPages = Math.ceil(totalResults / resultsPerPage);
+        
+        // Create pagination element
+        const pagination = document.createElement('nav');
+        pagination.id = 'IDX-custom-pagination';
+        pagination.className = 'IDX-results--pagination';
+        pagination.setAttribute('aria-label', 'Page Navigation');
+        
+        const paginationUL = document.createElement('ul');
+        paginationUL.className = 'IDX-pagination';
+        
+        // Add previous page
+        const prevLi = document.createElement('li');
+        const prevLink = document.createElement('a');
+        prevLink.href = '#';
+        prevLink.textContent = '«';
+        prevLi.appendChild(prevLink);
+        paginationUL.appendChild(prevLi);
+        
+        // Add page links (up to 7)
+        const maxVisiblePages = 7;
+        const pagesToShow = Math.min(totalPages, maxVisiblePages);
+        
+        for (let i = 1; i <= pagesToShow; i++) {
+          const pageLi = document.createElement('li');
+          if (i === 1) pageLi.className = 'IDX-active';
           
-          // Define the snapshot items with their icons and values
-          const snapshotItems = [
-            { 
-              label: 'Status:', 
-              icon: 'fa-solid fa-circle fa-2xs', 
-              value: document.querySelector('.IDX-field-propStatus .IDX-text')?.textContent?.trim() || 'Active'
-            },
-            { 
-              label: 'Bedrooms:', 
-              icon: 'fa-solid fa-bed fa-xs', 
-              value: document.querySelector('.IDX-field-bedrooms .IDX-text')?.textContent?.trim() || '',
-              suffix: ' beds'
-            },
-            { 
-              label: 'SqFt:', 
-              icon: 'fa-solid fa-ruler-combined fa-xs', 
-              value: document.querySelector('.IDX-field-sqFt .IDX-text')?.textContent?.trim() || '',
-              suffix: ' sqft'
-            },
-            { 
-              label: 'Property Type:', 
-              icon: 'fa-solid fa-house fa-xs', 
-              value: document.querySelector('.IDX-field-propSubType .IDX-text')?.textContent?.trim() || 'Single Family Residence'
-            },
-            { 
-              label: 'Year Built:', 
-              icon: 'fa-solid fa-hammer fa-xs', 
-              value: document.querySelector('.IDX-field-yearBuilt .IDX-text')?.textContent?.trim() || '',
-              prefix: 'Built in '
-            }
-          ];
+          const pageLink = document.createElement('a');
           
-          // Create each row in the snapshot
-          snapshotItems.forEach(function(item, index) {
-            // Skip if no value and no appropriate fallback for this field
-            if (!item.value && !(item.label === 'Status:' || item.label === 'Property Type:')) {
-              return;
+          // Try to get the current URL
+          const currentUrl = window.location.href.split('?')[0];
+          pageLink.href = `${currentUrl}?start=${i}`;
+          pageLink.textContent = i.toString();
+          
+          pageLi.appendChild(pageLink);
+          paginationUL.appendChild(pageLi);
+        }
+        
+        // Add ellipsis if needed
+        if (totalPages > maxVisiblePages) {
+          const ellipsisLi = document.createElement('li');
+          const ellipsisSpan = document.createElement('span');
+          ellipsisSpan.className = 'idx-paginator--ellipsis';
+          ellipsisSpan.textContent = '…';
+          ellipsisLi.appendChild(ellipsisSpan);
+          paginationUL.appendChild(ellipsisLi);
+          
+          // Add last page
+          const lastLi = document.createElement('li');
+          const lastLink = document.createElement('a');
+          lastLink.href = `${window.location.href.split('?')[0]}?start=${totalPages}`;
+          lastLink.textContent = totalPages.toString();
+          lastLi.appendChild(lastLink);
+          paginationUL.appendChild(lastLi);
+        }
+        
+        // Add next page
+        const nextLi = document.createElement('li');
+        const nextLink = document.createElement('a');
+        nextLink.href = '#';
+        nextLink.textContent = '»';
+        nextLi.appendChild(nextLink);
+        paginationUL.appendChild(nextLi);
+        
+        pagination.appendChild(paginationUL);
+        
+        // Add pagination to the page
+        const resultsContainer = document.querySelector(
+          '#IDX-resultsContainer, .IDX-resultsContainer, .IDX-results, #IDX-results'
+        );
+        
+        if (resultsContainer) {
+          resultsContainer.appendChild(pagination);
+          console.log('Added custom pagination:', pagination);
+        } else {
+          // If no results container, add to the wrapper
+          const wrapper = document.querySelector('.idx-container-wrapper');
+          if (wrapper) {
+            wrapper.appendChild(pagination);
+            console.log('Added custom pagination to wrapper:', pagination);
+          }
+        }
+        
+        // Style the new pagination
+        fixPagination();
+      }
+    }
+    
+    // Run pagination fix on load and periodically with increased delays
+    setTimeout(fixPagination, 1000);
+    setTimeout(fixPagination, 2000);
+    setTimeout(fixPagination, 4000);
+    setTimeout(fixPagination, 8000);
+    
+    // Show all listings by increasing results per page
+    function increaseResultsPerPage() {
+      console.log('Attempting to show more results per page...');
+      
+      // Method 1: Modify current URL if it has pagination parameters
+      let currentUrl = window.location.href;
+      
+      // If URL contains 'per=' parameter (results per page), increase it
+      if (currentUrl.includes('per=')) {
+        // Replace per=10 (or any number) with per=100
+        currentUrl = currentUrl.replace(/per=\d+/, 'per=100');
+        console.log('Modified per-page URL:', currentUrl);
+        
+        // Only reload if we actually changed something
+        if (currentUrl !== window.location.href) {
+          console.log('Reloading with higher per-page limit...');
+          window.location.href = currentUrl;
+          return true;
+        }
+      }
+      
+      // Method 2: Look for form elements that control results per page
+      const perPageSelects = document.querySelectorAll('select[name="per"], select[name*="perPage"], select[id*="perPage"]');
+      
+      if (perPageSelects.length > 0) {
+        console.log('Found per-page selector:', perPageSelects[0]);
+        
+        // Try to set it to the highest available option
+        let highestOption = 10; // Default
+        
+        perPageSelects.forEach(function(select) {
+          const options = select.querySelectorAll('option');
+          options.forEach(function(option) {
+            const value = parseInt(option.value, 10);
+            if (!isNaN(value) && value > highestOption) {
+              highestOption = value;
             }
-            
-            const row = document.createElement('div');
-            row.setAttribute('data-label', item.label);
-            row.style.display = 'flex';
-            row.style.padding = '8px 0';
-            row.style.borderBottom = '1px solid #eee';
-            row.style.alignItems = 'center';
-            
-            // Create icon
-            const icon = document.createElement('i');
-            icon.className = item.icon;
-            icon.style.width = '15px';
-            icon.style.marginRight = '12px';
-            icon.style.color = '#1b4e1f';
-            icon.setAttribute('aria-hidden', 'true');
-            
-            // Create field container
-            const field = document.createElement('div');
-            field.className = 'IDX-field';
-            
-            // Add prefix if exists and we have a value
-            if (item.prefix && item.value) {
-              const prefix = document.createElement('span');
-              prefix.className = 'label';
-              prefix.style.margin = '0';
-              prefix.textContent = item.prefix;
-              row.appendChild(prefix);
-            }
-            
-            // Create text span
-            const text = document.createElement('span');
-            text.className = 'IDX-text';
-            text.textContent = item.value;
-            field.appendChild(text);
-            
-            // Add elements to row
-            row.appendChild(icon);
-            row.appendChild(field);
-            
-            // Add suffix if exists and we have a value
-            if (item.suffix && item.value) {
-              const suffix = document.createElement('span');
-              suffix.className = 'label';
-              suffix.textContent = item.suffix;
-              row.appendChild(suffix);
-            }
-            
-            newSnapshot.appendChild(row);
           });
           
-          // Insert after the address but before property info
-          if (propertyInfo) {
-            addressElement.parentNode.insertBefore(newSnapshot, propertyInfo);
-          } else {
-            addressElement.parentNode.insertBefore(newSnapshot, addressElement.nextSibling);
-          }
-        }
-      } else {
-        // If snapshot exists, format it
-        const rows = snapshot.querySelectorAll('> div');
-        
-        rows.forEach(function(row, index) {
-          // Set the data-label attribute for CSS ::before pseudo-element
-          switch(index) {
-            case 0:
-              row.setAttribute('data-label', 'Status:');
-              break;
-            case 1:
-              row.setAttribute('data-label', 'Bedrooms:');
-              break;
-            case 2:
-              row.setAttribute('data-label', 'SqFt:');
-              break;
-            case 3:
-              row.setAttribute('data-label', 'Property Type:');
-              break;
-            case 4:
-              row.setAttribute('data-label', 'Year Built:');
-              break;
-          }
+          // Set to highest option and trigger change event
+          select.value = highestOption;
+          console.log('Setting per-page to:', highestOption);
           
-          // Format the row
-          row.style.display = 'flex';
-          row.style.padding = '8px 0';
-          row.style.borderBottom = '1px solid #eee';
-          row.style.alignItems = 'center';
+          // Trigger change event
+          const event = new Event('change', { bubbles: true });
+          select.dispatchEvent(event);
           
-          // Format the icon
-          const icon = row.querySelector('i');
-          if (icon) {
-            icon.style.minWidth = '40px';
-            icon.style.color = '#1b4e1f';
-            icon.style.textAlign = 'center';
+          // If there's a submit button, click it
+          const submitButton = select.closest('form')?.querySelector('button[type="submit"], input[type="submit"]');
+          if (submitButton) {
+            console.log('Clicking submit button to apply per-page change');
+            submitButton.click();
           }
         });
+        
+        return true;
       }
+      
+      // Method 3: Intercept AJAX requests that might load pagination
+      const originalFetch = window.fetch;
+      window.fetch = function(url, options) {
+        // If it's a string URL that contains pagination parameters
+        if (typeof url === 'string' && (url.includes('per=') || url.includes('start='))) {
+          // Modify to increase the per-page parameter
+          url = url.replace(/per=\d+/, 'per=100');
+          console.log('Intercepted fetch request, modified to:', url);
+        }
+        return originalFetch.call(this, url, options);
+      };
+      
+      // Method 4: Add a custom show all button
+      const wrapper = document.querySelector('.idx-container-wrapper');
+      if (wrapper) {
+        // Only add the button on search results pages, not on listing detail pages
+        // Check if this is a search results page by looking for typical elements
+        const isSearchPage = document.querySelector('.IDX-resultsCellsContainer, .IDX-resultsGrid, #IDX-resultsRow, .IDX-results--cell');
+        
+        if (isSearchPage) {
+          // Create button with green styling
+          const showAllButton = document.createElement('div');
+          showAllButton.className = 'IDX-btn-showAll-container';
+          showAllButton.style.width = '100%';
+          showAllButton.style.textAlign = 'center';
+          showAllButton.style.margin = '30px 0 15px';
+          
+          const buttonElement = document.createElement('button');
+          buttonElement.textContent = 'Show All Listings (100+ per page)';
+          buttonElement.className = 'IDX-btn-showAll';
+          buttonElement.style.background = '#1b4e1f';
+          buttonElement.style.color = 'white';
+          buttonElement.style.padding = '10px 20px';
+          buttonElement.style.border = 'none';
+          buttonElement.style.borderRadius = '4px';
+          buttonElement.style.cursor = 'pointer';
+          buttonElement.style.fontWeight = 'bold';
+          buttonElement.style.fontSize = '16px';
+          
+          showAllButton.appendChild(buttonElement);
+          
+          // Find the results container
+          const resultsContainer = document.querySelector(
+            '.IDX-resultsActiveListings, #IDX-resultsActiveListings'
+          );
+          
+          // If results container exists, insert at the end of it
+          if (resultsContainer) {
+            // Try to find the list of results (the grid/cells container)
+            const listingsGrid = resultsContainer.querySelector(
+              '.IDX-resultsCellsContainer, .IDX-resultsGrid, #IDX-resultsGrid'
+            );
+            
+            if (listingsGrid) {
+              // Insert after the listings grid
+              if (listingsGrid.nextElementSibling) {
+                resultsContainer.insertBefore(showAllButton, listingsGrid.nextElementSibling);
+              } else {
+                resultsContainer.appendChild(showAllButton);
+              }
+              console.log('Added "Show All" button immediately after listings grid');
+            } else {
+              // If no grid found, just append to the results container
+              resultsContainer.appendChild(showAllButton);
+              console.log('Added "Show All" button at end of results container');
+            }
+          } else {
+            // Find the MLS attribution div as a fallback
+            let mlsAttribution = null;
+            
+            // Try different methods to find the MLS attribution div
+            const allDivs = document.querySelectorAll('div');
+            for (let i = 0; i < allDivs.length; i++) {
+              const div = allDivs[i];
+              // Check for MLS logo images
+              if (div.querySelector('img[src*="mls-logos"]')) {
+                mlsAttribution = div;
+                break;
+              }
+              
+              // Check for text content
+              const text = div.textContent || '';
+              if (text.includes('Palm Beach Board of Realtors MLS') || 
+                  text.includes('PBBORMLS') || 
+                  text.includes('Information deemed reliable, but not guaranteed')) {
+                mlsAttribution = div;
+                break;
+              }
+              
+              // Check for styling that matches the attribution div
+              const style = div.getAttribute('style') || '';
+              if (style.includes('clear:both') && 
+                  style.includes('text-align:center') && 
+                  style.includes('visibility:visible')) {
+                mlsAttribution = div;
+                break;
+              }
+            }
+            
+            if (mlsAttribution && mlsAttribution.parentNode) {
+              // Insert directly before the MLS attribution
+              mlsAttribution.parentNode.insertBefore(showAllButton, mlsAttribution);
+              console.log('Added "Show All" button before MLS attribution');
+            } else {
+              // If no results container or MLS attribution found, append to wrapper
+              wrapper.appendChild(showAllButton);
+              console.log('Added "Show All" button to wrapper');
+            }
+          }
+          
+          // Add click event to the button
+          buttonElement.addEventListener('click', function() {
+            // Try to find all available links with pagination parameters
+            const links = document.querySelectorAll('a[href*="per="]');
+            
+            if (links.length > 0) {
+              // Find the link with the highest per-page value
+              let highestPerPageLink = '';
+              let highestPerPage = 0;
+              
+              links.forEach(function(link) {
+                const href = link.getAttribute('href');
+                const perMatch = href.match(/per=(\d+)/);
+                
+                if (perMatch && perMatch[1]) {
+                  const perValue = parseInt(perMatch[1], 10);
+                  if (perValue > highestPerPage) {
+                    highestPerPage = perValue;
+                    highestPerPageLink = href.replace(/per=\d+/, 'per=100');
+                  }
+                }
+              });
+              
+              if (highestPerPageLink) {
+                console.log('Navigating to highest per-page URL:', highestPerPageLink);
+                window.location.href = highestPerPageLink;
+                return;
+              }
+            }
+            
+            // If no links found, try to modify current URL
+            let modifiedUrl = window.location.href;
+            
+            if (modifiedUrl.includes('?')) {
+              if (modifiedUrl.includes('per=')) {
+                modifiedUrl = modifiedUrl.replace(/per=\d+/, 'per=100');
+              } else {
+                modifiedUrl += '&per=100';
+              }
+            } else {
+              modifiedUrl += '?per=100';
+            }
+            
+            console.log('Navigating to modified URL:', modifiedUrl);
+            window.location.href = modifiedUrl;
+          });
+          
+          console.log('Added "Show All" button at the bottom of search results');
+        } else {
+          console.log('Not adding Show All button - this appears to be a listing detail page');
+        }
+      }
+      
+      return false;
     }
     
-    // Format similar listings to display horizontally in a single row
+    // Try to increase results per page after a short delay
+    setTimeout(increaseResultsPerPage, 1500);
+    
+    // Fix for Similar Listings section - call function later to ensure it's fixed
+    setTimeout(function() {
+      console.log('Re-fixing similar listings section...');
+      formatSimilarListings();
+    }, 3000);
+    
+    // Watch for DOM changes that might affect pagination
+    const paginationObserver = new MutationObserver(function(mutations) {
+      let shouldFixPagination = false;
+      
+      mutations.forEach(function(mutation) {
+        // If nodes were added or removed
+        if (mutation.addedNodes.length || mutation.removedNodes.length) {
+          // Check if any added nodes are related to results or pagination
+          mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1) { // Element node
+              if (
+                (node.id && (
+                  node.id.includes('IDX-result') || 
+                  node.id.includes('pagination') ||
+                  node.id.includes('Paging')
+                )) || 
+                (node.className && typeof node.className === 'string' && (
+                  node.className.includes('IDX-result') || 
+                  node.className.includes('pagination') ||
+                  node.className.includes('Paging')
+                ))
+              ) {
+                shouldFixPagination = true;
+              }
+            }
+          });
+        }
+      });
+      
+      if (shouldFixPagination) {
+        console.log('DOM changed, fixing pagination...');
+        setTimeout(fixPagination, 500);
+      }
+    });
+    
+    // Start observing the document for pagination-related changes
+    paginationObserver.observe(document.body, { childList: true, subtree: true });
+    
+    // Function to properly format similar listings
     function formatSimilarListings() {
+      console.log('Fixing similar listings display...');
+      
       // Target both the old and new class structures
       const similarProperties = document.querySelector('#IDX-similarProperties, .IDX-similarListings, .IDX-similar-listings');
       
       if (similarProperties) {
+        console.log('Found similar listings container:', similarProperties);
+        
         // Force horizontal layout
         similarProperties.style.display = 'flex';
         similarProperties.style.flexWrap = 'nowrap';
@@ -2085,22 +2560,36 @@
         if (similarHeader) {
           similarHeader.style.fontFamily = 'var(--font-instrument)';
           similarHeader.style.fontWeight = '400';
+          similarHeader.style.display = 'block';
+          similarHeader.style.visibility = 'visible';
+          similarHeader.style.height = 'auto';
+          similarHeader.style.margin = '30px 0 15px';
+          similarHeader.style.fontSize = '1.5em';
+          similarHeader.style.borderBottom = '2px solid #1b4e1f';
+          similarHeader.style.paddingBottom = '5px';
         }
         
         // Style each similar property - target both old and new class structures
         const properties = similarProperties.querySelectorAll('.IDX-similarProperty, .IDX-similarListing, .IDX-similar-listings--item');
+        console.log(`Found ${properties.length} similar properties`);
+        
         properties.forEach(function(property) {
           // Force width
           property.style.flex = '0 0 auto';
           property.style.width = '200px';
           property.style.maxHeight = '300px';
           property.style.overflow = 'hidden';
+          property.style.border = '1px solid #e0e0e0';
+          property.style.borderRadius = '8px';
+          property.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+          property.style.display = 'block';
+          property.style.background = 'white';
           
           // Style image - target both old and new class structures
-          const images = property.querySelectorAll('img, .IDX-similar-listings--item-image');
+          const images = property.querySelectorAll('img:not(.IDX-similar-listings--item-MLSLogo), .IDX-similar-listings--item-image');
           images.forEach(function(image) {
             // Skip MLS logo
-            if (image.classList.contains('IDX-similar-listings--item-MLSLogo')) {
+            if (image.classList && image.classList.contains('IDX-similar-listings--item-MLSLogo')) {
               image.style.display = 'none';
               return;
             }
@@ -2108,6 +2597,7 @@
             image.style.width = '100%';
             image.style.height = '120px';
             image.style.objectFit = 'cover';
+            image.style.display = 'block';
           });
           
           // Style info section - target both old and new class structures
@@ -2115,24 +2605,29 @@
           if (info) {
             info.style.padding = '8px';
             info.style.fontSize = '12px';
+            info.style.lineHeight = '1.3';
           }
           
           // Style address - target both old and new class structures
           const address = property.querySelector('.IDX-similarPropertyAddress, .IDX-similarListingAddress, .IDX-similar-listings--address');
           if (address) {
+            address.style.fontFamily = 'var(--font-instrument)';
             address.style.fontSize = '12px';
             address.style.marginBottom = '3px';
             address.style.whiteSpace = 'nowrap';
             address.style.overflow = 'hidden';
             address.style.textOverflow = 'ellipsis';
+            address.style.fontWeight = '600';
           }
           
           // Style price - target both old and new class structures
           const price = property.querySelector('.IDX-similarPropertyPrice, .IDX-similarListingPrice, .IDX-similar-listings--price');
           if (price) {
+            price.style.fontFamily = 'var(--font-instrument)';
             price.style.fontSize = '14px';
             price.style.marginBottom = '3px';
             price.style.color = '#1b4e1f';
+            price.style.fontWeight = '700';
           }
           
           // Style property details - target both old and new class structures
@@ -2142,6 +2637,7 @@
             detail.style.whiteSpace = 'nowrap';
             detail.style.overflow = 'hidden';
             detail.style.textOverflow = 'ellipsis';
+            detail.style.color = '#555';
           });
           
           // Style the view details button
@@ -2153,81 +2649,14 @@
             viewDetailsBtn.style.color = 'white';
             viewDetailsBtn.style.border = 'none';
             viewDetailsBtn.style.borderRadius = '4px';
+            viewDetailsBtn.style.display = 'inline-block';
+            viewDetailsBtn.style.textDecoration = 'none';
           }
         });
+      } else {
+        console.log('No similar listings container found');
       }
     }
-    
-    // More aggressive function to completely remove headers from DOM
-    function removePropertyTypeHeaders() {
-      console.log("Searching for property type headers to remove...");
-      
-      // Find all property type headers
-      const headers = document.querySelectorAll('.IDX-propertyTypeHeader, h4.IDX-propertyTypeHeader, .IDX-propertyTypeSection');
-      console.log(`Found ${headers.length} property type headers`);
-      
-      // Remove them from the DOM completely
-      headers.forEach(function(header) {
-        if (header && header.parentNode) {
-          header.parentNode.removeChild(header);
-          console.log("Removed header:", header.textContent.trim());
-        }
-      });
-      
-      // Also look for any h2, h3, h4 that might contain property type words
-      const potentialHeaders = document.querySelectorAll('h2, h3, h4');
-      potentialHeaders.forEach(function(header) {
-        const text = header.textContent.trim().toLowerCase();
-        if (text === 'rental' || text === 'residential' || 
-            text === 'land/acreage' || text === 'condo/co-op' ||
-            text.includes('rental') || text.includes('residential') ||
-            text.includes('land/acreage') || text.includes('condo/co-op')) {
-          
-          if (header.parentNode) {
-            header.parentNode.removeChild(header);
-            console.log("Removed potential header:", text);
-          }
-        }
-      });
-    }
-    
-    // Run periodically to catch dynamically loaded content
-    setInterval(removePropertyTypeHeaders, 1000);
-    
-    // Also observe DOM changes to catch any dynamic additions
-    const observer = new MutationObserver(function(mutations) {
-      let shouldRemove = false;
-      
-      // Check if any relevant nodes were added
-      mutations.forEach(function(mutation) {
-        if (mutation.addedNodes.length) {
-          mutation.addedNodes.forEach(function(node) {
-            // Check if this is an element node
-            if (node.nodeType === 1) {
-              // If this is a property type header or contains one, remove headers
-              if (node.classList && (node.classList.contains('IDX-propertyTypeHeader') || 
-                  node.classList.contains('IDX-propertyTypeSection'))) {
-                shouldRemove = true;
-              } else if (node.querySelector) {
-                // Check if it contains any headers
-                const hasHeaders = node.querySelector('.IDX-propertyTypeHeader, h4.IDX-propertyTypeHeader, .IDX-propertyTypeSection');
-                if (hasHeaders) {
-                  shouldRemove = true;
-                }
-              }
-            }
-          });
-        }
-      });
-      
-      // Remove headers if needed
-      if (shouldRemove) {
-        removePropertyTypeHeaders();
-      }
-    });
-    
-    // Start observing the document with the configured parameters
-    observer.observe(document.body, { childList: true, subtree: true });
   </script>
 </body>
 </html>
