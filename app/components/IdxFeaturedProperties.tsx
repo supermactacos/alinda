@@ -12,8 +12,8 @@ export function IdxFeaturedProperties() {
     const script = document.createElement("script");
     script.charset = "UTF-8";
     script.type = "text/javascript";
-    script.id = "idxwidgetsrc-43959";
-    script.src = "//mlspalmbeach.lindaolsson.com/idx/customshowcasejs.php?widgetid=43959";
+    script.id = "idxwidgetsrc-65985";
+    script.src = "//mlspalmbeach.lindaolsson.com/idx/customshowcasejs.php?widgetid=65985";
     containerRef.current.appendChild(script);
 
     // Create a wrapper that will contain our custom layout
@@ -41,7 +41,7 @@ export function IdxFeaturedProperties() {
     const style = document.createElement('style');
     style.textContent = `
       /* Hide the original widget completely */
-      #IDX-showcaseGallery-43959 {
+      #IDX-showcaseGallery-65985 {
         position: absolute !important;
         left: -9999px !important;
         top: -9999px !important;
@@ -146,7 +146,7 @@ export function IdxFeaturedProperties() {
 
     // Function to extract properties from IDX widget and create our custom layout
     const extractPropertiesAndCreateLayout = () => {
-      const idxWidget = document.getElementById('IDX-showcaseGallery-43959');
+      const idxWidget = document.getElementById('IDX-showcaseGallery-65985');
       const customContainer = document.getElementById('custom-property-container');
       
       if (!idxWidget || !customContainer) return;
@@ -320,7 +320,7 @@ export function IdxFeaturedProperties() {
     const maxChecks = 20; // Try for 20 seconds max
     
     const checkInterval = setInterval(() => {
-      const idxWidget = document.getElementById('IDX-showcaseGallery-43959');
+      const idxWidget = document.getElementById('IDX-showcaseGallery-65985');
       const cells = idxWidget?.querySelectorAll('.IDX-showcaseCell');
       
       if (cells && cells.length > 0) {
@@ -340,7 +340,7 @@ export function IdxFeaturedProperties() {
 
     // Start observing the document body for the IDX widget
     setTimeout(() => {
-      const idxWidget = document.getElementById('IDX-showcaseGallery-43959');
+      const idxWidget = document.getElementById('IDX-showcaseGallery-65985');
       if (idxWidget) {
         observer.observe(idxWidget, {
           childList: true,
@@ -356,7 +356,7 @@ export function IdxFeaturedProperties() {
       clearInterval(checkInterval);
       observer.disconnect();
       
-      const existingScript = document.getElementById("idxwidgetsrc-43959");
+      const existingScript = document.getElementById("idxwidgetsrc-65985");
       if (existingScript) {
         existingScript.remove();
       }
