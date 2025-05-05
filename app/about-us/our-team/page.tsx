@@ -73,7 +73,7 @@ export default function TeamPage() {
     {
       name: "Linda Pantano",
       image: "/team7.jpeg",
-      email: "linda@lindaolsson.com",
+      email: "lpantano@lindaolsson.com",
       readFullBio: true
     }
   ];
