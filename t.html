@@ -603,6 +603,73 @@
       color: white;
     }
     
+    /* Enhanced Pagination Styling - Make sure it's visible and matches site style */
+    #IDX-results-pagination,
+    .IDX-results--pagination,
+    nav[id*="pagination"],
+    .IDX-pagination-container {
+      display: flex !important;
+      justify-content: center !important;
+      width: 100% !important;
+      margin: 30px 0 !important;
+      padding: 10px 0 !important;
+    }
+    
+    .IDX-pagination {
+      display: flex !important;
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 8px !important;
+    }
+    
+    .IDX-pagination li {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    
+    .IDX-pagination a,
+    .IDX-pagination span {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-width: 40px !important;
+      height: 40px !important;
+      padding: 0 12px !important;
+      border: 1px solid #e0e0e0 !important;
+      border-radius: 4px !important;
+      background-color: #fff !important;
+      color: #1b4e1f !important;
+      text-decoration: none !important;
+      font-size: 16px !important;
+      font-weight: 500 !important;
+      transition: all 0.2s ease !important;
+    }
+    
+    .IDX-pagination a:hover {
+      background-color: #1b4e1f !important;
+      border-color: #1b4e1f !important;
+      color: #fff !important;
+    }
+    
+    .IDX-pagination li.IDX-active a {
+      background-color: #1b4e1f !important;
+      border-color: #1b4e1f !important;
+      color: #fff !important;
+    }
+    
+    /* Style the ellipsis */
+    .idx-paginator--ellipsis {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-width: 40px !important;
+      height: 40px !important;
+      color: #666 !important;
+    }
+    
     /* Responsive styles */
     @media (max-width: 992px) {
       .IDX-results--cell {

@@ -201,10 +201,12 @@ export default function Home() {
                   <strong className="text-green-900">Thinking About Buying or Selling in Palm Beach? </strong>
                   Linda Olsson has been specializing in Palm Beach luxury properties for over 30 years. Contact us for experience you can TRUST!
                   </p>
-                  <Button variant="outline" size="lg" className="gap-2 text-3xl bg-green-900 text-white px-6 py-8 rounded-lg">
-                    Contact Us
-                    <ArrowRight className="h-5 w-5" />
-                  </Button>
+                  <Link href="/contact">
+                    <Button variant="outline" size="lg" className="gap-2 text-3xl bg-green-900 text-white px-6 py-8 rounded-lg">
+                      Contact Us
+                      <ArrowRight className="h-5 w-5" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -291,7 +293,7 @@ export default function Home() {
             <div className="container mx-auto px-4">
               <div className="text-center mb-16">
                 <h2 className={`text-6xl mb-6 text-green-800 font-bold ${instrumentSerif.className}`}>Search by Neighborhood</h2>
-                <p className="text-gray-600 text-2xl">Luxury Real Estate in South Florida's Most Desirable Locations</p>
+                <p className="text-gray-600 text-2xl">Luxury Real Estate in Palm Beach, Florida</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                 {[
@@ -457,7 +459,7 @@ export default function Home() {
             <div className="container mx-auto px-4">
               <div className="text-center mb-20">
                 <h2 className={`text-6xl font-light mb-6 text-green-800 ${instrumentSerif.className}`}>Featured Properties</h2>
-                <p className="text-gray-600 text-2xl">Discover Our Exclusive Listings</p>
+                <p className="text-gray-600 text-2xl">Specializing in Palm Beach Luxury Properties...From Pieds A' Terres to Oceanfront Estates</p>
               </div>
               <IdxFeaturedProperties />
             </div>
