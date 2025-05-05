@@ -48,17 +48,9 @@ export default function TestimonialsPage() {
                 Testimonials
               </h1>
 
-              <div className="max-w-5xl mx-auto mb-16">
+              <div className="max-w-5xl mx-auto">
                 {/* Hero Image */}
-                <div className="relative w-full h-[400px] mb-12">
-                  <Image
-                    src="/testimonials.jpg"
-                    alt="Palm Beach Clock Tower"
-                    fill
-                    className="object-cover rounded-lg shadow-lg"
-                    priority
-                  />
-                </div>
+              
 
                 {/* Description */}
                 <div className="text-center mb-16">
