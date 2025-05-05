@@ -185,30 +185,7 @@ export default function PropertiesPage() {
           </div>
         </section>
 
-        {/* Quick Stats Section */}
-        <section className="bg-white py-12 border-b">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <p className="text-4xl font-bold text-[#1b4e1f]">150+</p>
-                <p className="text-gray-600">Active Listings</p>
-              </div>
-              <div className="text-center">
-                <p className="text-4xl font-bold text-[#1b4e1f]">$2.5M+</p>
-                <p className="text-gray-600">Average Price</p>
-              </div>
-              <div className="text-center">
-                <p className="text-4xl font-bold text-[#1b4e1f]">25+</p>
-                <p className="text-gray-600">Years Experience</p>
-              </div>
-              <div className="text-center">
-                <p className="text-4xl font-bold text-[#1b4e1f]">98%</p>
-                <p className="text-gray-600">Client Satisfaction</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
+     
         {/* Property Types Statement Section - Replacing the filters */}
         <section className="bg-white py-12 border-b">
           <div className="container mx-auto px-4">
