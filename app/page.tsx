@@ -193,13 +193,13 @@ export default function Home() {
                   />
                 </div>
                 <div className="pt-8">
-                  <h2 className={`text-7xl font-light mb-6 ${instrumentSerif.className}`}>Meet Linda</h2>
+                  <h2 className={`text-7xl font-light mb-6 ${instrumentSerif.className}`}>Thinking About Buying or Selling in Palm Beach?</h2>
                   <p className="text-black mb-8 leading-relaxed text-3xl">
-                  Owner/Broker and Founder of Linda R. Olsson, Inc., Realtor, a boutique real estate firm specializing in Palm Beach luxury properties. With over 30 years of experience in Palm Beach real estate, Linda has been recognized by the Wall Street Journal as one of "America's Best Real Estate Agents."
+                  With over 30 years of experience selling Luxury Homes in Palm Beach, Linda and her associates have gained a vast knowledge of Palm Beach, its people, and its history-knowledge we put to daily use to help our clients.
                   </p>
                   <p className="text-black mb-8 leading-relaxed text-3xl">
-                  <strong className="text-green-900">Thinking About Buying or Selling in Palm Beach? </strong>
-                  Linda Olsson has been specializing in Palm Beach luxury properties for over 30 years. Contact us for experience you can TRUST!
+                  <strong className="text-green-900">We Get Results! </strong>
+                  We take great pride in utilizing our experience, resources, and global connections to unite extraordinary people with extraordinary properties.
                   </p>
                   <Link href="/contact">
                     <Button variant="outline" size="lg" className="gap-2 text-3xl bg-green-900 text-white px-6 py-8 rounded-lg">
