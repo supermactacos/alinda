@@ -167,7 +167,7 @@ export default function Home() {
               </h1>
               <p className={`text-2xl md:text-3xl lg:text-4xl mb-10 text-white ${instrumentSerif.className}`}>Representing buyers and sellers of Palm Beach's Finest Residences since 1989</p>
               <div className="flex justify-center gap-8">
-                <Link href="https://mlspalmbeach.lindaolsson.com/i/featured-properties" className={`px-5 py-5 text-2xl md:text-4xl bg-[#1b4e1f] hover:bg-green-900/90 transition-colors text-white rounded-lg ${instrumentSerif.className} flex items-center`}>
+                <Link href="/properties" className={`px-5 py-5 text-2xl md:text-4xl bg-[#1b4e1f] hover:bg-green-900/90 transition-colors text-white rounded-lg ${instrumentSerif.className} flex items-center`}>
                   Find Your Dream Home Today
                   <ArrowRight className="h-10 w-10 ml-1" />
                 </Link>
@@ -322,8 +322,8 @@ export default function Home() {
                     name: "In Town Condominiums",
                     image: "/condo1.svg?height=600&width=600",
                     description: "Sophisticated Urban Living",
-                    location: "South of the Estate Section along S Ocean Blvd",
-                    details: "The exclusive Sloan's Curve condominium complex. The approximate three mile strip of gorgeous oceanfront properties and coastline.",
+                    location: "Wells Road South to Worth Avenue",
+                    details: "Palm Beach condominiums and co-ops are along South Ocean Boulevard from Royal Poinciana Way South to Worth Avenue, and along Lake Trail",
                   },
                 ].map((location) => (
                   <div key={location.name} className="group flex flex-col h-full">

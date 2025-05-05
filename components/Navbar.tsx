@@ -85,6 +85,9 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
                 <ChevronDown className="h-4 w-4 mt-0.5 group-hover:rotate-180 transition-transform duration-200" />
               </button>
               <div className="absolute top-full left-0 mt-2 w-[300px] bg-green-900 text-white border border-green-800 rounded-md shadow-lg overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <Link href="/properties" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
+                  FEATURED PROPERTIES
+                </Link>
                 <Link href="/north-end-palm-beach-real-estate" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
                   NORTH END HOMES
                 </Link>
@@ -106,6 +109,10 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
                 <Link href="/luxury-palm-beach-condominium-co-op-buildings" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
                   LUXURY PALM BEACH CONDOMINIUM AND CO-OP BUILDINGS
                 </Link>
+                <Link href="https://mlspalmbeach.lindaolsson.com/idx/search/advanced" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
+                  ADVANCED SEARCH
+                </Link>
+                
               </div>
             </div>
             <Link href="/blog" className="text-white text-xl">
@@ -143,6 +150,9 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
               </Link>
               <Link href="/sellers-tips" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
                 SELLERS TIPS
+              </Link>
+              <Link href="/global-reach-local-expertise/why-consider-relocating-to-florida-tax-benefits-wealth-preservation" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
+                TAX BENEFITS & WEALTH PRESERVATION
               </Link>
             </div>
           </div>
