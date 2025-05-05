@@ -165,53 +165,22 @@ export default function PropertiesPage() {
         <Navbar isScrolled={isScrolled} alwaysSolid />
       </div>
       
-      <main className="relative min-h-screen w-full overflow-x-hidden pt-[20px]">
+      <main className="relative min-h-screen w-full overflow-x-hidden pt-32">
         {/* Hero Section */}
-        <section className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
-          <Image
-            src="/northend.jpg"
-            alt="Palm Beach Luxury Properties"
-            fill
-            className="object-cover brightness-50"
-            priority
-          />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-            <h1 className={`text-5xl md:text-6xl lg:text-7xl font-light mb-6 text-center ${instrumentSerif.className}`}>
-              Luxury Properties
-            </h1>
-            <p className="text-xl md:text-2xl text-center max-w-2xl mx-auto px-4">
-              Discover exceptional homes in Palm Beach's most prestigious locations
-            </p>
-          </div>
-        </section>
-
+    
+    
      
         {/* Property Types Statement Section - Replacing the filters */}
         <section className="bg-white py-12 border-b">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className={`text-2xl md:text-3xl font-light mb-8 ${instrumentSerif.className}`}>
-                Discover Our Distinguished Portfolio
-              </h2>
+            <h1 className={`text-7xl md:text-8xl lg:text-9xl font-light mb-3 text-center ${instrumentSerif.className}`}>
+              Palm Beach Homes
+            </h1>
               <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-[#1b4e1f] rounded-full mr-3"></div>
-                  <span className="text-gray-700">Luxury Estates</span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-[#1b4e1f] rounded-full mr-3"></div>
-                  <span className="text-gray-700">Waterfront Properties</span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-[#1b4e1f] rounded-full mr-3"></div>
-                  <span className="text-gray-700">Condominiums</span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-[#1b4e1f] rounded-full mr-3"></div>
-                  <span className="text-gray-700">Historic Mansions</span>
-                </div>
+                
               </div>
-              <p className="text-gray-600 mt-8 max-w-2xl mx-auto">
+              <p className="text-2xl text-gray-600 max-w-2xl mx-auto">
                 From oceanfront estates to luxury condominiums, our portfolio showcases the finest properties Palm Beach has to offer.
               </p>
             </div>
@@ -224,10 +193,10 @@ export default function PropertiesPage() {
             <div className="max-w-7xl mx-auto">
               <div className="mb-12">
                 <h2 className={`text-3xl md:text-4xl font-light mb-4 ${instrumentSerif.className}`}>
-                  Featured Listings
+                  Linda's Top Picks
                 </h2>
                 <p className="text-gray-600">
-                  Explore our curated selection of Palm Beach's finest properties
+                 From luxury estates to hidden gems — Linda’s go-to homes in Palm Beach.
                 </p>
               </div>
 
