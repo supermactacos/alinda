@@ -26,16 +26,16 @@ export function ContactCard({ showLogo = true, showImage = true, className = "",
             <div className="space-y-4">
               <h2 className="text-2xl font-semibold">Linda R. Olsson, Inc., Realtor</h2>
               <div className="space-y-2">
-                <div className="space-y-1">
+                <div className="space-y-1 text-xl">
                   <p>Office: <a href="tel:5618209195" className="text-green-900 hover:underline">(561) 820-9195</a></p>
                   <p>Cell: <a href="tel:5613294044" className="text-green-900 hover:underline">(561) 329-4044</a></p>
                   <p>Email: <a href="mailto:linda@lindaolsson.com" className="text-green-900 hover:underline">linda@lindaolsson.com</a></p>
                 </div>
-                <div className="space-y-1 pt-2">
+                <div className="space-y-1 pt-2 text-xl">
                   <p><Link href="/about-us/our-team" className="text-green-900 hover:underline">Our Team →</Link></p>
                   <p><Link href="/properties" className="text-green-900 hover:underline">View Featured Properties →</Link></p>
                 </div>
-                <div className="pt-2">
+                <div className="pt-2 text-xl">
                   <p>101 Bradley Place</p>
                   <p>Palm Beach, FL 33480</p>
                 </div>

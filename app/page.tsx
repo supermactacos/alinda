@@ -552,9 +552,9 @@ export default function Home() {
                         <Phone className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold mb-1">Phone</h3>
-                        <p className="text-gray-600 mb-1">Office: <a href="tel:5618209195" className="text-[#1b4e1f] hover:underline">(561) 820-9195</a></p>
-                        <p className="text-gray-600">Cell: <a href="tel:5613294044" className="text-[#1b4e1f] hover:underline">(561) 329-4044</a></p>
+                        <h3 className="text-2xl font-semibold mb-1">Phone</h3>
+                        <p className="text-xl text-gray-600 mb-1">Office: <a href="tel:5618209195" className="text-[#1b4e1f] hover:underline">(561) 820-9195</a></p>
+                        <p className="text-xl text-gray-600">Cell: <a href="tel:5613294044" className="text-[#1b4e1f] hover:underline">(561) 329-4044</a></p>
                       </div>
                     </div>
                     
@@ -563,8 +563,8 @@ export default function Home() {
                         <Mail className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold mb-1">Email</h3>
-                        <p className="text-gray-600">
+                        <h3 className="text-2xl font-semibold mb-1">Email</h3>
+                        <p className="text-xl text-gray-600">
                           <a href="mailto:linda@lindaolsson.com" className="text-[#1b4e1f] hover:underline">linda@lindaolsson.com</a>
                         </p>
                       </div>
@@ -575,10 +575,10 @@ export default function Home() {
                         <MapPin className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold mb-1">Office Location</h3>
-                        <p className="text-gray-600 mb-1">Linda R. Olsson, Inc., Realtor</p>
-                        <p className="text-gray-600 mb-1">101 Bradley Place</p>
-                        <p className="text-gray-600">Palm Beach, FL 33480</p>
+                        <h3 className="text-2xl font-semibold mb-1">Office Location</h3>
+                        <p className="text-xl text-gray-600 mb-1">Linda R. Olsson, Inc., Realtor</p>
+                        <p className="text-xl text-gray-600 mb-1">101 Bradley Place</p>
+                        <p className="text-xl text-gray-600">Palm Beach, FL 33480</p>
                       </div>
                     </div>
                   </div>
