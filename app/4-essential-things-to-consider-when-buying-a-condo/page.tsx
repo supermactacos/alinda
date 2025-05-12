@@ -64,7 +64,7 @@ export default function EssentialThingsPage() {
                     Fees & Service Charges:
                   </h2>
                   <p className="text-gray-800 text-xl leading-relaxed">
-                    Condo associations typically charge a variety of fees to cover everything from modest maintenance charges to extravagant luxury amenities. Understand what is included, anticipated large expenditures, and out of the ordinary expenses likely to be incurred. Pay attention to deferred maintenance, planned upgrades, or other potential costs so you are not taken by surprise.
+                    Condo associations typically charge a variety of monthly or quarterly fees to cover everything from modest maintenance charges to extravagant luxury amenities. Understand what is included, and what one can expect in the future to try to anticipate large expenditures, and out of the ordinary expenses likely to be incurred. Obtain the 30 Year Milestone report required, In Florida, milestone inspection reports are required for condominium and cooperative buildings three stories or taller that are 25 or 30 years old (depending on location). These inspections are designed to assess the structural integrity of the building and ensure it is safe. The reports must be prepared by a licensed architect or engineer and submitted to the local building department. Pay attention to deferred maintenance, planned upgrades and assessments, or other potential costs so you are not taken by surprise.
                   </p>
                 </div>
 
