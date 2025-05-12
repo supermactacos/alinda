@@ -165,7 +165,7 @@ export default function Home() {
                 <span className="relative z-10">Linda <span className="text-white">R.</span> Olsson</span>
                 <div className="absolute inset-0 -m-8 -z-[1]"></div>
               </h1>
-              <p className={`text-2xl md:text-3xl lg:text-4xl mb-10 text-white ${instrumentSerif.className}`}>Representing buyers and sellers of Palm Beach's Finest Residences since 1989</p>
+              <p className={`text-2xl md:text-3xl lg:text-4xl mb-10 text-white ${instrumentSerif.className}`}>Representing Buyers and Sellers of Palm Beach's Finest Residences since 1989</p>
               <div className="flex justify-center gap-8">
                 <Link href="/properties" className={`px-5 py-5 text-2xl md:text-4xl bg-[#1b4e1f] hover:bg-green-900/90 transition-colors text-white rounded-lg ${instrumentSerif.className} flex items-center`}>
                   Find Your Dream Home Today
@@ -198,8 +198,9 @@ export default function Home() {
                   With over 30 years of experience selling Luxury Homes in Palm Beach, Linda and her associates have gained a vast knowledge of Palm Beach, its people, and its history-knowledge we put to daily use to help our clients.
                   </p>
                   <p className="text-black mb-8 leading-relaxed text-3xl">
-                  <strong className="text-green-900">We Get Results! </strong>
+                  
                   We take great pride in utilizing our experience, resources, and global connections to unite extraordinary people with extraordinary properties.
+                  <strong className="text-green-900">We Get Results! </strong>
                   </p>
                   <Link href="/contact">
                     <Button variant="outline" size="lg" className="gap-2 text-3xl bg-green-900 text-white px-6 py-8 rounded-lg">
@@ -378,7 +379,7 @@ export default function Home() {
             <div className="container mx-auto px-4">
               <div className="text-center mb-20">
                 <h2 className={`text-6xl font-light mb-6 text-green-800 ${instrumentSerif.className}`}>Search by Price</h2>
-                <p className="text-gray-600 text-2xl">Find your dream home today.</p>
+                <p className="text-gray-600 text-2xl">Find Your Dream Home Today.</p>
               </div>
               
               <div className="space-y-8">

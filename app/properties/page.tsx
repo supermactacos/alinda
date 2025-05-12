@@ -181,7 +181,7 @@ export default function PropertiesPage() {
                 
               </div>
               <p className="text-2xl text-gray-600 max-w-2xl mx-auto">
-                From oceanfront estates to luxury condominiums, our portfolio showcases the finest properties Palm Beach has to offer.
+                From Oceanfront Estates to Luxury Condominiums, Our Portfolio Showcases the Finest Properties Palm Beach has to Offer.
               </p>
             </div>
           </div>
