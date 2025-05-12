@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -44,6 +45,7 @@ export default function RootLayout({
         className={`${instrumentSerif.variable} ${geistMono.variable} font-serif antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
