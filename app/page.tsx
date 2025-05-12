@@ -199,7 +199,7 @@ export default function Home() {
                   </p>
                   <p className="text-black mb-8 leading-relaxed text-3xl">
                   
-                  We take great pride in utilizing our experience, resources, and global connections to unite extraordinary people with extraordinary properties.
+                  We take great pride in utilizing our Experience, Resources, and Global connections to unite Extraordinary people with Extraordinary properties. Contact Us for Experience you can Trust...
                   <strong className="text-green-900">We Get Results! </strong>
                   </p>
                   <Link href="/contact">
