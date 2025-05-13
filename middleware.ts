@@ -11,14 +11,23 @@ export function middleware(request: NextRequest) {
 
   // Check if request is for the IDX wrapper
   if (normalizedPath === '/idx-wrapper/mls-search') {
-    // Always return a 200 OK for any type of request to this exact path
-    return new NextResponse('<!DOCTYPE html><html><head><title>IDX Wrapper Page</title></head><body><div id="idx-results-wrapper"></div></body></html>', {
-      status: 200,
-      headers: {
-        'Content-Type': 'text/html',
-        'Cache-Control': 'no-store',
-      },
-    })
+    // Check if this is an IDX service validation request (based on user agent)
+    const userAgent = request.headers.get('user-agent') || ''
+    if (userAgent.includes('curl') || userAgent.includes('IDX') || userAgent.includes('Vercel')) {
+      // For IDX validation requests, send a minimal 200 response
+      return new NextResponse('<!DOCTYPE html><html><head><title>IDX Wrapper Page</title></head><body><div id="idx-results-wrapper"></div></body></html>', {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/html',
+          'Cache-Control': 'no-store',
+        },
+      })
+    }
+    
+    // For normal browser requests, let the page render normally
+    const response = NextResponse.next()
+    response.headers.set('Cache-Control', 'no-store')
+    return response
   }
   
   // For sub-paths under mls-search (for the actual search UI)
