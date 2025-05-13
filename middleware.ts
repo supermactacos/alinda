@@ -11,9 +11,13 @@ export function middleware(request: NextRequest) {
 
   // Check if request is for the IDX wrapper
   if (normalizedPath === '/idx-wrapper/mls-search') {
-    // Check if this is an IDX service validation request (based on user agent)
+    // Only intercept specific validation checks from IDX
+    // We need to allow normal cURL requests to get the full page with navbar
     const userAgent = request.headers.get('user-agent') || ''
-    if (userAgent.includes('curl') || userAgent.includes('IDX') || userAgent.includes('Vercel')) {
+    
+    // Special case: Only if it's a status check from the IDX admin panel
+    // but NOT when it's a normal cURL request to get content
+    if (userAgent.includes('IDX-Validate') || userAgent.includes('Vercel-Status-Check')) {
       // Format expected by the IDX service according to their specification
       return new NextResponse('<!DOCTYPE html><html><head><title>IDX Wrapper Page</title></head><body><div id="idxStart"></div><div id="idx-results-wrapper"></div><div id="idxStop"></div></body></html>', {
         status: 200,
@@ -24,7 +28,7 @@ export function middleware(request: NextRequest) {
       })
     }
     
-    // For normal browser requests, let the page render normally
+    // For normal browser requests and cURL requests from IDX for content
     const response = NextResponse.next()
     response.headers.set('Cache-Control', 'no-store')
     return response

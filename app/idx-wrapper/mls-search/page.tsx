@@ -28,16 +28,17 @@ export default function MLSSearchPage() {
       </div>
       
       <main className="relative min-h-screen w-full overflow-x-hidden pt-[120px]">
-        {/* IDX Widget Container - Format required by IDX service */}
+        {/* IDX Widget Container */}
         <section className="pt-32 pb-24 bg-white">
           <div className="max-w-[1200px] mx-auto px-4">
+            {/* IDX markers - these need to be visible for cURL to capture them */}
             <div id="idxStart"></div>
             <div id="idx-results-wrapper" style={{ minHeight: "800px" }}></div>
             <div id="idxStop"></div>
           </div>
         </section>
 
-        {/* Load IDX script properly using Next.js Script component */}
+        {/* Load IDX script only for browser visitors, not needed for cURL requests */}
         <Script
           id="idxScript"
           src="//mlspalmbeach.lindaolsson.com/idx/customjs.php"
