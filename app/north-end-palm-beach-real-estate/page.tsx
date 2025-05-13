@@ -170,7 +170,7 @@ export default function NorthEndPage() {
                 
                 <div className="text-gray-800 space-y-6">
                   <p>
-                    The North End offers a variety of one and two story single family homes from the classic Bermuda to British West Indies ranging in size from 2,000 to 10,000 square feet with quiet streets and the best beaches in town.
+                    The North End offers a variety of one and two story single family homes from the classic Bermuda to British West Indies ranging in size from 2,000 to 20,000 square feet with quiet streets and the best beaches in town.
                   </p>
                   <p>
                     Known for its laid back lifestyle, Palm Beachers enjoy getting together at the neighborhood beach cabanas for barbecues and beach parties. The bike trail, which meanders for approximately 7 miles adjacent to the homes along the Intracoastal waterway provides a safe place to walk, ride bikes, and just enjoy the scenery.
