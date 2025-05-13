@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 
 export default function MLSSearchPage() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +16,9 @@ export default function MLSSearchPage() {
 
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Check initial scroll position
+    
+    // Set loaded state
+    setIsLoaded(true);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -40,6 +44,13 @@ export default function MLSSearchPage() {
               position: "relative"
             }}
           >
+            {/* Loading state */}
+            {!isLoaded && (
+              <div className="flex items-center justify-center h-[400px]">
+                <div className="text-lg text-gray-600">Loading MLS Search...</div>
+              </div>
+            )}
+            
             {/* IDX content will be injected here */}
             <div id="idx-results-wrapper"></div>
           </div>
@@ -51,6 +62,7 @@ export default function MLSSearchPage() {
           id="idxScript"
           src="//mlspalmbeach.lindaolsson.com/idx/customjs.php"
           strategy="afterInteractive"
+          onLoad={() => setIsLoaded(true)}
         />
 
         {/* Footer */}

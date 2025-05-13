@@ -4,10 +4,16 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   // Check if the request is for the IDX wrapper page
   if (request.nextUrl.pathname.startsWith('/idx-wrapper/mls-search')) {
-    // Return the response with a 200 status code
-    const response = NextResponse.next()
-    response.headers.set('Cache-Control', 'no-store')
-    return response
+    // Get the current URL
+    const url = request.nextUrl.clone()
+    
+    // Return response with headers
+    return NextResponse.next({
+      headers: {
+        'Cache-Control': 'no-store',
+        'Content-Type': 'text/html',
+      },
+    })
   }
 
   // For all other routes, continue as normal
@@ -15,5 +21,8 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: '/idx-wrapper/mls-search/:path*',
+  matcher: [
+    '/idx-wrapper/mls-search',
+    '/idx-wrapper/mls-search/:path*'
+  ]
 } 
