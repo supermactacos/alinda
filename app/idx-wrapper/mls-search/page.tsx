@@ -1,5 +1,5 @@
 "use client";
-
+// 
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/app/components/Footer"
 import Script from 'next/script'

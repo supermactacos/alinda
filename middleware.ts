@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  
+  //
   // Normalize path by removing trailing slash except for the root path
   const normalizedPath = pathname === '/' 
     ? pathname 
