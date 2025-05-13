@@ -12,6 +12,7 @@ interface BlogPost {
   excerpt: string;
   image?: string;
   featuredImage?: string;
+  isDeleted?: boolean;
 }
 
 interface BlogData {
@@ -34,12 +35,14 @@ export async function GET() {
     const fileContents = fs.readFileSync(dataFilePath, 'utf8');
     const data = JSON.parse(fileContents) as BlogData;
     
-    // Sort posts by date (newest first)
-    const sortedPosts = data.posts.sort((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    });
+    // Filter out deleted posts and sort by date (newest first)
+    const activePosts = data.posts
+      .filter(post => !post.isDeleted)
+      .sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
     
-    return NextResponse.json({ posts: sortedPosts });
+    return NextResponse.json({ posts: activePosts });
   } catch (error) {
     console.error('Error fetching blog posts:', error);
     return NextResponse.json(
@@ -147,6 +150,7 @@ export async function POST(request: Request) {
       excerpt: cleanExcerpt,
       image: thumbnailImage,         // Used for thumbnails in blog listing
       featuredImage: featuredImage,  // Only show at top of post if manually set
+      isDeleted: false,              // Explicitly mark as not deleted
     };
     
     // Add new post to the data
