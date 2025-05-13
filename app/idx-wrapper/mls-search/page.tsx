@@ -5,13 +5,6 @@ import { Footer } from "@/app/components/Footer"
 import Script from 'next/script'
 import { useEffect, useState } from "react"
 
-// Export metadata to ensure proper SEO and status codes
-export const metadata = {
-  title: 'MLS Search | Linda R. Olsson Inc., Realtor',
-  description: 'Search Palm Beach MLS listings',
-}
-
-// Make this a server component
 export default function MLSSearchPage() {
   const [isScrolled, setIsScrolled] = useState(false);
 
