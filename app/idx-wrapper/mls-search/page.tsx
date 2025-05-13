@@ -1,39 +1,12 @@
-import { Metadata } from 'next'
-import { headers } from 'next/headers'
+"use client";
+
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/app/components/Footer"
 import Script from 'next/script'
 import { useEffect, useState } from "react"
 
-export const metadata: Metadata = {
-  title: 'MLS Search | Linda R. Olsson Inc., Realtor',
-  description: 'Search Palm Beach MLS listings',
-}
-
-// Force this page to be server-side rendered
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
-
-// Set response headers
-export async function generateMetadata(): Promise<Metadata> {
-  // This will be merged with the static metadata above
-  return {
-    other: {
-      'Cache-Control': 'no-store',
-      'Content-Type': 'text/html',
-    },
-  }
-}
-
 export default function MLSSearchPage() {
-  return <ClientContent />
-}
-
-// Client component for interactive content
-"use client";
-function ClientContent() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,9 +15,6 @@ function ClientContent() {
 
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Check initial scroll position
-    
-    // Set loaded state
-    setIsLoaded(true);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -70,13 +40,6 @@ function ClientContent() {
               position: "relative"
             }}
           >
-            {/* Loading state */}
-            {!isLoaded && (
-              <div className="flex items-center justify-center h-[400px]">
-                <div className="text-lg text-gray-600">Loading MLS Search...</div>
-              </div>
-            )}
-            
             {/* IDX content will be injected here */}
             <div id="idx-results-wrapper"></div>
           </div>
@@ -88,7 +51,6 @@ function ClientContent() {
           id="idxScript"
           src="//mlspalmbeach.lindaolsson.com/idx/customjs.php"
           strategy="afterInteractive"
-          onLoad={() => setIsLoaded(true)}
         />
 
         {/* Footer */}
