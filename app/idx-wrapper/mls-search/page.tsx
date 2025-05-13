@@ -1,11 +1,37 @@
-"use client";
-
+import { Metadata } from 'next'
+import { headers } from 'next/headers'
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/app/components/Footer"
 import Script from 'next/script'
 import { useEffect, useState } from "react"
 
+export const metadata: Metadata = {
+  title: 'MLS Search | Linda R. Olsson Inc., Realtor',
+  description: 'Search Palm Beach MLS listings',
+}
+
+// Force this page to be server-side rendered
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
+// Set response headers
+export async function generateMetadata(): Promise<Metadata> {
+  // This will be merged with the static metadata above
+  return {
+    other: {
+      'Cache-Control': 'no-store',
+      'Content-Type': 'text/html',
+    },
+  }
+}
+
 export default function MLSSearchPage() {
+  return <ClientContent />
+}
+
+// Client component for interactive content
+"use client";
+function ClientContent() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
