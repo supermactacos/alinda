@@ -2,34 +2,30 @@
 
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/app/components/Footer"
+import Script from 'next/script'
 import { useEffect, useState } from "react"
 
+// Export metadata to ensure proper SEO and status codes
+export const metadata = {
+  title: 'MLS Search | Linda R. Olsson Inc., Realtor',
+  description: 'Search Palm Beach MLS listings',
+}
+
+// Make this a server component
 export default function MLSSearchPage() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial scroll position
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
-
-  // Add IDX script when component mounts
-  useEffect(() => {
-    // Check if there's already an IDX script to avoid duplicates
-    if (!document.getElementById('idxScript')) {
-      const script = document.createElement('script');
-      script.id = 'idxScript';
-      script.src = 'https://yourIDXbroker.idxbroker.com/idx/customjs.php'; // Replace with your actual IDX script URL
-      script.async = true;
-      document.body.appendChild(script);
-    }
   }, []);
 
   return (
@@ -43,8 +39,7 @@ export default function MLSSearchPage() {
         <section className="pt-32 pb-24 bg-white">
           <div 
             id="idxStart" 
-            className="idx-content-container max-w-[1200px] mx-auto"
-            data-idx-widget-id="your-widget-id" // Replace with your actual widget ID if needed
+            className="idx-content-container max-w-[1200px] mx-auto px-4"
             style={{
               minHeight: "800px", 
               width: "100%", 
@@ -57,6 +52,13 @@ export default function MLSSearchPage() {
           </div>
           <div id="idxStop"></div>
         </section>
+
+        {/* Load IDX script properly using Next.js Script component */}
+        <Script
+          id="idxScript"
+          src="//mlspalmbeach.lindaolsson.com/idx/customjs.php"
+          strategy="afterInteractive"
+        />
 
         {/* Footer */}
         <Footer />
