@@ -64,9 +64,7 @@ export default function AboutPage() {
                 <p className="text-gray-800 text-xl leading-relaxed mb-8">
                   With over 30 years of experience selling <Link href="#" className="text-[#1b4e1f] font-semibold hover:underline">Luxury Homes in Palm Beach</Link>, Linda and her associates have gained a vast knowledge of Palm Beach, its people, and its history--knowledge we put to daily use to help our clients. The firm's reputation and success are built upon experience, expertise, and excellent service. Choosing a firm with the commitment, confidentiality, and dedication to represent your best interests makes all the difference. Your privacy is important to us. We take great pride in utilizing our experience, resources, and global connections to unite extraordinary people with extraordinary properties. A Lifelong Commitment.
                 </p>
-                <Link href="#" className="text-[#1b4e1f] font-semibold hover:underline">
-                  Click here to read the full article.
-                </Link>
+              
               </div>
             </div>
           </div>
@@ -85,7 +83,7 @@ export default function AboutPage() {
               Linda Olsson has been specializing in Palm Beach luxury properties for over 30 years. Contact us for experience you can TRUST!
             </p>
             <div className="flex justify-center mb-16">
-              <Link href="https://mlspalmbeach.lindaolsson.com/idx/agent/15878726/linda-r-olsson">
+              <Link href="/properties">
                 <Button className="bg-[#1b4e1f] text-white text-xl py-6 px-12 rounded-full hover:bg-[#1b4e1f]/90">
                   VIEW LISTINGS
                 </Button>
