@@ -14,7 +14,7 @@ export function middleware(request: NextRequest) {
     // Check if this is an IDX service validation request (based on user agent)
     const userAgent = request.headers.get('user-agent') || ''
     if (userAgent.includes('curl') || userAgent.includes('IDX') || userAgent.includes('Vercel')) {
-      // For IDX validation requests, send a minimal 200 response with required IDX tags
+      // Format expected by the IDX service according to their specification
       return new NextResponse('<!DOCTYPE html><html><head><title>IDX Wrapper Page</title></head><body><div id="idxStart"></div><div id="idx-results-wrapper"></div><div id="idxStop"></div></body></html>', {
         status: 200,
         headers: {
