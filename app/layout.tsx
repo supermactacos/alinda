@@ -43,6 +43,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${instrumentSerif.variable} ${geistMono.variable} font-serif antialiased`}
+        suppressHydrationWarning
       >
         {children}
         <Analytics />

@@ -53,40 +53,19 @@ export default function CommunityPage() {
                 Linda Olsson's career in real estate began in Palm Beach when she opened her office in 1989, she fell in love with the real estate profession and the Town of Palm Beach. A Palm Beach resident since 1998, born and raised in Boston, she began her career as a paralegal in Boston, and thereafter in Palm Beach. Linda is committed to the town, she is a community leader, who is committed to giving back to the community, and hopes that her commitment to the Town and its wonderful residents will make a difference.
               </p>
               <p className="text-gray-800 text-xl leading-relaxed mb-6">
-                Linda has always been an active member of the Palm Beach community, she has been a member of the {" "}
-                <Link href="https://palmbeachcivic.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Palm Beach Civic Association</Link> for 29 years, before becoming a Director and a member of the exclusive Executive Committee, the Nominating Committee, the Beautification, and Public Safety Committee. As a resident in Palm Beach, she has been a 27-year member and Patron member of the {" "}
-                <Link href="https://www.palmbeachunitedway.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Palm Beach United Way</Link>, a member and corporate/Friend of the {" "}
-                <Link href="https://fourarts.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Society of The Four Arts</Link>, a Sponsor of the {" "}
-                <Link href="https://www.palmbeachpreservation.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Palm Beach Preservation Foundation</Link>, Patron of the {" "}
-                <Link href="https://flaglermuseum.us/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Flagler Museum</Link>, Sustaining Patron of the {" "}
-                <Link href="https://www.norton.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Norton Museum of Art</Link>, and a supporter of the {" "}
-                <Link href="https://www.palmbeachsymphony.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Palm Beach Symphony</Link>.
+                Linda has always been an active member of the Palm Beach community, she has been a member of the Palm Beach Civic Association for 29 years, before becoming a Director and a member of the exclusive Executive Committee, the Nominating Committee, the Beautification, and Public Safety Committee. As a resident in Palm Beach, she has been a 27-year member and Patron member of the Palm Beach United Way, a member and corporate/Friend of the Society of The Four Arts, a Sponsor of the Palm Beach Preservation Foundation, Patron of the Flagler Museum, Sustaining Patron of the Norton Museum of Art, and a supporter of the Palm Beach Symphony.
               </p>
               <p className="text-gray-800 text-xl leading-relaxed mb-6">
-                A lover of all animals, Linda is a long-time supporter of the {" "}
-                <Link href="https://www.peggyadams.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Peggy Adams Animal Rescue League</Link> in the exclusive Leadership Circle and she supports the Legacy Animal Christmas Ball.
+                A lover of all animals, Linda is a long-time supporter of the Peggy Adams Animal Rescue League in the exclusive Leadership Circle and she supports the Legacy Animal Christmas Ball.
               </p>
               <p className="text-gray-800 text-xl leading-relaxed mb-6">
-                Linda joined Audrey Gruss, founder, and Scott Snyder, Chairman, on their committee for the Inaugural Palm Beach 5K Race of Hope to Defeat Depression. She is a founding member of the {" "}
-                <Link href="http://palmbeachflaglerrotary.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Palm Beach/Flagler Rotary Club</Link>, where she was club secretary and received a Paul Harris Fellow award.
+                Linda joined Audrey Gruss, founder, and Scott Snyder, Chairman, on their committee for the Inaugural Palm Beach 5K Race of Hope to Defeat Depression. She is a founding member of the Palm Beach/Flagler Rotary Club, where she was club secretary and received a Paul Harris Fellow award.
               </p>
               <p className="text-gray-800 text-xl leading-relaxed mb-6">
-                Linda is also a member of the {" "}
-                <Link href="http://www.palmbeachchamber.com/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Palm Beach Chamber of Commerce</Link>, she is a trustee/supporter of the {" "}
-                <Link href="https://www.flaglermuseum.us/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Flagler Museum</Link>, a member of the {" "}
-                <Link href="https://www.norton.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Norton Museum of Art</Link> the {" "}
-                <Link href="https://www.palmbeachdar.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Palm Beach Daughter of the American Revolution (DAR)</Link> and is a sustaining member of {" "}
-                <Link href="https://www.jlpb.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Junior League of the Palm Beaches</Link>, and a Key Club Member of the {" "}
-                <Link href="https://ansg.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Norton Sculpture Gardens</Link>, and has served on the Business and Professional Campaign Committee of the {" "}
-                <Link href="https://www.palmbeachunitedway.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Palm Beach United Way</Link>.
+                Linda is also a member of the Palm Beach Chamber of Commerce, she is a trustee/supporter of the Flagler Museum, a member of the Norton Museum of Art the Palm Beach Daughter of the American Revolution (DAR) and is a sustaining member of Junior League of the Palm Beaches, and a Key Club Member of the Norton Sculpture Gardens, and has served on the Business and Professional Campaign Committee of the Palm Beach United Way.
               </p>
               <p className="text-gray-800 text-xl leading-relaxed mb-8">
-                Professionally Linda served as a Director of the {" "}
-                <Link href="https://www.pbbor.com/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Palm Beach Board of Realtors</Link> from 1995 to 1997. She has been a member of the {" "}
-                <Link href="https://www.pbbor.com/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Palm Beach Board of Realtors</Link> and the {" "}
-                <Link href="http://www.rapb.com/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Regional Board of Realtors</Link> since 1989 and is a Graduate of the Real Estate Institute (GRI). She is a member of the Palm Beach and Regional Multiple Listing Services, the {" "}
-                <Link href="https://www.nar.realtor/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">National Association of Realtors</Link>, and the {" "}
-                <Link href="https://www.floridarealtors.org/" className="text-[#1b4e1f] underline hover:no-underline" target="_blank" rel="noopener noreferrer">Florida Association of Realtors</Link>.
+                Professionally Linda served as a Director of the Palm Beach Board of Realtors from 1995 to 1997. She has been a member of the Palm Beach Board of Realtors and the Regional Board of Realtors since 1989 and is a Graduate of the Real Estate Institute (GRI). She is a member of the Palm Beach and Regional Multiple Listing Services, the National Association of Realtors, and the Florida Association of Realtors.
               </p>
             </div>
           </div>
