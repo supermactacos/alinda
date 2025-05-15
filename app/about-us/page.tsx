@@ -73,9 +73,7 @@ export default function AboutPage() {
         {/* Thinking About Buying or Selling Section */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-8">
-              <p className="text-gray-600 text-lg">Linda Olsson Inc., Realtor</p>
-            </div>
+           
             <h2 className={`text-5xl md:text-6xl text-center font-light mb-6 ${instrumentSerif.className}`}>
               Thinking About Buying or Selling in Palm Beach?
             </h2>
@@ -85,7 +83,7 @@ export default function AboutPage() {
             <div className="flex justify-center mb-16">
               <Link href="/properties">
                 <Button className="bg-[#1b4e1f] text-white text-xl py-6 px-12 rounded-full hover:bg-[#1b4e1f]/90">
-                  VIEW LISTINGS
+                  PREVIEW PALM BEACH HOMES
                 </Button>
               </Link>
             </div>
@@ -101,7 +99,7 @@ export default function AboutPage() {
               </div>
               <div className="flex items-start gap-2">
                 <span className="text-[#8B0000]">•</span>
-                <p>Unrivaled website: <Link href="http://www.LindaOlsson.com" className="text-[#8B0000] hover:underline">www.LindaOlsson.com</Link> providing global internet exposure on over 300 of the most highly visible web sites including Trulia, Zillow, Wall Street Journal.com, Realtor.com, and two MLS services;</p>
+                <p>Unrivaled website providing global internet exposure on over 300 of the most highly visible web sites including Trulia, Zillow, Wall Street Journal.com, Realtor.com, and two MLS services;</p>
               </div>
               <div className="flex items-start gap-2">
                 <span className="text-[#8B0000]">•</span>

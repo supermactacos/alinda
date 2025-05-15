@@ -73,9 +73,7 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
               <Link href="/community-involvement" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
                 GIVING BACK...COMMUNITY INVOLVEMENT
               </Link>
-              <Link href="/palm-beach-florida-real-estate-news" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
-                IN THE NEWS
-              </Link>
+              
             </div>
           </div>
           <div className="flex items-center gap-6">
@@ -116,7 +114,7 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
               </div>
             </div>
             <Link href="/global-reach-local-expertise" className="text-white text-xl">
-              Why Us?
+              Why Choose Us?
             </Link>
             <Link href="/blog" className="text-white text-xl">
               Blog
