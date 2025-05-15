@@ -7,7 +7,7 @@ import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/app/components/Footer"
 import { Logo } from "@/app/components/Logo"
 import { TextAnimate } from "@/components/magicui/text-animate"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
 const instrumentSerif = Instrument_Serif({ 
   weight: ['400'],
@@ -17,6 +17,10 @@ const instrumentSerif = Instrument_Serif({
 export default function ContactPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [formStatus, setFormStatus] = useState("");
+  // Generate a unique form token on component mount
+  const formTokenRef = useRef<string>(Math.random().toString(36).substring(2, 15));
+  // Track form submission time to prevent rapid submissions
+  const lastSubmitTimeRef = useRef<number>(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,15 +37,58 @@ export default function ContactPage() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    
+    // Anti-spam check: Verify time between submissions (at least 3 seconds)
+    const now = Date.now();
+    if (now - lastSubmitTimeRef.current < 3000) {
+      setFormStatus("Please wait a moment before submitting again.");
+      return;
+    }
+    lastSubmitTimeRef.current = now;
+    
     setFormStatus("Sending...");
 
     const formData = new FormData(event.target as HTMLFormElement);
+    
+    // Anti-spam check 1: Honeypot field - if filled, it's likely a bot
+    const honeypot = formData.get('website') as string;
+    if (honeypot && honeypot.length > 0) {
+      // Silent rejection - show success but don't submit
+      setFormStatus("Thank you for your message. We'll get back to you soon!");
+      return;
+    }
+    
+    // Anti-spam check 2: Custom token validation
+    const submittedToken = formData.get('form_token') as string;
+    if (submittedToken !== formTokenRef.current) {
+      setFormStatus("Form validation failed. Please refresh the page and try again.");
+      return;
+    }
+    
+    // Anti-spam check 3: Check for WhatsApp spam in the message content
+    const messageContent = formData.get('message') as string;
+    if (messageContent && typeof messageContent === 'string') {
+      const messageLower = messageContent.toLowerCase();
+      if (messageLower.includes('whatsapp') || messageLower.includes('whats app')) {
+        setFormStatus("Your message has been flagged by our security system. Please try again or contact us by phone for assistance.");
+        return; // Stop submission with a generic security message
+      }
+    }
+    
+    // Include important security fields
     formData.append("access_key", "d91d1c9b-e5f6-47df-abe1-0306225ab6bf");
-
+    // Add a browser fingerprint
+    formData.append("from_page", window.location.href);
+    formData.append("user_agent", navigator.userAgent);
+    
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData
+        body: formData,
+        headers: {
+          'Accept': 'application/json',
+          'Referer': window.location.href,
+        }
       });
 
       const data = await response.json();
@@ -49,6 +96,8 @@ export default function ContactPage() {
       if (data.success) {
         setFormStatus("Thank you for your message. We'll get back to you soon!");
         (event.target as HTMLFormElement).reset();
+        // Generate a new token after successful submission
+        formTokenRef.current = Math.random().toString(36).substring(2, 15);
       } else {
         console.log("Error", data);
         setFormStatus("There was an error sending your message. Please try again.");
@@ -128,9 +177,10 @@ export default function ContactPage() {
                 <h2 className={`text-4xl font-light mb-8 text-[#1b4e1f] ${instrumentSerif.className}`}>
                   Send Us a Message
                 </h2>
+                
                 {formStatus && (
                   <div className={`mb-6 p-4 rounded-md ${
-                    formStatus.includes("error") 
+                    formStatus.includes("error") || formStatus.includes("flagged") || formStatus.includes("failed") || formStatus.includes("wait")
                       ? "bg-red-50 text-red-700 border border-red-200" 
                       : "bg-green-50 text-green-700 border border-green-200"
                   }`}>
@@ -138,6 +188,15 @@ export default function ContactPage() {
                   </div>
                 )}
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Hidden token field for CSRF protection */}
+                  <input type="hidden" name="form_token" value={formTokenRef.current} />
+                  
+                  {/* Honeypot field - should be hidden with CSS and not filled by humans */}
+                  <div className="opacity-0 absolute top-0 left-0 h-0 w-0 -z-10 overflow-hidden">
+                    <label htmlFor="website">Website (Leave this empty)</label>
+                    <input type="text" name="website" id="website" tabIndex={-1} autoComplete="off" />
+                  </div>
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
