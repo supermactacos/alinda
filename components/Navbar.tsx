@@ -113,8 +113,8 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
                 
               </div>
             </div>
-            <Link href="/global-reach-local-expertise" className="text-white text-xl">
-              Why Choose Us?
+            <Link href="/global-reach-local-expertise/why-consider-relocating-to-florida-tax-benefits-wealth-preservation" className="text-white text-xl">
+              Tax Benefits
             </Link>
             <Link href="/blog" className="text-white text-xl">
               Blog
@@ -133,7 +133,7 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
         <div className="hidden md:flex items-center gap-8">
           <div className="relative group">
             <button className="flex items-center gap-1 text-white text-xl group-hover:text-white/90 transition-colors">
-              Tax Benefits
+              Why Choose Us?
               <ChevronDown className="h-4 w-4 mt-0.5 group-hover:rotate-180 transition-transform duration-200" />
             </button>
             <div className="absolute top-full right-0 mt-2 w-[300px] bg-green-900 text-white border border-green-800 rounded-md shadow-lg overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
@@ -152,9 +152,7 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
               <Link href="/sellers-tips" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
                 SELLERS TIPS
               </Link>
-              <Link href="/global-reach-local-expertise/why-consider-relocating-to-florida-tax-benefits-wealth-preservation" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
-                TAX BENEFITS & WEALTH PRESERVATION
-              </Link>
+        
             </div>
           </div>
           <Link href="/market-reports" className="text-white text-xl">
