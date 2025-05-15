@@ -60,9 +60,7 @@ export default function TestimonialsPage() {
                   <h3 className={`text-2xl mb-6 text-[#1b4e1f]`}>
                     Contact us for Experience you can Trust!
                   </h3>
-                  <p className="text-gray-800 text-xl leading-relaxed mb-4">
-                    Specializing in Palm Beach Luxury Homes for Over 30 Years... Recognized by the Wall Street Journal as one of "America's Best Real Estate Agents", Ranked 26th in the State of Florida, known for professionalism, superior customer service, and unrivaled website. We utilize our experience, resources, and global connections to unite extraordinary people with extraordinary properties.
-                  </p>
+                  
                   <p className="text-gray-800 text-xl leading-relaxed">
                     With a strong commitment to our loyal customers, Linda Olsson built her iconic real estate firm "one satisfied customer at a time" and the firm's clients don't hesitate to recommend Linda and her firm to their friends, family, and associates...
                   </p>

@@ -115,6 +115,9 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
                 
               </div>
             </div>
+            <Link href="/global-reach-local-expertise" className="text-white text-xl">
+              Why Us?
+            </Link>
             <Link href="/blog" className="text-white text-xl">
               Blog
             </Link>

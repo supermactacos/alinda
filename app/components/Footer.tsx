@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div>
             <h3 className="text-2xl font-light mb-5 text-pink-200">Linda R. Olsson</h3>
-            <p className="text-white text-lg">Luxury Real Estate in Palm Beach and Beyond</p>
+            <p className="text-white text-lg">Luxury Real Estate in Palm Beach,FL</p>
             <div className="flex space-x-4 mt-5">
               <a href="https://www.facebook.com/LindaOlssonRealtor" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <Facebook className="w-6 h-6 text-white hover:text-white transition-colors" />
@@ -31,7 +31,7 @@ export function Footer() {
                 <Link href="/about">About</Link>
               </li>
               <li>
-                <Link href="https://mlspalmbeach.lindaolsson.com/i/featured-properties">Featured Properties</Link>
+                <Link href="/properties">Featured Properties</Link>
               </li>
               <li>
                 <Link href="/blog">Blog</Link>
@@ -69,7 +69,7 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t border-white/10 mt-16 pt-10 text-center text-white text-lg">
-          <p>© 2024 Linda R. Olsson. All rights reserved.</p>
+          <p>© 2025 Linda R. Olsson. All rights reserved.</p>
         </div>
         
         {/* Disclaimer text */}
