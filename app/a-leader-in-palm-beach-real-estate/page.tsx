@@ -55,9 +55,9 @@ export default function LeaderPage() {
                 Her personal knowledge of the community cannot be replicated by national firms. Realizing there was a demand for personalized, professional real estate service, in 1989 Linda opened the firm specializing in Palm Beach Luxury Properties. Our successful track record is a testament to our commitment to buyers and sellers. Our customers do not hesitate to recommend us, please take a moment of your time to read our wonderful testimonials from our loyal clients.
               </p>
               <p className="text-gray-800 text-xl leading-relaxed mb-8">
-                We are committed to our customers... We guide buyers and sellers through the sale or selection of their home, condominium, or land with professionalism! Whether you are buying or selling let us put our expertise to work for you! A Lifelong Commitment, <Link href="#" className="text-[#1b4e1f] font-semibold hover:underline">Click here to read the full article</Link>.
+                We are committed to our customers... We guide buyers and sellers through the sale or selection of their home, condominium, or land with professionalism! Whether you are buying or selling let us put our expertise to work for you! A Lifelong Commitment, <Link href="/about-us" className="text-[#1b4e1f] font-semibold hover:underline">Click here to read the full article</Link>.
               </p>
-              <Link href="#" className="text-[#1b4e1f] font-semibold hover:underline block mb-6">
+              <Link href="/testimonials" className="text-[#1b4e1f] font-semibold hover:underline block mb-6">
                 Click here to view our testimonials from satisfied customers.
               </Link>
             </div>
