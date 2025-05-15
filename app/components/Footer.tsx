@@ -71,6 +71,13 @@ export function Footer() {
         <div className="border-t border-white/10 mt-16 pt-10 text-center text-white text-lg">
           <p>© 2024 Linda R. Olsson. All rights reserved.</p>
         </div>
+        
+        {/* Disclaimer text */}
+        <div className="mt-8 text-white/70 text-xs leading-relaxed">
+          <p>
+            DISCLAIMER: The material and information contained on this website in large part consists of information that we consider reliable, due to the third party sources of that data, we cannot warrant the completeness or accuracy of it and caution against any reliance upon such without independent verification. The properties featured on this web site, and those offered by other agents through the Multiple Listing Services provided by the IDX System are subject to errors, omissions, changes, including price, or withdrawal without notice. Linda R. Olsson, Inc., is not liable to any user of this website or the information contained within the site. All users use the site at their own risk, and they are solely responsible for independently confirming the accuracy and determining the reliability of data. No warranty of any kind, implied, expressed or statutory is given with respect to the contents of this website or to its hyperlinks to other internet resources such as the Multiple Listing Service IDX and other sources. Linda Olsson, Inc., makes no claims, promises or guarantees as it relates to the information and content of this website, including the graphics, information, data, services and the accuracy, content, and data provided herein. By use of this website, the user agrees to having read the disclaimers and accepts the above terms and conditions of use as they apply therein.
+          </p>
+        </div>
       </div>
     </footer>
   )
