@@ -63,7 +63,7 @@ export default function ConciergePage() {
               <p className="text-gray-800 text-xl leading-relaxed mb-8">
                 We are committed to you... we use our best efforts to locate a property that suits your criteria, in the right location, and at the right price. We don't just talk about excellence, we deliver! Linda Olsson, broker/owner is a tireless advocate for the success of our client's real estate sales or purchases. Our commitment gives us confidence and comfort in knowing that when you become a Seller you will contact us to list, market, and sell the property, and we will be excited about the mandate. The satisfaction of every customer, from the beginning to the end of each transaction is the result of our patience, hard work, and diligence and is the mainstay of our firm reputation since the founding of the firm in 1989. Contact us for Experience you can Trust... We get Results!
               </p>
-              <Link href="/testimonials" className="text-[#1b4e1f] font-semibold hover:underline block mb-6">
+              <Link href="/testimonials" className="text-2xl text-[#1b4e1f] font-semibold hover:underline block mb-6">
                 Click here to view our testimonials from satisfied customers.
               </Link>
             </div>
