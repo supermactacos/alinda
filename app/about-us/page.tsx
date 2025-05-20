@@ -78,7 +78,7 @@ export default function AboutPage() {
               Thinking About Buying or Selling in Palm Beach?
             </h2>
             <p className="text-center text-xl mb-8">
-              Linda Olsson has been specializing in Palm Beach luxury properties for over 30 years. Contact us for experience you can TRUST!
+              Linda Olsson has been Specializing in Palm Beach Luxury Properties for over 30 Years. Contact Us for Experience You can TRUST! 
             </p>
             <div className="flex justify-center mb-16">
               <Link href="/properties">

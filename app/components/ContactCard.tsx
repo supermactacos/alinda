@@ -36,7 +36,7 @@ export function ContactCard({ showLogo = true, showImage = true, className = "",
                   <p><Link href="/properties" className="text-green-900 hover:underline">View Featured Properties →</Link></p>
                 </div>
                 <div className="pt-2 text-xl">
-                  <p>101 Bradley Place</p>
+                  <p>211A Royal Poinciana Way</p>
                   <p>Palm Beach, FL 33480</p>
                 </div>
               </div>
