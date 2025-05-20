@@ -63,7 +63,7 @@ export function Footer() {
             <ul className="space-y-3 text-white text-lg">
               <li>(561) 820-9195</li>
               <li>linda@lindaolsson.com</li>
-              <li>101 Bradley Place</li>
+              <li>211A Royal Poinciana Way</li>
               <li>Palm Beach, FL 33480</li>
             </ul>
           </div>
