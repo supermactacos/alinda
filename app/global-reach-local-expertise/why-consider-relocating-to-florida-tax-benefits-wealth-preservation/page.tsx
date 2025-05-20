@@ -97,14 +97,7 @@ export default function FloridaTaxBenefitsPage() {
                   We are delighted to share this informative brochure to you…Why Consider Florida? The Sunshine State offers a host of financial and tax benefits… Article provided by Wilmington Trust, NA. For further information, please contact:
                 </p>
                 
-                <div className="text-gray-800 font-semibold">
-                  <p>David S. Fritz</p>
-                  <p>Managing Director</p>
-                  <p>Wealth Advisory</p>
-                  <p>Phone: 561-630-2112</p>
-                  <p>Office: 800-814-3429</p>
-                  <p>Email: dfritz@wilmingtontrust.com</p>
-                </div>
+              
               </div>
             </div>
           </div>
