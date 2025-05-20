@@ -165,7 +165,7 @@ export default function InTownPage() {
                   In Town Palm Beach Real Estate: Wells Road South to Worth Avenue
                 </h2>
                 <p className="text-gray-800 mb-6">
-                  Palm Beach condos and Single Family Homes, Waterfront: Ocean and Intracoastal.
+                  Palm Beach Condos and Single Family Homes, Waterfront: Ocean and Intracoastal.
                 </p>
                 
                 <div className="text-gray-800 space-y-6">

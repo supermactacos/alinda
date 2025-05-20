@@ -29,7 +29,7 @@ export function ContactCard({ showLogo = true, showImage = true, className = "",
                 <div className="space-y-1 text-xl">
                   <p>Office: <a href="tel:5618209195" className="text-green-900 hover:underline">(561) 820-9195</a></p>
                   <p>Cell: <a href="tel:5613294044" className="text-green-900 hover:underline">(561) 329-4044</a></p>
-                  <p>Email: <a href="mailto:linda@lindaolsson.com" className="text-green-900 hover:underline">linda@lindaolsson.com</a></p>
+                  <p>Email: <a href="mailto:linda@lindaolsson.com" className="text-green-900 hover:underline">Linda@LindaOlsson.com</a></p>
                 </div>
                 <div className="space-y-1 pt-2 text-xl">
                   <p><Link href="/about-us/our-team" className="text-green-900 hover:underline">Our Team →</Link></p>
