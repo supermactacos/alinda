@@ -565,7 +565,7 @@ export default function Home() {
                       <div>
                         <h3 className="text-2xl font-semibold mb-1">Email</h3>
                         <p className="text-xl text-gray-600">
-                          <a href="mailto:linda@lindaolsson.com" className="text-[#1b4e1f] hover:underline">linda@lindaolsson.com</a>
+                          <a href="mailto:linda@lindaolsson.com" className="text-[#1b4e1f] hover:underline">Linda@LindaOlsson.com</a>
                         </p>
                       </div>
                     </div>
@@ -577,7 +577,7 @@ export default function Home() {
                       <div>
                         <h3 className="text-2xl font-semibold mb-1">Office Location</h3>
                         <p className="text-xl text-gray-600 mb-1">Linda R. Olsson, Inc., Realtor</p>
-                        <p className="text-xl text-gray-600 mb-1">101 Bradley Place</p>
+                        <p className="text-xl text-gray-600 mb-1">211A Royal Poinciana Way</p>
                         <p className="text-xl text-gray-600">Palm Beach, FL 33480</p>
                       </div>
                     </div>
