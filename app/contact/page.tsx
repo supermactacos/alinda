@@ -281,7 +281,7 @@ export default function ContactPage() {
             </h2>
             <div className="h-[400px] w-full rounded-lg overflow-hidden shadow-lg">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3567.5599058451694!2d-80.03733562405648!3d26.620826676504723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d6e9a046102f%3A0xe21ecd7e8655ec30!2s101%20Bradley%20Pl%2C%20Palm%20Beach%2C%20FL%2033480%2C%20USA!5e0!3m2!1sen!2sus!4v1689355460973!5m2!1sen!2sus" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3567.4095637728366!2d-80.03697362424823!3d26.624694433469255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d6f30d7d45c5%3A0x97c8c6e218ffa012!2s211A%20Royal%20Poinciana%20Way%2C%20Palm%20Beach%2C%20FL%2033480!5e0!3m2!1sen!2sus!4v1715731518826!5m2!1sen!2sus"
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
@@ -289,6 +289,9 @@ export default function ContactPage() {
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
+            </div>
+            <div className="text-center mt-2 text-gray-600">
+              <p><strong>Our exact location: 211A Royal Poinciana Way</strong>, Palm Beach, FL 33480</p>
             </div>
           </div>
         </section>

@@ -195,9 +195,7 @@ export default function PropertiesPage() {
                 <h2 className={`text-3xl md:text-4xl font-light mb-4 ${instrumentSerif.className}`}>
                   Linda's Top Picks
                 </h2>
-                <p className="text-gray-600">
-                 From luxury estates to hidden gems — Linda’s go-to homes in Palm Beach.
-                </p>
+              
               </div>
 
               <div className="relative">

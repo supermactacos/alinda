@@ -42,76 +42,76 @@ export default function MarketReportsPage() {
   // Group reports by year with PDF file paths
   const reportsByYear: Record<string, Report[]> = {
     "2025": [
-      { name: "4th Quarter Report 2025", pdfPath: `/market_reports/${getPdfFilename("2025", "4th")}`, available: false },
-      { name: "3rd Quarter Report 2025", pdfPath: `/market_reports/${getPdfFilename("2025", "3rd")}`, available: false },
+      { name: "1st Quarter Report 2025", pdfPath: `/market_reports/${getPdfFilename("2025", "1st")}`, available: true },
       { name: "2nd Quarter Report 2025", pdfPath: `/market_reports/${getPdfFilename("2025", "2nd")}`, available: false },
-      { name: "1st Quarter Report 2025", pdfPath: `/market_reports/${getPdfFilename("2025", "1st")}`, available: true }
+      { name: "3rd Quarter Report 2025", pdfPath: `/market_reports/${getPdfFilename("2025", "3rd")}`, available: false },
+      { name: "4th Quarter Report 2025", pdfPath: `/market_reports/${getPdfFilename("2025", "4th")}`, available: false }
     ],
     "2024": [
-      { name: "4th Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "4th")}` },
-      { name: "3rd Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "3rd")}` },
+      { name: "1st Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "1st")}` },
       { name: "2nd Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "2nd")}` },
-      { name: "1st Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "1st")}` }
+      { name: "3rd Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "3rd")}` },
+      { name: "4th Quarter Report 2024", pdfPath: `/market_reports/${getPdfFilename("2024", "4th")}` }
     ],
     "2023": [
-      { name: "4th Quarter Report 2023", pdfPath: `/market_reports/${getPdfFilename("2023", "4th")}` },
-      { name: "3rd Quarter Report 2023", pdfPath: `/market_reports/${getPdfFilename("2023", "3rd")}` },
+      { name: "1st Quarter Report 2023", pdfPath: `/market_reports/${getPdfFilename("2023", "1st")}` },
       { name: "2nd Quarter Report 2023", pdfPath: `/market_reports/${getPdfFilename("2023", "2nd")}` },
-      { name: "1st Quarter Report 2023", pdfPath: `/market_reports/${getPdfFilename("2023", "1st")}` }
+      { name: "3rd Quarter Report 2023", pdfPath: `/market_reports/${getPdfFilename("2023", "3rd")}` },
+      { name: "4th Quarter Report 2023", pdfPath: `/market_reports/${getPdfFilename("2023", "4th")}` }
     ],
     "2022": [
-      { name: "4th Quarter Report 2022", pdfPath: `/market_reports/${getPdfFilename("2022", "4th")}` },
-      { name: "3rd Quarter Report 2022", pdfPath: `/market_reports/${getPdfFilename("2022", "3rd")}` },
+      { name: "1st Quarter Report 2022", pdfPath: `/market_reports/${getPdfFilename("2022", "1st")}` },
       { name: "2nd Quarter Report 2022", pdfPath: `/market_reports/${getPdfFilename("2022", "2nd")}` },
-      { name: "1st Quarter Report 2022", pdfPath: `/market_reports/${getPdfFilename("2022", "1st")}` }
+      { name: "3rd Quarter Report 2022", pdfPath: `/market_reports/${getPdfFilename("2022", "3rd")}` },
+      { name: "4th Quarter Report 2022", pdfPath: `/market_reports/${getPdfFilename("2022", "4th")}` }
     ],
     "2021": [
-      { name: "4th Quarter Report 2021", pdfPath: `/market_reports/${getPdfFilename("2021", "4th")}` },
-      { name: "3rd Quarter Report 2021", pdfPath: `/market_reports/${getPdfFilename("2021", "3rd")}` },
+      { name: "1st Quarter Report 2021", pdfPath: `/market_reports/${getPdfFilename("2021", "1st")}` },
       { name: "2nd Quarter Report 2021", pdfPath: `/market_reports/${getPdfFilename("2021", "2nd")}` },
-      { name: "1st Quarter Report 2021", pdfPath: `/market_reports/${getPdfFilename("2021", "1st")}` }
+      { name: "3rd Quarter Report 2021", pdfPath: `/market_reports/${getPdfFilename("2021", "3rd")}` },
+      { name: "4th Quarter Report 2021", pdfPath: `/market_reports/${getPdfFilename("2021", "4th")}` }
     ],
     "2020": [
-      { name: "4th Quarter Report 2020", pdfPath: `/market_reports/${getPdfFilename("2020", "4th")}` },
-      { name: "3rd Quarter Report 2020", pdfPath: `/market_reports/${getPdfFilename("2020", "3rd")}` },
+      { name: "1st Quarter Report 2020", pdfPath: `/market_reports/${getPdfFilename("2020", "1st")}` },
       { name: "2nd Quarter Report 2020", pdfPath: `/market_reports/${getPdfFilename("2020", "2nd")}` },
-      { name: "1st Quarter Report 2020", pdfPath: `/market_reports/${getPdfFilename("2020", "1st")}` }
+      { name: "3rd Quarter Report 2020", pdfPath: `/market_reports/${getPdfFilename("2020", "3rd")}` },
+      { name: "4th Quarter Report 2020", pdfPath: `/market_reports/${getPdfFilename("2020", "4th")}` }
     ],
     "2019": [
-      { name: "4th Quarter Report 2019", pdfPath: `/market_reports/${getPdfFilename("2019", "4th")}` },
-      { name: "3rd Quarter Report 2019", pdfPath: `/market_reports/${getPdfFilename("2019", "3rd")}` },
+      { name: "1st Quarter Report 2019", pdfPath: `/market_reports/${getPdfFilename("2019", "1st")}` },
       { name: "2nd Quarter Report 2019", pdfPath: `/market_reports/${getPdfFilename("2019", "2nd")}` },
-      { name: "1st Quarter Report 2019", pdfPath: `/market_reports/${getPdfFilename("2019", "1st")}` }
+      { name: "3rd Quarter Report 2019", pdfPath: `/market_reports/${getPdfFilename("2019", "3rd")}` },
+      { name: "4th Quarter Report 2019", pdfPath: `/market_reports/${getPdfFilename("2019", "4th")}` }
     ],
     "2018": [
-      { name: "4th Quarter Report 2018", pdfPath: `/market_reports/${getPdfFilename("2018", "4th")}` },
-      { name: "3rd Quarter Report 2018", pdfPath: `/market_reports/${getPdfFilename("2018", "3rd")}` },
+      { name: "1st Quarter Report 2018", pdfPath: `/market_reports/${getPdfFilename("2018", "1st")}` },
       { name: "2nd Quarter Report 2018", pdfPath: `/market_reports/${getPdfFilename("2018", "2nd")}` },
-      { name: "1st Quarter Report 2018", pdfPath: `/market_reports/${getPdfFilename("2018", "1st")}` }
+      { name: "3rd Quarter Report 2018", pdfPath: `/market_reports/${getPdfFilename("2018", "3rd")}` },
+      { name: "4th Quarter Report 2018", pdfPath: `/market_reports/${getPdfFilename("2018", "4th")}` }
     ],
     "2017": [
-      { name: "4th Quarter Report 2017", pdfPath: `/market_reports/${getPdfFilename("2017", "4th")}` },
-      { name: "3rd Quarter Report 2017", pdfPath: `/market_reports/${getPdfFilename("2017", "3rd")}` },
+      { name: "1st Quarter Report 2017", pdfPath: `/market_reports/${getPdfFilename("2017", "1st")}` },
       { name: "2nd Quarter Report 2017", pdfPath: `/market_reports/${getPdfFilename("2017", "2nd")}` },
-      { name: "1st Quarter Report 2017", pdfPath: `/market_reports/${getPdfFilename("2017", "1st")}` }
+      { name: "3rd Quarter Report 2017", pdfPath: `/market_reports/${getPdfFilename("2017", "3rd")}` },
+      { name: "4th Quarter Report 2017", pdfPath: `/market_reports/${getPdfFilename("2017", "4th")}` }
     ],
     "2016": [
-      { name: "4th Quarter Report 2016", pdfPath: `/market_reports/${getPdfFilename("2016", "4th")}` },
-      { name: "3rd Quarter Report 2016", pdfPath: `/market_reports/${getPdfFilename("2016", "3rd")}` },
+      { name: "1st Quarter Report 2016", pdfPath: `/market_reports/${getPdfFilename("2016", "1st")}` },
       { name: "2nd Quarter Report 2016", pdfPath: `/market_reports/${getPdfFilename("2016", "2nd")}` },
-      { name: "1st Quarter Report 2016", pdfPath: `/market_reports/${getPdfFilename("2016", "1st")}` }
+      { name: "3rd Quarter Report 2016", pdfPath: `/market_reports/${getPdfFilename("2016", "3rd")}` },
+      { name: "4th Quarter Report 2016", pdfPath: `/market_reports/${getPdfFilename("2016", "4th")}` }
     ],
     "2015": [
-      { name: "4th Quarter Report 2015", pdfPath: `/market_reports/${getPdfFilename("2015", "4th")}` },
-      { name: "3rd Quarter Report 2015", pdfPath: `/market_reports/${getPdfFilename("2015", "3rd")}` },
+      { name: "1st Quarter Report 2015", pdfPath: `/market_reports/${getPdfFilename("2015", "1st")}` },
       { name: "2nd Quarter Report 2015", pdfPath: `/market_reports/${getPdfFilename("2015", "2nd")}` },
-      { name: "1st Quarter Report 2015", pdfPath: `/market_reports/${getPdfFilename("2015", "1st")}` }
+      { name: "3rd Quarter Report 2015", pdfPath: `/market_reports/${getPdfFilename("2015", "3rd")}` },
+      { name: "4th Quarter Report 2015", pdfPath: `/market_reports/${getPdfFilename("2015", "4th")}` }
     ],
     "2014": [
-      { name: "4th Quarter Report 2014", pdfPath: `/market_reports/${getPdfFilename("2014", "4th")}` },
-      { name: "3rd Quarter Report 2014", pdfPath: `/market_reports/${getPdfFilename("2014", "3rd")}` },
+      { name: "1st Quarter Report 2014", pdfPath: `/market_reports/${getPdfFilename("2014", "1st")}` },
       { name: "2nd Quarter Report 2014", pdfPath: `/market_reports/${getPdfFilename("2014", "2nd")}` },
-      { name: "1st Quarter Report 2014", pdfPath: `/market_reports/${getPdfFilename("2014", "1st")}` }
+      { name: "3rd Quarter Report 2014", pdfPath: `/market_reports/${getPdfFilename("2014", "3rd")}` },
+      { name: "4th Quarter Report 2014", pdfPath: `/market_reports/${getPdfFilename("2014", "4th")}` }
     ]
   };
 
