@@ -93,7 +93,7 @@ export default function TeamPage() {
             </h1>
 
             {/* Linda's Contact Card */}
-            <ContactCard className="mb-12" />
+            <ContactCard className="mb-12" showHeading={false} />
 
             {/* Team Members */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

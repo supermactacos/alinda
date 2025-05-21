@@ -12,15 +12,18 @@ interface ContactCardProps {
   showImage?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  showHeading?: boolean;
 }
 
-export function ContactCard({ showLogo = true, showImage = true, className = "", style }: ContactCardProps) {
+export function ContactCard({ showLogo = true, showImage = true, className = "", style, showHeading = true }: ContactCardProps) {
   return (
     <section className={`pt-24 pb-24 bg-white ${className}`} style={style}>
       <div className="container mx-auto px-4">
-        <h2 className={`text-5xl md:text-6xl text-center font-light mb-6 ${instrumentSerif.className}`}>
-          Contact Us Today
-        </h2>
+        {showHeading && (
+          <h2 className={`text-5xl md:text-6xl text-center font-light mb-6 ${instrumentSerif.className}`}>
+            Contact Us Today
+          </h2>
+        )}
         <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8 border border-gray-200">
           <div className="flex justify-between items-start gap-8">
             <div className="space-y-4">

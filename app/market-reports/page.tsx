@@ -188,16 +188,7 @@ export default function MarketReportsPage() {
             </h1>
 
             <div className="max-w-2xl mx-auto mb-16">
-              {/* Video Section */}
-              <div className="relative w-full aspect-video mb-12">
-                <iframe
-                  src="https://www.youtube.com/embed/JTgvs02yZEI"
-                  title="Palm Beach Real Estate"
-                  className="absolute inset-0 w-full h-full rounded-lg shadow-lg"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
+              
 
               {/* Description */}
               <div className="text-center mb-12">

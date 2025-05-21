@@ -92,13 +92,7 @@ export default function FloridaTaxBenefitsPage() {
                 Over the past 30 years we have many local connections to other professionals including, tax advisors, wealth management firms, local bankers, estate management firms, architects, contractors, painters, and others that we are delighted to share with you. As your real estate Professional, it is important to us that our customers have the information they require to make an informative decision as it relates to their real estate needs.
               </p>
 
-              <div className="bg-gray-100 p-6 rounded-lg shadow-md mb-8">
-                <p className="text-gray-800 text-xl leading-relaxed mb-4">
-                  We are delighted to share this informative brochure to you…Why Consider Florida? The Sunshine State offers a host of financial and tax benefits… Article provided by Wilmington Trust, NA. For further information, please contact:
-                </p>
-                
               
-              </div>
             </div>
           </div>
         </section>
