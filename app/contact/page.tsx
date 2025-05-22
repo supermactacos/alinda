@@ -281,7 +281,7 @@ export default function ContactPage() {
             </h2>
             <div className="h-[400px] w-full rounded-lg overflow-hidden shadow-lg">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3567.4095637728366!2d-80.03697362424823!3d26.624694433469255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d6f30d7d45c5%3A0x97c8c6e218ffa012!2s211A%20Royal%20Poinciana%20Way%2C%20Palm%20Beach%2C%20FL%2033480!5e0!3m2!1sen!2sus!4v1715731518826!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3567.4095637728366!2d-80.03697362424823!3d26.624694433469255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d6e9dcd08c9f%3A0xdd8debdb153b1325!2sLinda%20R.%20Olsson%2C%20Inc.%2C%20Realtor!5e0!3m2!1sen!2sus!4v1726347025566!5m2!1sen!2sus"
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 

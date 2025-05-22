@@ -160,31 +160,31 @@ export default function NewsPage() {
                 In The News
               </h1>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              <div className="space-y-12 max-w-4xl mx-auto">
                 {newsItems.map((item, index) => (
-                  <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl flex flex-col h-[450px]">
+                  <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl flex flex-col w-full">
                     <div 
-                      className="relative aspect-[3/4] overflow-hidden flex-grow cursor-pointer"
+                      className="relative w-full overflow-hidden cursor-pointer"
                       onClick={() => openModal(index)}
                     >
                       <img
                         src={item.image}
                         alt={item.alt}
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        className="w-full object-contain transition-transform duration-300 hover:scale-105 max-h-[800px]"
                       />
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">
+                    <div className="p-8 flex flex-col items-center text-center">
+                      <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
                         {item.title}
                       </h3>
                       <Link 
                         href={item.url}
-                        className="inline-flex items-center text-[#1b4e1f] hover:text-[#143917] transition-colors"
+                        className="inline-flex items-center text-[#1b4e1f] hover:text-[#143917] transition-colors text-lg"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         Read More
-                        <ArrowRight className="ml-2 h-4 w-4" />
+                        <ArrowRight className="ml-2 h-5 w-5" />
                       </Link>
                     </div>
                   </div>

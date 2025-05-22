@@ -107,6 +107,9 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
                 <Link href="/luxury-palm-beach-condominium-co-op-buildings" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
                   LUXURY PALM BEACH CONDOMINIUM AND CO-OP BUILDINGS
                 </Link>
+                <Link href="/palm-beach-florida-real-estate-news" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
+                  IN THE NEWS
+                </Link>
                 <Link href="https://mlspalmbeach.lindaolsson.com/idx/search/advanced" className="block text-lg py-3 px-4 hover:bg-green-800 transition-colors cursor-pointer">
                   ADVANCED SEARCH
                 </Link>
@@ -205,6 +208,7 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
                 <Link href="/in-town-condos" className="text-white text-lg" onClick={toggleMenu}>IN-TOWN CONDOS</Link>
                 <Link href="/sloans-curve-south-to-manalapan" className="text-white text-lg" onClick={toggleMenu}>SLOANS CURVE SOUTH TO MANALAPAN CONDOMINIUMS</Link>
                 <Link href="/luxury-palm-beach-condominium-co-op-buildings" className="text-white text-lg" onClick={toggleMenu}>LUXURY PALM BEACH CONDOMINIUM AND CO-OP BUILDINGS</Link>
+
               </div>
             </div>
 

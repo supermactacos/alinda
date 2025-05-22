@@ -105,7 +105,7 @@ export default function GlobalReachPage() {
               </p>
 
               <div className="text-center">
-                <Link href="/testimonials" className="text-[#1b4e1f] underline hover:no-underline text-xl">
+                <Link href="/testimonials" className="text-[#1b4e1f] hover:underline text-xl">
                   Click here to view our testimonials from satisfied customers.
                 </Link>
               </div>
