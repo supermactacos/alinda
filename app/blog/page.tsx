@@ -39,7 +39,14 @@ export default function BlogPage() {
       try {
         const response = await fetch("/api/blog");
         const data = await response.json();
-        setPosts(data.posts);
+        
+        // Filter posts to only show those from 2023 onwards
+        const filteredPosts = data.posts.filter((post: BlogPost) => {
+          const postDate = new Date(post.date);
+          return postDate.getFullYear() >= 2023;
+        });
+        
+        setPosts(filteredPosts);
       } catch (error) {
         console.error("Error fetching blog posts:", error);
       } finally {
