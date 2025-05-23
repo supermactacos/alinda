@@ -165,7 +165,7 @@ export default function Home() {
                 <span className="relative z-10">Linda <span className="text-white">R.</span> Olsson</span>
                 <div className="absolute inset-0 -m-8 -z-[1]"></div>
               </h1>
-              <p className={`text-2xl md:text-3xl lg:text-4xl mb-10 text-white ${instrumentSerif.className}`}>For Over 30 Years..."Specializing in Palm Beach Luxury Properties"</p>
+              <p className={`text-2xl md:text-3xl lg:text-4xl mb-10 text-white ${instrumentSerif.className}`}>For Over 30 Years...Specializing in Palm Beach Luxury Properties</p>
               <div className="flex justify-center gap-8">
                 <Link href="/properties" className={`px-5 py-5 text-2xl md:text-4xl bg-[#1b4e1f] hover:bg-green-900/90 transition-colors text-white rounded-lg ${instrumentSerif.className} flex items-center`}>
                   Find Your Dream Home Today
