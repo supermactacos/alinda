@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, notFound } from "next/navigation";
 import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
@@ -29,7 +29,6 @@ export default function BlogPostPage() {
   const params = useParams<{ slug: string[] }>();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(true);
   const [processedContent, setProcessedContent] = useState<string>("");
 
@@ -41,14 +40,17 @@ export default function BlogPostPage() {
         const fullSlug = Array.isArray(params.slug) ? params.slug.join('/') : params.slug;
         const response = await fetch(`/api/blog/${fullSlug}`);
         if (!response.ok) {
-          throw new Error('Post not found');
+          // Instead of throwing an error, call notFound() to trigger the 404 page
+          notFound();
+          return;
         }
         const data = await response.json();
         setPost(data.post);
         setProcessedContent(data.post.content);
       } catch (error) {
         console.error("Error fetching blog post:", error);
-        setError("The blog post you're looking for could not be found.");
+        // Trigger the 404 page instead of setting an error state
+        notFound();
       } finally {
         setLoading(false);
       }
@@ -74,6 +76,28 @@ export default function BlogPostPage() {
     }
   }, [post]);
 
+  // If we're still loading, show a loading spinner
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white">
+        <div className="fixed top-0 left-0 right-0 z-[40] w-full bg-[#1b4e1f]">
+          <Navbar isScrolled={isScrolled} />
+        </div>
+        <div className="pt-24 pb-16">
+          <div className="container mx-auto px-4">
+            <Link href="/blog" className="inline-flex items-center text-green-800 hover:text-green-700 font-medium mb-8">
+              <ArrowLeft className="mr-1 h-4 w-4" />
+              Back to Articles
+            </Link>
+            <div className="flex justify-center items-center h-40">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-800"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-white">
       <div className="fixed top-0 left-0 right-0 z-[40] w-full bg-[#1b4e1f]">
@@ -87,19 +111,7 @@ export default function BlogPostPage() {
             Back to Articles
           </Link>
 
-          {loading ? (
-            <div className="flex justify-center items-center h-40">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-800"></div>
-            </div>
-          ) : error ? (
-            <div className="text-center py-12">
-              <h2 className="text-2xl font-medium text-gray-600">Error</h2>
-              <p className="mt-2 text-gray-500">{error}</p>
-              <Link href="/blog" className="mt-4 inline-block text-green-800 hover:text-green-700">
-                Return to Blog
-              </Link>
-            </div>
-          ) : post ? (
+          {post ? (
             <div className="max-w-4xl mx-auto">
               <h1 className={`text-4xl md:text-5xl font-light mb-6 text-green-800 ${instrumentSerif.className}`}>
                 {post.title}

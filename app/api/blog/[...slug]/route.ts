@@ -113,9 +113,9 @@ export async function PUT(request: NextRequest) {
     }
 
     // For thumbnails: try new image prop first, then first image in new content, then default
-    const thumbnailImage = image || 
-      (content ? extractFirstImageUrl(content) : null) || 
-      '/default.jpeg';
+    const thumbnailImage = image === "" ? null : 
+      (image || (content ? extractFirstImageUrl(content) : null) || 
+      '/default.jpeg');
     
     // Update the post
     const updatedPost = {
@@ -125,7 +125,7 @@ export async function PUT(request: NextRequest) {
       content: content || data.posts[postIndex].content,
       excerpt: excerpt || data.posts[postIndex].excerpt,
       image: thumbnailImage,
-      featuredImage: image || data.posts[postIndex].featuredImage,
+      featuredImage: image === "" ? null : (image || data.posts[postIndex].featuredImage),
       date: date || data.posts[postIndex].date,
     };
     

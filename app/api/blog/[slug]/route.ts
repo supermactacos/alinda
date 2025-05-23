@@ -158,10 +158,11 @@ export async function PUT(
       : createCleanExcerpt(content);
     
     // For thumbnails: use provided image, or extract first image from content, or keep existing
-    const thumbnailImage = image || extractFirstImageUrl(content) || data.posts[postIndex].image || null;
+    const thumbnailImage = image === "" ? null : 
+      (image || extractFirstImageUrl(content) || data.posts[postIndex].image || null);
     
     // Featured image only set if manually provided
-    const featuredImage = image || null;
+    const featuredImage = image === "" ? null : (image || null);
     
     // Update the post
     const updatedPost: BlogPost = {
