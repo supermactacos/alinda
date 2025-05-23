@@ -42,7 +42,7 @@ export default function ConciergePage() {
         <section className="pt-32 bg-white">
           <div className="container mx-auto px-4">
             <h1 className={`text-7xl md:text-8xl lg:text-9xl font-light mb-16 text-center ${instrumentSerif.className}`}>
-              Concierge Quality Realty Services
+              Concierge Quality<br />Realty Services
             </h1>
             <div className="max-w-4xl mx-auto">
               <p className="text-gray-800 text-xl leading-relaxed mb-6">

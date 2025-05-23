@@ -9,7 +9,6 @@ import { TextAnimate } from "@/components/magicui/text-animate"
 import { useEffect, useState } from "react"
 import { Logo } from "@/app/components/Logo"
 import { Footer } from "../components/Footer"
-import { ContactCard } from "@/app/components/ContactCard"
 import { TeamMemberCard } from "@/app/components/TeamMemberCard"
 
 const instrumentSerif = Instrument_Serif({ 
@@ -89,11 +88,32 @@ export default function TeamPage() {
               Our Team
             </h1>
 
-            {/* Linda's Contact Card */}
-            <ContactCard className="mb-12" />
-
-            {/* Team Members */}
+            {/* Team Members Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Linda's Card (First Position) */}
+              <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                <div className="flex flex-col items-center text-center">
+                  <img
+                    src="/linda.png"
+                    alt="Linda R. Olsson"
+                    className="w-48 h-48 object-cover rounded-lg mb-4"
+                  />
+                  <h3 className="text-2xl font-semibold mb-2">Linda R. Olsson</h3>
+                  <p className="text-gray-700 mb-1">Broker/Owner</p>
+                  <div className="text-center mb-3">
+                    <p className="text-green-900">Office: <a href="tel:5618209195" className="hover:underline">(561) 820-9195</a></p>
+                    <p className="text-green-900">Cell: <a href="tel:5613294044" className="hover:underline">(561) 329-4044</a></p>
+                    <p className="text-green-900">Email: <a href="mailto:linda@lindaolsson.com" className="hover:underline">Linda@LindaOlsson.com</a></p>
+                    <p className="text-gray-700 mt-2">211A Royal Poinciana Way</p>
+                    <p className="text-gray-700">Palm Beach, FL 33480</p>
+                  </div>
+                  <Link href="/about-us" className="text-green-900 hover:underline block mt-2">
+                    Read Full Bio →
+                  </Link>
+                </div>
+              </div>
+              
+              {/* Other Team Members */}
               {teamMembers.map((member, index) => (
                 <TeamMemberCard key={index} {...member} />
               ))}

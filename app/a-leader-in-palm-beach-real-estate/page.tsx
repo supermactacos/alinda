@@ -42,7 +42,7 @@ export default function LeaderPage() {
         <section className="pt-32 bg-white">
           <div className="container mx-auto px-4">
             <h1 className={`text-7xl md:text-8xl lg:text-9xl font-light mb-16 text-center ${instrumentSerif.className}`}>
-              A Leader in Palm Beach Real Estate
+              A Leader in Palm Beach<br />Real Estate
             </h1>
             <div className="max-w-4xl mx-auto">
               <h2 className={`text-2xl font-semibold mb-6 text-[#1b4e1f]`}>

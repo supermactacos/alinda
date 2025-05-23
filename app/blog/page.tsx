@@ -69,7 +69,7 @@ export default function BlogPage() {
             Palm Beach Real Estate Blog
           </h1>
           <p className="text-xl text-center text-gray-600 max-w-3xl mx-auto">
-            Stay informed about Palm Beach Luxury Real Estate Trends, Market Updates, and Insights from Linda R. Olsson and Her Team.
+            Stay Informed About Palm Beach Luxury Real Estate Trends, Market Updates, and Insights from Linda R. Olsson and Her Team.
           </p>
         </div>
       </div>

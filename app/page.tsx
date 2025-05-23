@@ -165,7 +165,7 @@ export default function Home() {
                 <span className="relative z-10">Linda <span className="text-white">R.</span> Olsson</span>
                 <div className="absolute inset-0 -m-8 -z-[1]"></div>
               </h1>
-              <p className={`text-2xl md:text-3xl lg:text-4xl mb-10 text-white ${instrumentSerif.className}`}>Representing Buyers and Sellers of Palm Beach's Finest Properties since 1989</p>
+              <p className={`text-2xl md:text-3xl lg:text-4xl mb-10 text-white ${instrumentSerif.className}`}>For Over 30 Years..."Specializing in Palm Beach Luxury Properties"</p>
               <div className="flex justify-center gap-8">
                 <Link href="/properties" className={`px-5 py-5 text-2xl md:text-4xl bg-[#1b4e1f] hover:bg-green-900/90 transition-colors text-white rounded-lg ${instrumentSerif.className} flex items-center`}>
                   Find Your Dream Home Today
@@ -180,8 +180,9 @@ export default function Home() {
         <div className="bg-white will-change-transform">
           <section className="relative py-16">
             <div className="container mx-auto px-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-                <div className="relative w-[71.4%] md:ml-28 mx-auto md:mx-0">
+              <div className="relative">
+                {/* Image with absolute positioning */}
+                <div className="relative w-[40%] float-left mr-10 mb-10">
                   <img
                     src="/linda.png"
                     alt="Linda R. Olsson"
@@ -192,22 +193,21 @@ export default function Home() {
                     }}
                   />
                 </div>
+                
+                {/* Content that will wrap around the image */}
                 <div className="pt-8">
                   <h2 className={`text-7xl font-light mb-6 ${instrumentSerif.className}`}>Thinking About Buying or Selling in Palm Beach?</h2>
                   <p className="text-black mb-8 leading-relaxed text-3xl">
-                  With over 30 years of experience selling Luxury Homes in Palm Beach, Linda and her associates have gained a vast knowledge of Palm Beach, its people, and its history-knowledge we put to daily use to help our clients.
+                  <strong className="text-green-900">Representing Buyers and Sellers of Palm Beaches Finest Properties since 1989</strong> with our Global Reach, Local Expertise, and an Unrivaled Web Site. Recognized by the Wall Street Journal as one of <i>"America's Best Real Estate Agents"</i>, known for our professionalism, superior customer service and in-depth knowledge of the market. Representing Buyers and Sellers of Palm Beach's finest residences... You can profit from our knowledge, expertise, and global presence. We don't just talk about excellence... We Get Results!  
                   </p>
                   <p className="text-black mb-8 leading-relaxed text-3xl">
                   
-                  We take great pride in utilizing our Experience, Resources, and Global connections to unite Extraordinary people with Extraordinary properties. Contact Us for Experience you can Trust...
-                  <strong className="text-green-900">We Get Results! </strong>
+                  <strong className="text-green-900">With Over 30 Years of Experience,</strong> Linda and her associates have gained a vast knowledge of Palm Beach, its people, and its history--knowledge we put to daily use to help our clients. The firm's reputation and success are built upon experience, expertise, and excellent service. Choosing a firm with the commitment, confidentiality, and dedication to represent your best interests makes all the difference.  We take great pride in utilizing our experience, resources, and global connections to unite extraordinary people with extraordinary properties.
+                  <strong className="text-green-900"> Contact Us for Experience you can Trust! </strong>
                   </p>
-                  <Link href="/contact">
-                    <Button variant="outline" size="lg" className="gap-2 text-3xl bg-green-900 text-white px-6 py-8 rounded-lg">
-                      Contact Us
-                      <ArrowRight className="h-5 w-5" />
-                    </Button>
-                  </Link>
+                  <div className="clear-both">
+                   
+                  </div>
                 </div>
               </div>
             </div>
@@ -219,7 +219,7 @@ export default function Home() {
           {/* News Ticker Section */}
           <section className="pb-16">
             <div className="container mx-auto px-4">
-              <h2 className={`text-4xl text-center font-light mb-12 ${instrumentSerif.className}`}>As Seen On</h2>
+              <h2 className={`text-4xl text-center font-light mb-12 ${instrumentSerif.className}`}>As Seen In</h2>
               <div className="relative overflow-hidden max-w-7xl mx-auto">
                 {/* Add gradient masks */}
                 <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
