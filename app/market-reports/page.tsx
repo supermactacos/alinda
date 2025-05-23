@@ -193,10 +193,10 @@ export default function MarketReportsPage() {
               {/* Description */}
               <div className="text-center mb-12">
                 <h2 className={`text-3xl font-semibold mb-4 text-[#1b4e1f]`}>
-                  Our goal is to keep you abreast of the Palm Beach real estate market.
+                  Our Goal Is To Keep You Abreast of the Palm Beach Real Estate MZarket.
                 </h2>
                 <p className="text-gray-800 text-xl leading-relaxed mb-4">
-                  Stay ahead of the curve — follow our quarterly and annual Palm Beach Home & In-Town Condo Sales Market Reports.
+                  Stay Ahead of the Curve — Follow Our Quarterly and Annual Palm Beach Home & In-Town Condo Sales Market Reports.
                 </p>
                 <p className="text-gray-700 text-lg italic">
                   Click on the links below to view each quarter.

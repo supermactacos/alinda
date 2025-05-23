@@ -3,11 +3,21 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  //
+  
   // Normalize path by removing trailing slash except for the root path
   const normalizedPath = pathname === '/' 
     ? pathname 
     : pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
+
+  // Check for legacy paths that should redirect to homepage
+  // Add specific patterns that should be redirected
+  if (
+    normalizedPath.startsWith('/homepage-tips/') ||
+    (normalizedPath !== '/blog' && normalizedPath.includes('blog') && !normalizedPath.startsWith('/blog/'))
+  ) {
+    // Redirect to homepage
+    return NextResponse.redirect(new URL('/', request.url))
+  }
 
   // Check if request is for the IDX wrapper
   if (normalizedPath === '/idx-wrapper/mls-search') {
@@ -47,8 +57,13 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    // Handle IDX wrapper paths
     '/idx-wrapper/mls-search',
     '/idx-wrapper/mls-search/',
     '/idx-wrapper/mls-search/:path*',
+    
+    // Handle legacy paths that need redirection
+    '/homepage-tips/:path*',
+    '/((?!api|_next/static|_next/image|favicon.ico|blog/|blog$).*)'
   ],
 } 

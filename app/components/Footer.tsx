@@ -62,7 +62,7 @@ export function Footer() {
             <h4 className="text-xl text-pink-200 font-light mb-5">Contact Us</h4>
             <ul className="space-y-3 text-white text-lg">
               <li>(561) 820-9195</li>
-              <li>linda@lindaolsson.com</li>
+              <li>Linda@LindaOlsson.com</li>
               <li>211A Royal Poinciana Way</li>
               <li>Palm Beach, FL 33480</li>
             </ul>
