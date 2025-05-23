@@ -101,16 +101,16 @@ export default function TeamPage() {
                       alt="Linda R. Olsson"
                       className="w-48 h-48 object-cover object-top rounded-lg mb-4"
                     />
-                    <h3 className="text-2xl font-semibold mb-2">Linda R. Olsson</h3>
-                    <p className="text-gray-700 mb-1">Broker/Owner</p>
+                    <h3 className="text-3xl font-semibold mb-2">Linda R. Olsson</h3>
+                    <p className="text-gray-700 text-lg mb-1">Broker/Owner</p>
                     <div className="text-center mb-3">
-                      <p className="text-green-900">Office: <a href="tel:5618209195" className="hover:underline">(561) 820-9195</a></p>
-                      <p className="text-green-900">Cell: <a href="tel:5613294044" className="hover:underline">(561) 329-4044</a></p>
-                      <p className="text-green-900">Email: <a href="mailto:linda@lindaolsson.com" className="hover:underline">Linda@LindaOlsson.com</a></p>
-                      <p className="text-gray-700 mt-2">211A Royal Poinciana Way</p>
-                      <p className="text-gray-700">Palm Beach, FL 33480</p>
+                      <p className="text-green-900 text-lg">Office: <a href="tel:5618209195" className="hover:underline">(561) 820-9195</a></p>
+                      <p className="text-green-900 text-lg">Cell: <a href="tel:5613294044" className="hover:underline">(561) 329-4044</a></p>
+                      <p className="text-green-900 text-lg"><a href="mailto:linda@lindaolsson.com" className="hover:underline">Linda@LindaOlsson.com</a></p>
+                      <p className="text-gray-700 text-lg mt-2">211A Royal Poinciana Way</p>
+                      <p className="text-gray-700 text-lg">Palm Beach, FL 33480</p>
                     </div>
-                    <Link href="/about-us" className="text-green-900 hover:underline block mt-2">
+                    <Link href="/about-us" className="text-green-900 hover:underline block mt-2 text-lg">
                       Read Full Bio →
                     </Link>
                   </div>
