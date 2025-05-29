@@ -7,7 +7,7 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div>
-            <h3 className="text-2xl font-light mb-5 text-pink-200">Linda R. Olsson</h3>
+            <h3 className="text-2xl font-light mb-5 text-pink-200">Linda R. Olsson, Inc., Realtor</h3>
             <p className="text-white text-lg">Luxury Real Estate in Palm Beach,FL</p>
             <div className="flex space-x-4 mt-5">
               <a href="https://www.facebook.com/LindaOlssonRealtor" target="_blank" rel="noopener noreferrer" aria-label="Facebook">

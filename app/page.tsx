@@ -600,61 +600,61 @@ export default function Home() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                        <label htmlFor="name" className="block text-lg font-medium text-gray-700 mb-1">Name</label>
                         <input 
                           type="text" 
                           name="name" 
                           id="name" 
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f]" 
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f] text-lg" 
                           placeholder="Your name"
                         />
                       </div>
                       <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                        <label htmlFor="phone" className="block text-lg font-medium text-gray-700 mb-1">Phone</label>
                         <input 
                           type="tel" 
                           name="phone"
                           id="phone" 
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f]" 
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f] text-lg" 
                           placeholder="Your phone number"
                         />
                       </div>
                     </div>
                     
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                      <label htmlFor="email" className="block text-lg font-medium text-gray-700 mb-1">Email</label>
                       <input 
                         type="email" 
                         name="email"
                         id="email" 
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f]" 
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f] text-lg" 
                         placeholder="Your email address"
                       />
                     </div>
                     
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                      <label htmlFor="subject" className="block text-lg font-medium text-gray-700 mb-1">Subject</label>
                       <input 
                         type="text" 
                         name="subject"
                         id="subject" 
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f]" 
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f] text-lg" 
                         placeholder="Message subject"
                       />
                     </div>
                     
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                      <label htmlFor="message" className="block text-lg font-medium text-gray-700 mb-1">Message</label>
                       <textarea 
                         id="message" 
                         name="message"
                         rows={6} 
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f]" 
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1b4e1f] text-lg" 
                         placeholder="Your message"
                       ></textarea>
                     </div>
@@ -662,7 +662,7 @@ export default function Home() {
                     <div>
                       <Button 
                         type="submit" 
-                        className="bg-[#1b4e1f] hover:bg-[#173e1a] text-white py-3 px-6 rounded-md flex items-center gap-2"
+                        className="bg-[#1b4e1f] hover:bg-[#173e1a] text-white py-3 px-6 rounded-md flex items-center gap-2 text-xl"
                       >
                         Send Message
                         <Send className="h-5 w-5" />
