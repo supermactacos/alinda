@@ -9,67 +9,14 @@ export function middleware(request: NextRequest) {
     ? pathname 
     : pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
 
-  // Skip middleware for static files and assets
+  // Skip middleware for API routes and static files
   if (
+    pathname.startsWith('/api/') ||
     pathname.match(/\.(jpg|jpeg|png|gif|svg|ico|webp|css|js|woff|woff2|ttf|otf|map|mp4|webm|mov|avi|wmv|flv|mkv|mp3|wav|ogg)$/) ||
     pathname.startsWith('/_next/') ||
-    pathname.startsWith('/favicon.ico') ||
-    pathname.startsWith('/static/') ||
-    pathname.startsWith('/public/') ||
-    pathname.startsWith('/videos/') ||
-    pathname.startsWith('/market_reports/')
+    pathname.startsWith('/favicon.ico')
   ) {
     return NextResponse.next();
-  }
-
-  // List of valid path prefixes that should NOT be redirected
-  const validPaths = [
-    '/about-us',
-    '/api',
-    '/properties',
-    '/north-end-palm-beach-real-estate',
-    '/in-town-palm-beach-real-estate',
-    '/estate-section',
-    '/in-town-townhomes',
-    '/in-town-condos',
-    '/sloans-curve-south-to-manalapan',
-    '/luxury-palm-beach-condominium-co-op-buildings',
-    '/global-reach-local-expertise',
-    '/palm-beach-a-slice-of-paradise',
-    '/buying-selling-hire-professional',
-    '/4-essential-things-to-consider-when-buying-a-condo',
-    '/sellers-tips',
-    '/blog',
-    '/market-reports',
-    '/testimonials',
-    '/contact',
-    '/palm-beach-florida-real-estate-news',
-    '/a-leader-in-palm-beach-real-estate',
-    '/concierge-quality-realty-services',
-    '/community-involvement',
-    '/idx-wrapper',
-    '/our-team',
-    '/_next',
-    '/public',
-    '/videos',
-    '/market_reports'
-  ];
-
-  // Check if the current path starts with any valid path
-  const isValidPath = validPaths.some(path => 
-    normalizedPath === path || 
-    normalizedPath.startsWith(`${path}/`)
-  );
-
-  // Check for specific paths that should redirect to homepage
-  if (
-    normalizedPath.startsWith('/homepage-tips/') ||
-    normalizedPath.startsWith('/palm-beach-homes/') ||
-    (normalizedPath !== '/blog' && normalizedPath.includes('blog') && !normalizedPath.startsWith('/blog/')) ||
-    (!isValidPath && normalizedPath !== '/')
-  ) {
-    // Redirect to homepage
-    return NextResponse.redirect(new URL('/', request.url))
   }
 
   // Check if request is for the IDX wrapper
@@ -104,8 +51,16 @@ export function middleware(request: NextRequest) {
     return response
   }
 
-  // For all other routes, continue as normal
-  return NextResponse.next()
+  // ONLY redirect specific old legacy paths that we're 100% sure should be redirected
+  if (
+    normalizedPath.startsWith('/homepage-tips/') ||
+    normalizedPath.startsWith('/tag/palm-beach-rentals/')
+  ) {
+    return NextResponse.redirect(new URL('/', request.url));
+  }
+
+  // For all other routes, continue as normal and let Next.js handle 404s
+  return NextResponse.next();
 }
 
 export const config = {

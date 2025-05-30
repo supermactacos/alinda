@@ -7,7 +7,7 @@ import { Navbar } from "@/components/Navbar"
 import Link from "next/link"
 import { TextAnimate } from "@/components/magicui/text-animate"
 import { useEffect, useState } from "react"
-import { Footer } from "../components/Footer"
+import { Footer } from "@/app/components/Footer"
 import { Logo } from "@/app/components/Logo"
 import { ContactCard } from "@/app/components/ContactCard"
 const instrumentSerif = Instrument_Serif({ 
