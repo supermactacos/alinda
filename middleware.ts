@@ -9,11 +9,64 @@ export function middleware(request: NextRequest) {
     ? pathname 
     : pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
 
-  // Check for legacy paths that should redirect to homepage
-  // Add specific patterns that should be redirected
+  // Skip middleware for static files and assets
+  if (
+    pathname.match(/\.(jpg|jpeg|png|gif|svg|ico|webp|css|js|woff|woff2|ttf|otf|map|mp4|webm|mov|avi|wmv|flv|mkv|mp3|wav|ogg)$/) ||
+    pathname.startsWith('/_next/') ||
+    pathname.startsWith('/favicon.ico') ||
+    pathname.startsWith('/static/') ||
+    pathname.startsWith('/public/') ||
+    pathname.startsWith('/videos/') ||
+    pathname.startsWith('/market_reports/')
+  ) {
+    return NextResponse.next();
+  }
+
+  // List of valid path prefixes that should NOT be redirected
+  const validPaths = [
+    '/about-us',
+    '/api',
+    '/properties',
+    '/north-end-palm-beach-real-estate',
+    '/in-town-palm-beach-real-estate',
+    '/estate-section',
+    '/in-town-townhomes',
+    '/in-town-condos',
+    '/sloans-curve-south-to-manalapan',
+    '/luxury-palm-beach-condominium-co-op-buildings',
+    '/global-reach-local-expertise',
+    '/palm-beach-a-slice-of-paradise',
+    '/buying-selling-hire-professional',
+    '/4-essential-things-to-consider-when-buying-a-condo',
+    '/sellers-tips',
+    '/blog',
+    '/market-reports',
+    '/testimonials',
+    '/contact',
+    '/palm-beach-florida-real-estate-news',
+    '/a-leader-in-palm-beach-real-estate',
+    '/concierge-quality-realty-services',
+    '/community-involvement',
+    '/idx-wrapper',
+    '/our-team',
+    '/_next',
+    '/public',
+    '/videos',
+    '/market_reports'
+  ];
+
+  // Check if the current path starts with any valid path
+  const isValidPath = validPaths.some(path => 
+    normalizedPath === path || 
+    normalizedPath.startsWith(`${path}/`)
+  );
+
+  // Check for specific paths that should redirect to homepage
   if (
     normalizedPath.startsWith('/homepage-tips/') ||
-    (normalizedPath !== '/blog' && normalizedPath.includes('blog') && !normalizedPath.startsWith('/blog/'))
+    normalizedPath.startsWith('/palm-beach-homes/') ||
+    (normalizedPath !== '/blog' && normalizedPath.includes('blog') && !normalizedPath.startsWith('/blog/')) ||
+    (!isValidPath && normalizedPath !== '/')
   ) {
     // Redirect to homepage
     return NextResponse.redirect(new URL('/', request.url))
@@ -57,13 +110,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Handle IDX wrapper paths
-    '/idx-wrapper/mls-search',
-    '/idx-wrapper/mls-search/',
-    '/idx-wrapper/mls-search/:path*',
-    
-    // Handle legacy paths that need redirection
-    '/homepage-tips/:path*',
-    '/((?!api|_next/static|_next/image|favicon.ico|blog/|blog$).*)'
+    // Match all paths except Next.js-specific asset paths
+    '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 } 
