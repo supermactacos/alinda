@@ -1,26 +1,19 @@
-"use client";
+'use client';
 
 import React, { useEffect, useState } from 'react';
 import { NotionRenderer } from 'react-notion-x';
 import { ExtendedRecordMap, Block } from 'notion-types';
 import { useParams } from 'next/navigation';
+import { Navbar } from '@/components/Navbar';
+import { Footer } from '@/app/components/Footer';
+import { Calendar, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { Instrument_Serif } from "next/font/google";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "../../components/Footer";
-import { ArrowLeft, Calendar, User } from "lucide-react";
-import { ContactCard } from "../../components/ContactCard"
 
 // Import required CSS for react-notion-x
 import 'react-notion-x/src/styles.css';
 // Import additional styles for code highlighting, equation support, etc.
 import 'prismjs/themes/prism-tomorrow.css';
 import 'katex/dist/katex.min.css';
-
-const instrumentSerif = Instrument_Serif({
-  weight: ["400"],
-  subsets: ["latin"],
-});
 
 interface BlockWithValue {
   value: Block
@@ -35,9 +28,6 @@ export default function BlogPostPage() {
   const [createdTime, setCreatedTime] = useState<number | null>(null);
   const [recordMap, setRecordMap] = useState<ExtendedRecordMap | null>(null);
   const [isScrolled, setIsScrolled] = useState(true);
-  const [isNotionPost, setIsNotionPost] = useState(false);
-  const [htmlContent, setHtmlContent] = useState<string | null>(null);
-  const [author, setAuthor] = useState<string>('Linda Olsson');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,50 +48,19 @@ export default function BlogPostPage() {
 
       try {
         setLoading(true);
-        console.log("Fetching blog post:", params.slug);
-        
-        // First check if this is a local post
-        const localResponse = await fetch(`/api/blog/${params.slug}`);
-        
-        if (localResponse.ok) {
-          // This is a local post
-          const localData = await localResponse.json();
-          console.log("Local post data:", localData);
-          
-          if (localData.post) {
-            setIsNotionPost(false);
-            setPageTitle(localData.post.title || 'Blog Post');
-            setCoverImage(localData.post.featuredImage || localData.post.image || null);
-            setCreatedTime(new Date(localData.post.date || localData.post.createdTime || Date.now()).getTime());
-            setHtmlContent(localData.post.content || '');
-            setAuthor(localData.post.author || 'Linda Olsson');
-            setLoading(false);
-            return;
-          }
-        }
-        
-        // If not a local post, try to fetch from Notion
-        console.log("Fetching Notion post:", params.slug);
-        const notionResponse = await fetch(`/api/blogfinal?pageId=${params.slug}`, {
+        const response = await fetch(`/api/blogfinal?pageId=${params.slug}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },
         });
 
-        if (!notionResponse.ok) {
+        if (!response.ok) {
           throw new Error('Failed to fetch blog post');
         }
 
-        const data = await notionResponse.json();
-        console.log("Notion post data:", data);
-        
-        if (!data.recordMap) {
-          throw new Error('Invalid Notion post data');
-        }
-        
+        const data = await response.json();
         setRecordMap(data.recordMap);
-        setIsNotionPost(true);
         
         // Extract page metadata
         if (data.page) {
@@ -117,8 +76,6 @@ export default function BlogPostPage() {
             // Extract title
             if (rootBlock.value.properties?.title) {
               setPageTitle(rootBlock.value.properties.title[0][0] || 'Blog Post');
-            } else {
-              setPageTitle('Blog Post'); // Default title if not found
             }
             
             // Extract cover image
@@ -133,18 +90,8 @@ export default function BlogPostPage() {
             // Extract created time
             if (rootBlock.value.created_time) {
               setCreatedTime(rootBlock.value.created_time);
-            } else {
-              setCreatedTime(Date.now()); // Default to current time
             }
-          } else {
-            // Set defaults if root block not found
-            setPageTitle('Blog Post');
-            setCreatedTime(Date.now());
           }
-        } else {
-          // Set defaults if no page or block data
-          setPageTitle('Blog Post');
-          setCreatedTime(Date.now());
         }
         
         setLoading(false);
@@ -177,7 +124,7 @@ export default function BlogPostPage() {
       <div className="pt-32 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <Link href="/blog" className="inline-flex items-center text-green-800 hover:text-green-700 mb-8">
+            <Link href="/blogfinal" className="inline-flex items-center text-green-800 hover:text-green-700 mb-8">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Blog
             </Link>
@@ -196,7 +143,7 @@ export default function BlogPostPage() {
               </div>
             )}
 
-            {!loading && !error && (isNotionPost ? recordMap : htmlContent) && (
+            {!loading && !error && recordMap && (
               <>
                 {coverImage && (
                   <div className="w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden mb-8">
@@ -208,37 +155,25 @@ export default function BlogPostPage() {
                   </div>
                 )}
 
-                <h1 className={`text-3xl md:text-4xl font-bold mb-4 ${instrumentSerif.className}`}>{pageTitle}</h1>
+                <h1 className="text-3xl md:text-4xl font-bold mb-4">{pageTitle}</h1>
 
                 <div className="flex items-center text-gray-500 mb-8">
                   <Calendar className="h-4 w-4 mr-2" />
                   <span>{formatDate(createdTime)}</span>
-                  <span className="mx-2">•</span>
-                  <span>{author}</span>
                 </div>
 
-                {isNotionPost && recordMap ? (
-                  <div className="notion-container">
-                    <NotionRenderer 
-                      recordMap={recordMap}
-                      fullPage={false}
-                      darkMode={false}
-                    />
-                  </div>
-                ) : (
-                  <div 
-                    className="prose prose-lg max-w-none"
-                    dangerouslySetInnerHTML={{ __html: htmlContent || '' }}
+                <div className="notion-container">
+                  <NotionRenderer 
+                    recordMap={recordMap}
+                    fullPage={false}
+                    darkMode={false}
                   />
-                )}
+                </div>
               </>
             )}
           </div>
         </div>
       </div>
-
-      {/* Contact Card Section */}
-      <ContactCard />
 
       <Footer />
     </div>

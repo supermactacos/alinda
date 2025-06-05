@@ -12,15 +12,15 @@ export function IdxShowcase() {
     const script = document.createElement("script");
     script.charset = "UTF-8";
     script.type = "text/javascript";
-    script.id = "idxwidgetsrc-65990";
-    script.src = "//mlspalmbeach.lindaolsson.com/idx/customshowcasejs.php?widgetid=65990";
+    script.id = "idxwidgetsrc-103608";
+    script.src = "//mlspalmbeach.lindaolsson.com/idx/customshowcasejs.php?widgetid=103608";
     containerRef.current.appendChild(script);
 
     // Add custom styles to control IDX widget layout
     const style = document.createElement('style');
     style.textContent = `
       /* Target the specific showcase gallery */
-      #IDX-showcaseGallery-65990 {
+      #IDX-showcaseGallery-103608 {
         table-layout: fixed !important;
         border-spacing: 0 !important;
         font-size: 14px !important;
@@ -30,7 +30,7 @@ export function IdxShowcase() {
       }
 
       /* Table structure */
-      #IDX-showcaseGallery-65990 .IDX-showcaseTable {
+      #IDX-showcaseGallery-103608 .IDX-showcaseTable {
         width: 100% !important;
         display: table !important;
         border-collapse: separate !important;
@@ -39,11 +39,11 @@ export function IdxShowcase() {
       }
 
       /* Row and cell modifications */
-      #IDX-showcaseGallery-65990 .IDX-showcaseRow {
+      #IDX-showcaseGallery-103608 .IDX-showcaseRow {
         display: table-row !important;
       }
 
-      #IDX-showcaseGallery-65990 .IDX-showcaseCell {
+      #IDX-showcaseGallery-103608 .IDX-showcaseCell {
         display: table-cell !important;
         width: 33.333% !important;
         padding: 0 !important;
@@ -51,7 +51,7 @@ export function IdxShowcase() {
       }
 
       /* Container modifications */
-      #IDX-showcaseGallery-65990 .IDX-showcaseContainer {
+      #IDX-showcaseGallery-103608 .IDX-showcaseContainer {
         border: none !important;
         box-shadow: none !important;
         padding: 0 !important;
@@ -62,7 +62,7 @@ export function IdxShowcase() {
       }
 
       /* Content spacing */
-      #IDX-showcaseGallery-65990 .IDX-showcaseContent {
+      #IDX-showcaseGallery-103608 .IDX-showcaseContent {
         padding: 0 !important;
         margin: 0 !important;
         height: auto !important;
@@ -70,7 +70,7 @@ export function IdxShowcase() {
         text-align: left !important;
       }
 
-      #IDX-showcaseGallery-65990 .IDX-showcaseAddress {
+      #IDX-showcaseGallery-103608 .IDX-showcaseAddress {
         margin: 0 !important;
         padding-top: 0.75rem !important;
         line-height: 1 !important;
@@ -82,7 +82,7 @@ export function IdxShowcase() {
         text-align: left !important;
       }
 
-      #IDX-showcaseGallery-65990 .IDX-showcasePrice {
+      #IDX-showcaseGallery-103608 .IDX-showcasePrice {
         margin: 0.25rem 0 !important;
         padding: 0 !important;
         line-height: 1.2 !important;
@@ -94,7 +94,7 @@ export function IdxShowcase() {
         text-align: left !important;
       }
 
-      #IDX-showcaseGallery-65990 .IDX-showcaseCityStateZip {
+      #IDX-showcaseGallery-103608 .IDX-showcaseCityStateZip {
         margin: 0 !important;
         padding: 0 !important;
         line-height: 1.2 !important;
@@ -106,7 +106,7 @@ export function IdxShowcase() {
       }
 
       /* Force image size and aspect ratio */
-      #IDX-showcaseGallery-65990 .IDX-showcasePhoto {
+      #IDX-showcaseGallery-103608 .IDX-showcasePhoto {
         width: 100% !important;
         height: auto !important;
         aspect-ratio: 3/2 !important;
@@ -117,7 +117,7 @@ export function IdxShowcase() {
       }
 
       /* Make container match image size */
-      #IDX-showcaseGallery-65990 .IDX-showcaseLink {
+      #IDX-showcaseGallery-103608 .IDX-showcaseLink {
         width: 100% !important;
         height: auto !important;
         display: block !important;
@@ -125,37 +125,37 @@ export function IdxShowcase() {
       }
 
       /* Hide unwanted elements */
-      #IDX-showcaseGallery-65990 .IDX-showcaseListingID,
-      #IDX-showcaseGallery-65990 .IDX-showcaseBeds,
-      #IDX-showcaseGallery-65990 .IDX-showcaseBaths,
-      #IDX-showcaseGallery-65990 .IDX-showcaseFull,
-      #IDX-showcaseGallery-65990 .IDX-showcasePartial,
-      #IDX-showcaseGallery-65990 .IDX-showcaseRemarks,
-      #IDX-showcaseGallery-65990 .IDX-showcaseDisclaimerLink,
-      #IDX-showcaseGallery-65990 .IDX-showcaseStatus,
-      #IDX-showcaseGallery-65990 .IDX-showcaseStateAbrv {
+      #IDX-showcaseGallery-103608 .IDX-showcaseListingID,
+      #IDX-showcaseGallery-103608 .IDX-showcaseBeds,
+      #IDX-showcaseGallery-103608 .IDX-showcaseBaths,
+      #IDX-showcaseGallery-103608 .IDX-showcaseFull,
+      #IDX-showcaseGallery-103608 .IDX-showcasePartial,
+      #IDX-showcaseGallery-103608 .IDX-showcaseRemarks,
+      #IDX-showcaseGallery-103608 .IDX-showcaseDisclaimerLink,
+      #IDX-showcaseGallery-103608 .IDX-showcaseStatus,
+      #IDX-showcaseGallery-103608 .IDX-showcaseStateAbrv {
         display: none !important;
       }
 
       /* Responsive adjustments */
       @media (max-width: 1024px) {
-        #IDX-showcaseGallery-65990 .IDX-showcaseTable {
+        #IDX-showcaseGallery-103608 .IDX-showcaseTable {
           border-spacing: 1.5rem 1.5rem !important;
         }
-        #IDX-showcaseGallery-65990 .IDX-showcaseCell {
+        #IDX-showcaseGallery-103608 .IDX-showcaseCell {
           width: 50% !important;
         }
       }
 
       @media (max-width: 640px) {
-        #IDX-showcaseGallery-65990 .IDX-showcaseTable {
+        #IDX-showcaseGallery-103608 .IDX-showcaseTable {
           border-spacing: 1rem 1rem !important;
         }
-        #IDX-showcaseGallery-65990 .IDX-showcaseCell {
+        #IDX-showcaseGallery-103608 .IDX-showcaseCell {
           width: 100% !important;
           display: block !important;
         }
-        #IDX-showcaseGallery-65990 .IDX-showcaseRow {
+        #IDX-showcaseGallery-103608 .IDX-showcaseRow {
           display: block !important;
         }
       }
@@ -274,7 +274,7 @@ export function IdxShowcase() {
     // Cleanup
     return () => {
       observer.disconnect();
-      const existingScript = document.getElementById("idxwidgetsrc-65990");
+      const existingScript = document.getElementById("idxwidgetsrc-103608");
       if (existingScript) {
         existingScript.remove();
       }

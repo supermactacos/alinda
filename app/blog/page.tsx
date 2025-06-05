@@ -21,6 +21,7 @@ interface BlogPost {
   excerpt: string;
   image?: string;
   slug: string;
+  source?: string; // 'local' or 'notion'
 }
 
 // Helper function to strip HTML tags
@@ -37,14 +38,34 @@ export default function BlogPage() {
     // Fetch blog posts from our API
     const fetchPosts = async () => {
       try {
+        setLoading(true);
+        console.log("Fetching blog posts...");
+        
         const response = await fetch("/api/blog");
         const data = await response.json();
         
-        // Filter posts to only show those from 2023 onwards
+        console.log("API Response:", data);
+        
+        if (!data.posts || !Array.isArray(data.posts)) {
+          console.error("Invalid response format - posts array missing");
+          setLoading(false);
+          return;
+        }
+        
+        console.log(`Received ${data.posts.length} total posts`);
+        console.log(`Notion posts: ${data.posts.filter((p: BlogPost) => p.source === 'notion').length}`);
+        console.log(`Local posts: ${data.posts.filter((p: BlogPost) => p.source === 'local').length}`);
+        
+        // Filter local posts to only show those from 2023 onwards, but show all Notion posts
         const filteredPosts = data.posts.filter((post: BlogPost) => {
+          if (post.source === 'notion') {
+            return true; // Include all Notion posts
+          }
           const postDate = new Date(post.date);
-          return postDate.getFullYear() >= 2023;
+          return postDate.getFullYear() >= 2023; // Filter local posts by date
         });
+        
+        console.log("Filtered Posts:", filteredPosts);
         
         setPosts(filteredPosts);
       } catch (error) {
@@ -95,6 +116,10 @@ export default function BlogPage() {
                         src={post.image} 
                         alt={post.title} 
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        onError={(e) => {
+                          // Hide the image if it fails to load
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
                       />
                     </div>
                   )}

@@ -1,6 +1,13 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { NotionAPI } from 'notion-client';
+
+// Initialize the Notion API client
+const notionApi = new NotionAPI();
+
+// Your Notion Database ID
+const NOTION_DATABASE_ID = "2091c2e8ad9680cfa044dfe09ee618e9";
 
 interface BlogPost {
   id: string;
@@ -13,6 +20,16 @@ interface BlogPost {
   image?: string;
   featuredImage?: string;
   isDeleted?: boolean;
+  source?: string; // 'local' or 'notion'
+}
+
+interface NotionBlogPost {
+  id: string;
+  title: string;
+  createdTime: number;
+  publishedDate?: string;
+  thumbnail?: string;
+  coverImage?: string;
 }
 
 interface BlogData {
@@ -22,33 +39,181 @@ interface BlogData {
 // Get all blog posts
 export async function GET() {
   try {
-    // Path to the blog data file
+    // Step 1: Get local blog posts
     const dataFilePath = path.join(process.cwd(), 'data', 'blogs.json');
     
+    let localPosts: BlogPost[] = [];
     // Check if the file exists
-    if (!fs.existsSync(dataFilePath)) {
-      // If file doesn't exist, return empty array
-      return NextResponse.json({ posts: [] });
+    if (fs.existsSync(dataFilePath)) {
+      // Read and parse the file
+      const fileContents = fs.readFileSync(dataFilePath, 'utf8');
+      const data = JSON.parse(fileContents) as BlogData;
+      
+      // Filter out deleted posts
+      localPosts = data.posts.filter(post => !post.isDeleted);
+      // Mark as local source
+      localPosts.forEach(post => {
+        post.source = 'local';
+      });
     }
     
-    // Read and parse the file
-    const fileContents = fs.readFileSync(dataFilePath, 'utf8');
-    const data = JSON.parse(fileContents) as BlogData;
-    
-    // Filter out deleted posts and sort by date (newest first)
-    const activePosts = data.posts
-      .filter(post => !post.isDeleted)
-      .sort((a, b) => {
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
+    // Step 2: Get Notion blog posts
+    let notionPosts: BlogPost[] = [];
+    try {
+      // Use the existing endpoint that was working before
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/blogfinal/api`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ databaseId: NOTION_DATABASE_ID }),
       });
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Notion API response:", data);
+        
+        // Convert Notion posts to our BlogPost format
+        if (data.database && Array.isArray(data.database.pages)) {
+          // Process pages one by one to get excerpts
+          notionPosts = await Promise.all(data.database.pages.map(async (post: NotionBlogPost) => {
+            // Create a date string, preferring publishedDate if available
+            const postDate = post.publishedDate 
+              ? new Date(post.publishedDate).toISOString() 
+              : new Date(post.createdTime).toISOString();
+            
+            // Create a slug for Notion posts - use blogfinal path which is working
+            const slug = `blogfinal/${post.id}`;
+            
+            // Try to get a proper excerpt by fetching the page content
+            let excerpt = await getNotionExcerpt(post.id);
+            
+            // Fallback if no excerpt could be generated
+            if (!excerpt) {
+              if (post.title) {
+                excerpt = `Learn more about "${post.title}" in this article from Linda Olsson, Inc.`;
+              } else {
+                excerpt = 'Read this blog post from Linda Olsson, Inc.';
+              }
+            }
+            
+            return {
+              id: post.id,
+              title: post.title,
+              slug: slug,
+              date: postDate,
+              author: 'Linda Olsson', // Default author
+              content: '', // Content is loaded on the post page
+              excerpt: excerpt,
+              image: post.thumbnail || post.coverImage || '/default.jpeg',
+              source: 'notion'
+            } as BlogPost;
+          }));
+        } else {
+          console.error('Invalid data structure from Notion API:', data);
+        }
+      } else {
+        console.error('Failed to fetch from Notion API:', await response.text());
+      }
+    } catch (error) {
+      console.error('Error fetching Notion blog posts:', error);
+      // Continue with just the local posts if Notion fetch fails
+    }
     
-    return NextResponse.json({ posts: activePosts });
+    // Step 3: Merge and sort posts
+    const allPosts = [...localPosts, ...notionPosts].sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+    
+    return NextResponse.json({ posts: allPosts });
   } catch (error) {
     console.error('Error fetching blog posts:', error);
     return NextResponse.json(
       { error: 'Failed to fetch blog posts' },
       { status: 500 }
     );
+  }
+}
+
+// Helper function to get Notion pages
+async function getNotionPages() {
+  try {
+    // Get the database content
+    const recordMap = await notionApi.getPage(NOTION_DATABASE_ID);
+    
+    if (!recordMap) {
+      console.error('No record map returned from Notion API');
+      return [];
+    }
+    
+    // Find collection (database) in the recordMap
+    const collections = recordMap.collection || {};
+    const collectionIds = Object.keys(collections);
+    
+    if (!collectionIds.length) {
+      console.error('No collections found in recordMap');
+      return [];
+    }
+    
+    // Extract pages from the collection
+    const blocks = recordMap.block || {};
+    const pages: NotionBlogPost[] = [];
+    
+    // Process each block
+    for (const [id, block] of Object.entries(blocks)) {
+      // Skip the database block itself
+      if (id === NOTION_DATABASE_ID) continue;
+      
+      const value = block.value;
+      
+      // Only process page blocks that are children of our database
+      if (value && value.type === 'page' && value.parent_id === NOTION_DATABASE_ID) {
+        // Extract title
+        const title = value.properties?.title?.[0]?.[0] || 'Untitled';
+        
+        // Extract creation time
+        const createdTime = value.created_time || Date.now();
+        
+        // Extract published date if available
+        let publishedDate;
+        if (value.properties) {
+          // Look for a date property - simplified approach
+          for (const [propName, propValue] of Object.entries(value.properties)) {
+            if (Array.isArray(propValue) && propValue[0] && 
+                typeof propValue[0][0] === 'string' && 
+                propValue[0][0].match(/^\d{4}-\d{2}-\d{2}$/)) {
+              publishedDate = propValue[0][0];
+              break;
+            }
+          }
+        }
+        
+        // Extract thumbnail (cover image)
+        let thumbnail;
+        if (value.format?.page_cover) {
+          // Handle Notion's internal images
+          if (value.format.page_cover.startsWith('/')) {
+            thumbnail = `https://www.notion.so${value.format.page_cover}`;
+          } else {
+            thumbnail = value.format.page_cover;
+          }
+        }
+        
+        // Create page object
+        pages.push({
+          id,
+          title,
+          createdTime,
+          publishedDate,
+          thumbnail
+        });
+      }
+    }
+    
+    return pages;
+  } catch (error) {
+    console.error('Error fetching Notion pages:', error);
+    return [];
   }
 }
 
@@ -151,6 +316,7 @@ export async function POST(request: Request) {
       image: thumbnailImage,         // Used for thumbnails in blog listing
       featuredImage: featuredImage,  // Only show at top of post if manually set
       isDeleted: false,              // Explicitly mark as not deleted
+      source: 'local'
     };
     
     // Add new post to the data
@@ -166,5 +332,82 @@ export async function POST(request: Request) {
       { error: 'Failed to create blog post' },
       { status: 500 }
     );
+  }
+}
+
+// Helper function to extract an excerpt from a Notion page
+async function getNotionExcerpt(pageId: string): Promise<string | null> {
+  try {
+    // Try to fetch the page content
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/blogfinal?pageId=${pageId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    
+    if (!response.ok) {
+      return null;
+    }
+    
+    const data = await response.json();
+    
+    // Check if we have record map data
+    if (!data.recordMap || !data.recordMap.block) {
+      return null;
+    }
+    
+    const blocks = data.recordMap.block;
+    let textContent = '';
+    
+    // Go through blocks to find text content
+    for (const [id, block] of Object.entries(blocks)) {
+      // Skip the page block itself
+      if (id === pageId) continue;
+      
+      const value = (block as any).value;
+      
+      // Only process blocks that are children of our page
+      if (value && value.parent_id === pageId) {
+        // Extract text from text blocks
+        if (value.type === 'text' && value.properties && value.properties.title) {
+          const text = value.properties.title.map((textChunk: any[]) => textChunk[0]).join('');
+          if (text) {
+            textContent += text + ' ';
+            // If we have enough text, stop
+            if (textContent.length > 200) break;
+          }
+        }
+        
+        // Also try paragraph blocks
+        if (value.type === 'paragraph' && value.properties && value.properties.title) {
+          const text = value.properties.title.map((textChunk: any[]) => textChunk[0]).join('');
+          if (text) {
+            textContent += text + ' ';
+            // If we have enough text, stop
+            if (textContent.length > 200) break;
+          }
+        }
+      }
+    }
+    
+    // If we found some text, format it as an excerpt
+    if (textContent) {
+      // Trim to reasonable length and add ellipsis
+      if (textContent.length > 200) {
+        const lastSpace = textContent.substring(0, 200).lastIndexOf(' ');
+        if (lastSpace > 0) {
+          textContent = textContent.substring(0, lastSpace) + '...';
+        } else {
+          textContent = textContent.substring(0, 200) + '...';
+        }
+      }
+      return textContent;
+    }
+    
+    return null;
+  } catch (error) {
+    console.error('Error generating excerpt:', error);
+    return null;
   }
 } 
