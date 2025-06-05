@@ -116,7 +116,7 @@ async function getNotionPost(pageId: string) {
     
     // Use the existing endpoint that was working before
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (process.env.NODE_ENV === 'production' ? 'https://lindaolsson.com' : 'http://localhost:3000');
-    const url = `${baseUrl}/api/blogfinal?pageId=${pageId}`;
+    const url = `${baseUrl}/api/blogs?pageId=${pageId}`;
     console.log("Fetching from URL:", url);
     
     const response = await fetch(url, {

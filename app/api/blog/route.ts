@@ -62,7 +62,7 @@ export async function GET() {
     try {
       // Use the existing endpoint that was working before
       const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (process.env.NODE_ENV === 'production' ? 'https://lindaolsson.com' : 'http://localhost:3000');
-      const response = await fetch(`${baseUrl}/blogfinal/api`, {
+      const response = await fetch(`${baseUrl}/blogs/api`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -83,8 +83,8 @@ export async function GET() {
               ? new Date(post.publishedDate).toISOString() 
               : new Date(post.createdTime).toISOString();
             
-            // Create a slug for Notion posts - use blogfinal path which is working
-            const slug = `blogfinal/${post.id}`;
+            // Create a slug for Notion posts - use blogs path which is working
+            const slug = `blogs/${post.id}`;
             
             // Try to get a proper excerpt by fetching the page content
             let excerpt = await getNotionExcerpt(post.id);
@@ -341,7 +341,7 @@ async function getNotionExcerpt(pageId: string): Promise<string | null> {
   try {
     // Try to fetch the page content
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (process.env.NODE_ENV === 'production' ? 'https://lindaolsson.com' : 'http://localhost:3000');
-    const response = await fetch(`${baseUrl}/api/blogfinal?pageId=${pageId}`, {
+    const response = await fetch(`${baseUrl}/api/blogs?pageId=${pageId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
