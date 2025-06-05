@@ -94,12 +94,7 @@ export default function NewsPage() {
       alt: "209 Phipps Plaza Palm Beach",
       url: "https://www.palmbeachdailynews.com/story/business/real-estate/2021/05/17/designer-scott-snyder-sells-landmarked-office-residence-palm-beach/5126071001/"
     },
-    {
-      title: "Sale recorded at $122.7M seaside 'spec' house sets new record in Palm Beach",
-      image: "/news1.jpg",
-      alt: "Palm Beach Luxury Seaside House",
-      url: "https://www.palmbeachdailynews.com/story/business/real-estate/2021/02/11/133-million-beachfront-house-sale-palm-beach-sets-new-record/6717668002/"
-    },
+    
     {
       title: "Ten condo, co-op deals hit $5 million mark last year",
       image: "/news2.jpg",
