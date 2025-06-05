@@ -70,10 +70,10 @@ const extractFirstImageUrl = (html: string): string | null => {
 // Get a specific blog post by slug
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
     
     // Path to the blog data file
     const dataFilePath = path.join(process.cwd(), 'data', 'blogs.json');
@@ -166,4 +166,53 @@ function extractCoverImage(recordMap: any, pageId: string): string | null {
     return `https://www.notion.so/image/${encodeURIComponent(block.format.page_cover)}?table=block&id=${pageId}`;
   }
   return null;
+}
+
+// Delete a blog post
+export async function DELETE(
+  request: Request,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  try {
+    const { slug } = await params;
+    
+    // Path to the blog data file
+    const dataFilePath = path.join(process.cwd(), 'data', 'blogs.json');
+    
+    // Check if the file exists
+    if (!fs.existsSync(dataFilePath)) {
+      return NextResponse.json(
+        { error: 'Blog post not found' },
+        { status: 404 }
+      );
+    }
+    
+    // Read and parse the file
+    const fileContents = fs.readFileSync(dataFilePath, 'utf8');
+    const data = JSON.parse(fileContents) as BlogData;
+    
+    // Find the post with the matching slug
+    const postIndex = data.posts.findIndex(post => post.slug === slug);
+    
+    if (postIndex === -1) {
+      return NextResponse.json(
+        { error: 'Blog post not found' },
+        { status: 404 }
+      );
+    }
+    
+    // Instead of actually removing the post, mark it as deleted
+    data.posts[postIndex].isDeleted = true;
+    
+    // Write the updated data back to the file
+    fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
+    
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting blog post:', error);
+    return NextResponse.json(
+      { error: 'Failed to delete blog post' },
+      { status: 500 }
+    );
+  }
 } 

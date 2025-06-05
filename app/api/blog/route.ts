@@ -7,7 +7,7 @@ import { NotionAPI } from 'notion-client';
 const notionApi = new NotionAPI();
 
 // Your Notion Database ID
-const NOTION_DATABASE_ID = "2091c2e8ad9680cfa044dfe09ee618e9";
+const NOTION_DATABASE_ID = "20939be3d9a98062ad78db86f9156030";
 
 interface BlogPost {
   id: string;

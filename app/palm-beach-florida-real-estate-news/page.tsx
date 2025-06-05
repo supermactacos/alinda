@@ -35,6 +35,66 @@ export default function NewsPage() {
 
   const newsItems = [
     {
+      title: "Is Jon Bon Jovi linked to a house buy near his Palm Beach mansion?",
+      image: "/news15.jpg",
+      alt: "Jon Bon Jovi Palm Beach Property",
+      url: "https://www.palmbeachdailynews.com/story/business/real-estate/2025/05/20/is-jon-bon-jovi-linked-to-a-house-buy-near-his-palm-beach-mansion/83729753007/"
+    },
+    {
+      title: "Sun and Surf Penthouse at 130 Sunrise Avenue sells for less than previous price",
+      image: "/news16.jpg",
+      alt: "Palm Beach Penthouse",
+      url: "https://www.palmbeachdailynews.com/story/business/real-estate/2025/02/21/palm-beach-penthouse-sells-for-a-bit-less-than-it-did-when-it-last-sold-in-2023/79441229007/"
+    },
+    {
+      title: "Palm Beach house at 350 Seaspray Avenue sells as new house waits in the wings",
+      image: "/news17.jpg",
+      alt: "350 Seaspray Avenue Palm Beach",
+      url: "https://www.palmbeachdailynews.com/story/business/real-estate/2023/12/22/forida-real-estate-palm-beach-house-sells-for-7-million-as-new-house-waits-in-the-wings-for-the-lot/72009347007/"
+    },
+    {
+      title: "Palm Beach house linked to former diplomat sells twice in about a year",
+      image: "/news18.jpg",
+      alt: "130 Cocoanut Row Palm Beach",
+      url: "https://www.palmbeachdailynews.com/story/business/real-estate/2024/06/18/palm-beach-house-linked-to-former-diplomat-sells-twice-in-about-a-year/73997207007/"
+    },
+    {
+      title: "Palm Beach spec house near Trump's Mar-a-Lago brings nearly $30 million",
+      image: "/news19.jpg",
+      alt: "1080 South Ocean Blvd Palm Beach",
+      url: "https://www.palmbeachdailynews.com/story/business/real-estate/2024/02/05/palm-beach-florida-spec-house-near-trump's-mar-a-lago-brings-nearly-30-million-real-estate/72480582007/"
+    },
+    {
+      title: "Neighbor buys Palm Beach house next door, expanding his local holdings",
+      image: "/news20.jpg",
+      alt: "1515 N. Ocean Way Palm Beach",
+      url: "https://www.palmbeachdailynews.com/story/business/real-estate/2024/07/22/neighbor-buys-palm-beach-house-next-door-expanding-his-local-holdings/74460637007/"
+    },
+    {
+      title: "House on a rare hillside lot in Palm Beach sells for more than $15 million",
+      image: "/news21.jpg",
+      alt: "309 Chapel Hill Road Palm Beach",
+      url: "https://www.palmbeachdailynews.com/story/business/real-estate/2023/11/07/florida-real-estate-house-on-a-rare-hillside-lot-in-palm-beach-sells-for-more-than-15-million/71472425007/"
+    },
+    {
+      title: "Sale of house built in 2007 tops $25 million in Midtown Palm Beach",
+      image: "/news22.jpg",
+      alt: "200 Clarke Avenue Palm Beach",
+      url: "https://www.palmbeachdailynews.com/story/business/real-estate/2021/11/12/sale-house-built-2007-tops-25-million-midtown-palm-beach/8591670002/"
+    },
+    {
+      title: "Palm Beach couple sells house for $15.2 million near North End",
+      image: "/news23.jpg",
+      alt: "167 Everglades Avenue Palm Beach",
+      url: "https://www.palmbeachdailynews.com/story/business/real-estate/2021/08/17/palm-beach-couple-sells-house-15-2-million-near-north-end-mls/8168128002/"
+    },
+    {
+      title: "Designer Scott Snyder sells landmarked office-residence in Palm Beach",
+      image: "/news24.jpg",
+      alt: "209 Phipps Plaza Palm Beach",
+      url: "https://www.palmbeachdailynews.com/story/business/real-estate/2021/05/17/designer-scott-snyder-sells-landmarked-office-residence-palm-beach/5126071001/"
+    },
+    {
       title: "Sale recorded at $122.7M seaside 'spec' house sets new record in Palm Beach",
       image: "/news1.jpg",
       alt: "Palm Beach Luxury Seaside House",
