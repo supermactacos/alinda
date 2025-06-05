@@ -61,7 +61,8 @@ export async function GET() {
     let notionPosts: BlogPost[] = [];
     try {
       // Use the existing endpoint that was working before
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/blogfinal/api`, {
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (process.env.NODE_ENV === 'production' ? 'https://lindaolsson.com' : 'http://localhost:3000');
+      const response = await fetch(`${baseUrl}/blogfinal/api`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -339,7 +340,8 @@ export async function POST(request: Request) {
 async function getNotionExcerpt(pageId: string): Promise<string | null> {
   try {
     // Try to fetch the page content
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/blogfinal?pageId=${pageId}`, {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (process.env.NODE_ENV === 'production' ? 'https://lindaolsson.com' : 'http://localhost:3000');
+    const response = await fetch(`${baseUrl}/api/blogfinal?pageId=${pageId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

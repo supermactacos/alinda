@@ -115,7 +115,8 @@ async function getNotionPost(pageId: string) {
     console.log("Attempting to fetch Notion post with ID:", pageId);
     
     // Use the existing endpoint that was working before
-    const url = `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/blogfinal?pageId=${pageId}`;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (process.env.NODE_ENV === 'production' ? 'https://lindaolsson.com' : 'http://localhost:3000');
+    const url = `${baseUrl}/api/blogfinal?pageId=${pageId}`;
     console.log("Fetching from URL:", url);
     
     const response = await fetch(url, {
