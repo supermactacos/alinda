@@ -167,7 +167,7 @@ export default function BlogPage() {
                           <div className="mt-auto pt-4">
                             <Link 
                               href={`/blogs/${post.id}`}
-                              className="group block"
+                              className="inline-block px-4 py-2 bg-green-800 text-white rounded hover:bg-green-700 transition-colors"
                             >
                               Read Article
                             </Link>

@@ -252,162 +252,64 @@ export async function POST(request: Request) {
       );
     }
     
-    // Get database title
-    const databaseTitle = collection?.name?.[0]?.[0] || 'Notion Database';
-    
-    // Process blocks to find pages in the database
+    // Extract blocks which should contain the database items
     const blocks = recordMap.block || {};
-    const pages: NotionPageBlock[] = [];
+    const pageBlocks: NotionPageBlock[] = [];
     
-    // Find all page blocks that are children of this database
+    // Look for blocks that represent pages in the database
     for (const [id, block] of Object.entries(blocks)) {
-      if (id === databaseId) continue; // Skip the database block itself
-      
-      const value = (block as NotionBlock).value;
-      
-      // Check if it's a page block and a child of our database
-      if (value?.type === 'page' && value?.parent_id === databaseId) {
-        // Extract title
-        let title = 'Untitled';
-        if (value.properties?.title) {
-          const titleArr = value.properties.title;
-          if (Array.isArray(titleArr) && titleArr.length > 0 && Array.isArray(titleArr[0])) {
-            title = titleArr[0][0] || 'Untitled';
-          }
-        }
+      // Check if this block is a page and belongs to the collection
+      if ((block as NotionBlock).value && (block as NotionBlock).value.type === 'page' && (block as NotionBlock).value.parent_id === collectionId) {
+        // Try to extract attachment thumbnail from properties first
+        const attachmentThumbnail = extractThumbnailFromProperties(block as NotionBlock, id);
         
-        // Extract creation time
-        const createdTime = value.created_time || Date.now();
-        
-        // Try to find a published date
+        // Extract published date if available
         const publishedDate = extractPublishedDate(block as NotionBlock);
         
         // Extract cover image if available
-        let coverImage = undefined;
-        if (value.format?.page_cover) {
-          if (value.format.page_cover.startsWith('/')) {
-            coverImage = `https://www.notion.so${value.format.page_cover}`;
-          } else {
-            coverImage = value.format.page_cover;
-          }
+        const coverImage = (block as NotionBlock).value.format?.page_cover;
+        
+        // Extract icon if available
+        const icon = (block as NotionBlock).value.format?.page_icon;
+        
+        // Try to fetch the first image in the page content as fallback
+        const contentThumbnail = extractFirstImageFromBlocks(recordMap, id);
+        
+        // Process cover image if it's an attachment
+        let processedCoverImage = coverImage;
+        if (coverImage && coverImage.startsWith('attachment:')) {
+          processedCoverImage = convertAttachmentToUrl(coverImage, id);
+        } else if (coverImage && coverImage.startsWith('/')) {
+          processedCoverImage = `https://www.notion.so${coverImage}`;
         }
         
-        // Try to get a thumbnail from other properties
-        let thumbnail = extractThumbnailFromProperties(block as NotionBlock, id);
+        // Determine the best thumbnail to use (prioritize attachments)
+        const thumbnail = attachmentThumbnail || processedCoverImage || contentThumbnail || icon;
         
-        // If no thumbnail found in properties, try to get the first image in the page content
-        if (!thumbnail && !coverImage) {
-          thumbnail = extractFirstImageFromBlocks(recordMap, id);
-        }
+        const title = (block as NotionBlock).value.properties?.title?.[0]?.[0] || 'Untitled';
         
-        // If we have a cover image but no thumbnail, use the cover as thumbnail
-        if (!thumbnail && coverImage) {
-          thumbnail = coverImage;
-        }
-        
-        // Create the page object
-        pages.push({
+        pageBlocks.push({
           id,
-          title,
-          createdTime,
+          title: typeof title === 'string' ? title : 'Untitled',
+          createdTime: (block as NotionBlock).value.created_time,
           publishedDate,
-          thumbnail,
-          coverImage
+          thumbnail: thumbnail,
+          coverImage: processedCoverImage,
+          icon: icon || undefined
         });
       }
     }
     
-    // Sort pages by date - newest first
-    pages.sort((a, b) => {
-      // If both have published dates, use those
-      if (a.publishedDate && b.publishedDate) {
-        return new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime();
-      }
-      
-      // If only one has a published date, prioritize it
-      if (a.publishedDate) return -1;
-      if (b.publishedDate) return 1;
-      
-      // Fallback to created time
-      return b.createdTime - a.createdTime;
-    });
-    
-    // Return the database information and pages
     return NextResponse.json({ 
       database: {
-        id: databaseId,
-        title: databaseTitle,
-        pages
-      } 
+        title: collection?.name || 'Untitled Database',
+        pages: pageBlocks
+      }
     });
   } catch (error: any) {
-    console.error('Error processing Notion database:', error);
+    console.error('Error fetching Notion database:', error);
     return NextResponse.json(
-      { error: error.message || 'Failed to process Notion database' },
-      { status: 500 }
-    );
-  }
-}
-
-export async function GET(request: Request) {
-  try {
-    // Get the page ID from the query parameters
-    const url = new URL(request.url);
-    const pageId = url.searchParams.get('pageId');
-    
-    if (!pageId) {
-      return NextResponse.json(
-        { error: 'Missing pageId parameter' },
-        { status: 400 }
-      );
-    }
-    
-    // Fetch the Notion page
-    const recordMap = await notion.getPage(pageId);
-    
-    // Process the page data to extract important information
-    const block = recordMap.block[pageId];
-    let pageData = null;
-    
-    if (block) {
-      // Extract title from properties
-      let title = 'Untitled';
-      if (block.value?.properties?.title) {
-        const titleArr = block.value.properties.title;
-        if (Array.isArray(titleArr) && titleArr.length > 0 && Array.isArray(titleArr[0])) {
-          title = titleArr[0][0] || 'Untitled';
-        }
-      }
-      
-      // Extract cover image if available
-      let coverImage = null;
-      if (block.value?.format?.page_cover) {
-        const coverImagePath = block.value.format.page_cover;
-        if (coverImagePath.startsWith('/')) {
-          coverImage = `https://www.notion.so${coverImagePath}`;
-        } else if (coverImagePath.startsWith('http')) {
-          coverImage = coverImagePath;
-        }
-      }
-      
-      pageData = {
-        id: pageId,
-        title,
-        coverImage,
-        createdTime: block.value?.created_time || Date.now(),
-        lastEditedTime: block.value?.last_edited_time || Date.now()
-      };
-    }
-    
-    // Return the record map and processed page data
-    return NextResponse.json({ 
-      recordMap,
-      page: pageData
-    });
-  } catch (error: any) {
-    console.error('Error fetching Notion page:', error);
-    return NextResponse.json(
-      { error: error.message || 'Failed to fetch Notion page' },
+      { error: error.message || 'Failed to fetch Notion database' },
       { status: 500 }
     );
   }

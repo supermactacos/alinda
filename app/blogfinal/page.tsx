@@ -34,7 +34,7 @@ export default function BlogPage() {
     const fetchDatabase = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/blogfinal/api', {
+        const response = await fetch('/blogs/api', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -166,7 +166,7 @@ export default function BlogPage() {
                           
                           <div className="mt-auto pt-4">
                             <Link 
-                              href={`/blogfinal/${post.id}`}
+                              href={`/blogs/${post.id}`}
                               className="inline-block px-4 py-2 bg-green-800 text-white rounded hover:bg-green-700 transition-colors"
                             >
                               Read Article

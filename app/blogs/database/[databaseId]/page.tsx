@@ -106,7 +106,7 @@ export default function NotionDatabasePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="mb-8">
-              <Link href="/blogs" className="inline-flex items-center text-green-800 hover:text-green-700 font-medium">
+              <Link href="/blog" className="inline-flex items-center text-green-800 hover:text-green-700 font-medium">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Blog
               </Link>

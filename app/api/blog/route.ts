@@ -45,10 +45,10 @@ export async function GET() {
     let localPosts: BlogPost[] = [];
     // Check if the file exists
     if (fs.existsSync(dataFilePath)) {
-      // Read and parse the file
-      const fileContents = fs.readFileSync(dataFilePath, 'utf8');
-      const data = JSON.parse(fileContents) as BlogData;
-      
+    // Read and parse the file
+    const fileContents = fs.readFileSync(dataFilePath, 'utf8');
+    const data = JSON.parse(fileContents) as BlogData;
+    
       // Filter out deleted posts
       localPosts = data.posts.filter(post => !post.isDeleted);
       // Mark as local source
@@ -83,7 +83,7 @@ export async function GET() {
               ? new Date(post.publishedDate).toISOString() 
               : new Date(post.createdTime).toISOString();
             
-            // Create a slug for Notion posts - use blogs path which is working
+            // Create a slug for Notion posts - use blogfinal path which is working
             const slug = `blogs/${post.id}`;
             
             // Try to get a proper excerpt by fetching the page content
@@ -123,8 +123,8 @@ export async function GET() {
     
     // Step 3: Merge and sort posts
     const allPosts = [...localPosts, ...notionPosts].sort((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    });
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
     
     return NextResponse.json({ posts: allPosts });
   } catch (error) {

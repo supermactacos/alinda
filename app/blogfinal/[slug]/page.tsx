@@ -48,7 +48,7 @@ export default function BlogPostPage() {
 
       try {
         setLoading(true);
-        const response = await fetch(`/api/blogfinal?pageId=${params.slug}`, {
+        const response = await fetch(`/api/blogs?pageId=${params.slug}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ export default function BlogPostPage() {
       <div className="pt-32 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <Link href="/blogfinal" className="inline-flex items-center text-green-800 hover:text-green-700 mb-8">
+            <Link href="/blogs" className="inline-flex items-center text-green-800 hover:text-green-700 mb-8">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Blog
             </Link>
