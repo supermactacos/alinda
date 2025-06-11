@@ -8,13 +8,16 @@ import { Footer } from "../components/Footer"
 import { Logo } from "../components/Logo"
 import Link from "next/link"
 import Image from "next/image"
-import { IdxShowcase } from "@/components/IdxShowcase"
 import { ContactCard } from "@/app/components/ContactCard"
+import { IdxListingsWidget } from "@/components/IdxListingsWidget"
 
 const instrumentSerif = Instrument_Serif({ 
   weight: ['400'],
   subsets: ['latin'],
 })
+
+// Add a variable for our system font
+const systemFont = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
 
 export default function NorthEndPage() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,111 +28,10 @@ export default function NorthEndPage() {
       setIsScrolled(scrollPosition > 50);
     };
 
-    // Add IDX styles
-    const style = document.createElement('style');
-    style.textContent = `
-      /* Target the showcase gallery */
-      [id^="IDX-showcaseGallery"] {
-        table-layout: fixed !important;
-        border-spacing: 0 !important;
-        font-size: 14px !important;
-      }
-
-      /* Container modifications */
-      [id^="IDX-showcaseGallery"] .IDX-showcaseContainer {
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        height: auto !important;
-        min-height: 0 !important;
-      }
-
-      /* Row and cell modifications */
-      [id^="IDX-showcaseGallery"] .IDX-showcaseRow {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 1rem !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        height: auto !important;
-        min-height: 0 !important;
-      }
-
-      [id^="IDX-showcaseGallery"] .IDX-showcaseCell {
-        padding: 0 !important;
-        margin: 0 !important;
-        height: auto !important;
-        min-height: 0 !important;
-        vertical-align: top !important;
-      }
-
-      /* Content spacing */
-      [id^="IDX-showcaseGallery"] .IDX-showcaseContent {
-        padding: 0 !important;
-        margin: 0 !important;
-        height: auto !important;
-        min-height: 0 !important;
-      }
-
-      [id^="IDX-showcaseGallery"] .IDX-showcaseAddress {
-        margin: 0 !important;
-        padding-top: 0.75rem !important;
-        line-height: 1 !important;
-        height: auto !important;
-        min-height: 0 !important;
-      }
-
-      [id^="IDX-showcaseGallery"] .IDX-showcasePrice,
-      [id^="IDX-showcaseGallery"] .IDX-showcaseCityStateZip {
-        margin: 0 !important;
-        padding: 0 !important;
-        line-height: 1 !important;
-        height: auto !important;
-        min-height: 0 !important;
-      }
-
-      /* Remove any extra spacing */
-      [id^="IDX-showcaseGallery"] * {
-        margin: 0 !important;
-        min-height: 0 !important;
-        height: auto !important;
-      }
-
-      /* Force image size and aspect ratio */
-      [id^="IDX-showcaseGallery"] .IDX-showcasePhoto {
-        width: 442px !important;
-        height: 295px !important;
-        object-fit: cover !important;
-        display: block !important;
-      }
-
-      /* Make container match image size */
-      [id^="IDX-showcaseGallery"] .IDX-showcaseLink {
-        width: 442px !important;
-        height: 295px !important;
-        display: block !important;
-      }
-
-      /* Ensure images maintain aspect ratio on smaller screens */
-      @media (max-width: 1024px) {
-        [id^="IDX-showcaseGallery"] .IDX-showcasePhoto,
-        [id^="IDX-showcaseGallery"] .IDX-showcaseLink {
-          width: 100% !important;
-          height: auto !important;
-          aspect-ratio: 442/295 !important;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-
     window.addEventListener('scroll', handleScroll);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (style.parentNode) {
-        style.remove();
-      }
     };
   }, []);
 
@@ -147,7 +49,7 @@ export default function NorthEndPage() {
               North End Homes
             </h1>
 
-            <div className="max-w-4xl mx-auto mb-16">
+            <div className="max-w-5xl mx-auto mb-16">
               {/* Hero Image */}
               <div className="relative w-full aspect-[16/9] mb-12">
                 <Image
@@ -187,10 +89,9 @@ export default function NorthEndPage() {
                   Homes available for Purchase:
                 </h3>
                 
-                <div className="relative" style={{ zIndex: 40 }}>
-                  <div className="not-prose">
-                    <IdxShowcase  />
-                  </div>
+                <div className="w-full mb-8">
+                  {/* Use the reusable component instead */}
+                  <IdxListingsWidget widgetId="103608" columns={3} />
                 </div>
               </div>
             </div>

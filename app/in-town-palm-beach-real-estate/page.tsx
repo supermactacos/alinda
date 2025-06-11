@@ -8,8 +8,8 @@ import { Footer } from "../components/Footer"
 import { Logo } from "../components/Logo"
 import Link from "next/link"
 import Image from "next/image"
-import { IdxShowcaseTwo } from "@/components/IdxShowcaseTwo"
 import { ContactCard } from "@/app/components/ContactCard"
+import { IdxListingsWidget } from "@/components/IdxListingsWidget"
 
 const instrumentSerif = Instrument_Serif({ 
   weight: ['400'],
@@ -147,7 +147,7 @@ export default function InTownPage() {
               In Town Homes
             </h1>
 
-            <div className="max-w-4xl mx-auto mb-16">
+            <div className="max-w-5xl mx-auto mb-16">
               {/* Hero Image */}
               <div className="relative w-full aspect-[16/9] mb-12">
                 <Image
@@ -184,10 +184,9 @@ export default function InTownPage() {
                   Palm Beach Homes available for Purchase:
                 </h3>
                 
-                <div className="relative" style={{ zIndex: 40 }}>
-                  <div className="not-prose">
-                    <IdxShowcaseTwo />
-                  </div>
+                <div className="w-full mb-8">
+                  {/* Use the reusable component instead */}
+                  <IdxListingsWidget widgetId="104204" columns={3} />
                 </div>
               </div>
             </div>
