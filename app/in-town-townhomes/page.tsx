@@ -79,7 +79,7 @@ export default function InTownTownhomesPage() {
                 
                 <div className="w-full mb-8">
                   {/* Use the reusable component instead */}
-                  <IdxListingsWidget widgetId="104950" columns={3} />
+                  <IdxListingsWidget widgetId="104204" columns={3} />
                 </div>
               </div>
             </div>
