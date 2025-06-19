@@ -188,7 +188,7 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
             <div className="border-b border-green-700 pb-4">
               <div className="text-white text-2xl font-medium mb-2">About</div>
               <div className="pl-4 flex flex-col space-y-3">
-                <Link href="/about" className="text-white text-lg" onClick={toggleMenu}>ABOUT LINDA</Link>
+                <Link href="/about-us" className="text-white text-lg" onClick={toggleMenu}>ABOUT LINDA</Link>
                 <Link href="/our-team" className="text-white text-lg" onClick={toggleMenu}>OUR TEAM</Link>
                 <Link href="/a-leader-in-palm-beach-real-estate" className="text-white text-lg" onClick={toggleMenu}>A LEADER IN PALM BEACH REAL ESTATE</Link>
                 <Link href="/concierge-quality-realty-services" className="text-white text-lg" onClick={toggleMenu}>CONCIERGE QUALITY REALTY SERVICES</Link>
@@ -216,6 +216,7 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
             <div className="border-b border-green-700 pb-4">
               <div className="text-white text-2xl font-medium mb-2">Tax Benefits</div>
               <div className="pl-4 flex flex-col space-y-3">
+                <Link href="/why-choose-us" className="text-white text-lg" onClick={toggleMenu}>WHY CHOOSE US?</Link>
                 <Link href="/global-reach-local-expertise" className="text-white text-lg" onClick={toggleMenu}>GLOBAL REACH/LOCAL EXPERTISE</Link>
                 <Link href="/palm-beach-a-slice-of-paradise" className="text-white text-lg" onClick={toggleMenu}>PALM BEACH – A SLICE OF PARADISE</Link>
                 <Link href="/buying-selling-hire-professional" className="text-white text-lg" onClick={toggleMenu}>BUYING OR SELLING? HIRE A PROFESSIONAL!</Link>
