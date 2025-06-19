@@ -135,7 +135,7 @@ export function Navbar({ isScrolled, alwaysSolid = false }: { isScrolled: boolea
         {/* Desktop Right Navigation */}
         <div className="hidden md:flex items-center gap-8">
           <div className="relative group">
-            <Link href="/why-choose-us" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-white text-xl group-hover:text-white/90 transition-colors">
+            <Link href="/why-choose-us" className="flex items-center gap-1 text-white text-xl group-hover:text-white/90 transition-colors">
               Why Choose Us?
               <ChevronDown className="h-4 w-4 mt-0.5 group-hover:rotate-180 transition-transform duration-200" />
             </Link>
