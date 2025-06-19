@@ -99,7 +99,7 @@ export default function AboutPage() {
               </div>
               <div className="flex items-start gap-2">
                 <span className="text-[#8B0000]">•</span>
-                <p>Unrivaled website providing global internet exposure on over 300 of the most highly visible web sites including Trulia, Zillow, Wall Street Journal.com, Realtor.com, and two MLS services;</p>
+                <p>Unrivaled website providing global internet exposure on over 300 of the most highly visible web sites including Zillow, Wall Street Journal.com, Realtor.com, and two MLS services;</p>
               </div>
               <div className="flex items-start gap-2">
                 <span className="text-[#8B0000]">•</span>
