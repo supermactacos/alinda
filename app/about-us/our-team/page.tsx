@@ -46,6 +46,12 @@ export default function TeamPage() {
       readFullBio: true
     },
     {
+      name: "Shana Bickwid",
+      image: "/shana.png",
+      email: "shana@lindaolsson.com",
+      readFullBio: true
+    },
+    {
       name: "Dale Coudert",
       image: "/team3.jpg",
       email: "dalecoudert@me.com",
@@ -128,6 +134,7 @@ export default function TeamPage() {
                   bioLink={
                     member.name === "Jennifer Beqaj" ? "/about-us/our-team/jennifer-beqaj" :
                     member.name === "Justin Besikof" ? "/about-us/our-team/justin-besikof" :
+                    member.name === "Shana Bickwid" ? "/about-us/our-team/shana-bickwid" :
                     member.name === "Dale Coudert" ? "/about-us/our-team/dale-coudert" :
                     member.name === "John C. Dotterrer" ? "/about-us/our-team/john-c-dotterrer" :
                     member.name === "Elizabeth Jones" ? "/about-us/our-team/elizabeth-jones" :
