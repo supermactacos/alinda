@@ -62,7 +62,7 @@ export default function AboutPage() {
                   Linda is the broker/owner of Linda R. Olsson, Inc., Realtor, Specializing in Palm Beach Luxury Properties with our Global Reach, Local Expertise, and an Unrivaled Web Site. Recognized by the Wall Street Journal as one of "America's Best Real Estate Agents", known for our professionalism, superior customer service and in-depth knowledge of the market. Representing buyers and sellers of Palm Beach's finest residences... You can profit from our knowledge, expertise, and global presence. We don't just talk about excellence... We Get Results!
                 </p>
                 <p className="text-gray-800 text-xl leading-relaxed mb-8">
-                  With over 30 years of experience selling <Link href="/properties" className="text-[#1b4e1f] font-semibold hover:underline">Luxury Homes in Palm Beach</Link>, Linda and her associates have gained a vast knowledge of Palm Beach, its people, and its history--knowledge we put to daily use to help our clients. The firm's reputation and success are built upon experience, expertise, and excellent service. Choosing a firm with the commitment, confidentiality, and dedication to represent your best interests makes all the difference. Your privacy is important to us. We take great pride in utilizing our experience, resources, and global connections to unite extraordinary people with extraordinary properties. A Lifelong Commitment.
+                  With over 30 years of experience selling <Link href="/properties" className="text-[#1b4e1f] font-semibold hover:underline">Luxury Homes in Palm Beach</Link>, Linda and her associates have gained a vast knowledge of Palm Beach, its people, and its history--knowledge we put to daily use to help our clients. The firm's reputation and success are built upon experience, expertise, and excellent service. Choosing a firm with the commitment, confidentiality, and dedication to represent your best interests makes all the difference. Your privacy is important to us. We take great pride in utilizing our experience, resources, and global connections to unite extraordinary people with extraordinary properties. A <Link href="https://www.palmbeachdailynews.com/story/news/local/2014/04/21/lifelong-commitment/9663911007/" className="text-[#1b4e1f] font-semibold hover:underline">Lifelong Commitment</Link>.
                 </p>
               
               </div>
@@ -99,7 +99,7 @@ export default function AboutPage() {
               </div>
               <div className="flex items-start gap-2">
                 <span className="text-[#8B0000]">•</span>
-                <p>Unrivaled website providing global internet exposure on over 300 of the most highly visible web sites including Trulia, Zillow, Wall Street Journal.com, Realtor.com, and two MLS services;</p>
+                <p>Unrivaled website providing global internet exposure on over 300 of the most highly visible web sites including Zillow, Wall Street Journal.com, Realtor.com, and two MLS services;</p>
               </div>
               <div className="flex items-start gap-2">
                 <span className="text-[#8B0000]">•</span>
